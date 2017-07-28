@@ -1,0 +1,23 @@
+{% load render_bundle from webpack_loader %}
+<html>
+    <body>
+        <div>
+            <h1>Customer Name</h1>
+            <h5>Last worked: {{date}}</h5>
+            <h5>Last meal: {{date}}</h5>
+        </div>
+        <div>
+            Barter Credit: {{amount}}
+        </div>
+        <div>
+            <button><a href="/buy">
+                Buy Meal</a>
+            </button>
+            <button><a href="/addcredit">
+                Add Credit</a>
+            </button>
+        </div>
+        <a href='/'>Back to Search</a>
+        <div></div>
+    </body>
+</html>
