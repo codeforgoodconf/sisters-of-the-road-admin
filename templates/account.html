@@ -5,23 +5,26 @@
         {% include "universal-head.html" %} 
     </head>
     <body>
-        <div>
+        <div class="header col-sm-6 centered">
             <h1>Customer Name</h1>
             <h5>Last worked: {{date}}</h5>
             <h5>Last meal: {{date}}</h5>
         </div>
-        <div>
-            Barter Credit: {{amount}}
+        <div id="credits" class="centered">
+            Barter Credits: {{amount}} $$$
         </div>
-        <div>
-            <button><a href="/buymeal">
-                Buy Meal</a>
+        <div class="buttons row text-center">
+            <button class="btn btn-info col-sm-offset-2 centered">
+                Buy Meal
             </button>
-            <button><a href="/addcredit">
-                Add Credit</a>
+            <button class="btn btn-success col-sm-offset-2 centered">
+                Add Credit
             </button>
         </div>
-        <a href='/'>Back to Search</a>
-        <div></div>
+        <div class="text-center row">
+            <button class="btn btn-danger col-sm-2 col-sm-offset-5">Back to Search</button>
+        </div>
+        
+        
     </body>
 </html>
