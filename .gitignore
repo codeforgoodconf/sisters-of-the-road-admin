@@ -103,6 +103,7 @@ ENV/
 
 # webpack
 webpack-stats.json
+assets/bundles/
 
 # npm
 node_modules/
