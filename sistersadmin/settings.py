@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'behave_django',
-    'webpack_loader'
+    'webpack_loader',
+    'bartercheckout'
 ]
 
 MIDDLEWARE = [
