@@ -19,6 +19,35 @@ This tool is a Django app. The POS interface will likely require some kind of
 Javascript layer, but a heavy single page app is not required. Either standalone
 vanilla JS, jQuery or Angular should suffice.
 
+# Event MVP Functionality Overview
+
+Staff users can... 
+
+* Log in and see the main barter-checkout page
+* Search for a barter account by customer name (fuzzy search)
+* Checkout a meal with a barter account
+* Add volunteer credit to a barter account
+
+Admin users can...
+
+* Log in and see the main admin page
+* Add new barter accounts
+* Add new staff accounts
+* Search for barter accounts
+* View all barter accounts
+* View credit balance for customer
+* See log of how credits were used
+
+Checkout interface is...
+
+* optimized for iPad
+* intuitive for users with variety of tech experience
+* easy to read
+
+Admin interface is…
+
+* not accessible to regular staff users
+
 # License
 
 GNU AGPL 3.0
