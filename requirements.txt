@@ -1,3 +1,7 @@
+behave==1.2.5
+behave-django==0.5.0
 Django==1.11.3
 pkg-resources==0.0.0
 pytz==2017.2
+selenium==3.0.0
+six==1.10.0
