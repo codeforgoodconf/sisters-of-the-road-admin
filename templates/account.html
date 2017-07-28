@@ -1,5 +1,9 @@
 {% load render_bundle from webpack_loader %}
+{% load staticfiles %}
 <html>
+    <head>
+        {% include "universal-head.html" %} 
+    </head>
     <body>
         <div>
             <h1>Customer Name</h1>
@@ -10,7 +14,7 @@
             Barter Credit: {{amount}}
         </div>
         <div>
-            <button><a href="/buy">
+            <button><a href="/buymeal">
                 Buy Meal</a>
             </button>
             <button><a href="/addcredit">

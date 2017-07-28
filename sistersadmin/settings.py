@@ -123,6 +123,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     #This lets Django's collectstatic store our bundles
     os.path.join(BASE_DIR, 'assets'), 
+    os.path.join(BASE_DIR, 'static'), 
 )
 
 WEBPACK_LOADER = {
