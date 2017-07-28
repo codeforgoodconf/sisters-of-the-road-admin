@@ -16,7 +16,7 @@ class BarterEvent(models.Model):
 	)
 	event_type = models.CharField(
 		max_length=20,
-		choices = event_type_choices,
+		choices = EVENT_TYPE_CHOICES,
 		default = SUBTRACT,
 	)
 	event_time = models.DateTimeField(auto_now_add=True)
@@ -24,5 +24,5 @@ class BarterEvent(models.Model):
 
 class BarterAccount(models.Model):
 	patron_name = models.CharField(max_length=100)
-	balance = models.IntegerField(max_length=30)
+	balance = models.DecimalField(max_digits=5, decimal_places=2)
 	
