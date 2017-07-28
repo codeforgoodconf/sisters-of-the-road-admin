@@ -48,6 +48,9 @@ Admin interface is…
 
 * not accessible to regular staff users
 
+# Contributors
+Rachel Wilson
+
 # License
 
 GNU AGPL 3.0
