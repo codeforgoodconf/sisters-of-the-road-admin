@@ -50,6 +50,7 @@ Admin interface is…
 
 # Contributors
 Rachel Wilson
+Andrew Harvey
 
 # License
 
