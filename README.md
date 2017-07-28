@@ -52,6 +52,7 @@ Admin interface is…
 Rachel Wilson
 Andrew Harvey
 Schola Choi
+Cynthia Prevatte
 
 # License
 
