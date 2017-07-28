@@ -49,13 +49,14 @@ Admin interface is…
 * not accessible to regular staff users
 
 # Contributors
-Rachel Wilson
-Andrew Harvey
-Schola Choi
-Cynthia Prevatte
-Juliana Arrighi
-Melissa Lewis
 
+* Rachel Wilson
+* Andrew Harvey
+* Schola Choi
+* Cynthia Prevatte
+* Juliana Arrighi
+* [Melissa Lewis](https://twitter.com/iff_or)
+* Ashley Fisher
 
 # License
 
