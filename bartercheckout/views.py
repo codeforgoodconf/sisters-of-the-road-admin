@@ -10,14 +10,25 @@ def account_add(request, account_id):
     ba = BarterAccount.objects.filter(id=account_id)
     if len(ba) > 0:
         ba = ba[0]
-        ba.add_account(1)
+        body_unicode = request.body.decode('utf-8')
+        body_data = json.loads(body_unicode)
+        ba.add_account(body_data['amount'])
         ba.save()
         return JsonResponse({'result': 'ok'})
     else:
         return JsonResponse({'error': 'noSuchAccount'})
 
 def account_subtract(request):
-    return JsonResponse({"foo":"bar"})
+    ba = BarterAccount.objects.filter(id=account_id)
+    if len(ba) > 0:
+        ba = ba[0]
+        body_unicode = request.body.decode('utf-8')
+        body_data = json.loads(body_unicode)
+        ba.subtract_account(body_data['amount'])
+        ba.save()
+        return JsonResponse({'result': 'ok'})
+    else:
+        return JsonResponse({'error': 'noSuchAccount'})
 
 from django.http import HttpResponse
 
