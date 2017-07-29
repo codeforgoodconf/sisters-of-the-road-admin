@@ -10,7 +10,30 @@ class App extends Component {
         super();
         this.state = {
             currentView: 'searchpage',
-            currentAccount: null
+            currentAccount: null,
+            accounts: [
+                {
+                    name: 'John Doe',
+                    id: '1',
+                    lastCredit: '7/20/17',
+                    lastMeal: '5/30/17',
+                    currentCredit: 4.25
+                },
+                {
+                    name: 'Josey',
+                    id: '2',
+                    lastCredit: '7/20/17',
+                    lastMeal: '5/30/17',
+                    currentCredit: 1.75
+                },
+                {
+                    name: 'J Odin',
+                    id: '3',
+                    lastCredit: '7/20/17',
+                    lastMeal: '5/30/17',
+                    currentCredit: 3.00
+                },
+            ]
         };
     }
 
@@ -21,15 +44,21 @@ class App extends Component {
         });
     }
 
+    updateCredit (newCredit) {
+        this.state.currentAccount.currentCredit = newCredit;
+    }
+
     render () {
         const {
              currentView,
-             currentAccount
+             currentAccount,
+             accounts
          } = this.state;
 
          if (currentView === 'searchpage') {
             return (
-                <SearchPage switchView={(viewname, account) => this.switchView(viewname, account)}/>
+                <SearchPage switchView={(viewname, account) => this.switchView(viewname, account)}
+                            accounts={accounts}/>
             )
          } else if (currentView === 'accountpage') {
             return (
@@ -39,12 +68,14 @@ class App extends Component {
          } else if (currentView === 'addcreditpage') {
             return (
                 <AddCreditPage switchView={(viewname, account) => this.switchView(viewname, account)} 
-                               account={currentAccount}/>
+                               account={currentAccount}
+                               updateCredit={(newCredit) => this.updateCredit(newCredit)} />
             )
          } else if (currentView === 'buymealpage') {
             return (
                 <BuyMealPage switchView={(viewname, account) => this.switchView(viewname, account)}
-                             account={currentAccount} />
+                             account={currentAccount}
+                             updateCredit={(newCredit) => this.updateCredit(newCredit)} />
             )
          }
     }
