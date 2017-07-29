@@ -7,11 +7,14 @@ def home(request):
     return render(request, 'index.html', {})
 	
 def account_add(request, account_id):
-    ba = BarterAccount.objects.filter(id=account_id)[0]
-    ba.add_account(1)
-    ba.save()
-    print(ba.balance)
-    return JsonResponse({"foo":"bar"})
+    ba = BarterAccount.objects.filter(id=account_id)
+    if len(ba) > 0:
+        ba = ba[0]
+        ba.add_account(1)
+        ba.save()
+        return JsonResponse({'result': 'ok'})
+    else:
+        return JsonResponse({'error': 'noSuchAccount'})
 
 def account_subtract(request):
     return JsonResponse({"foo":"bar"})

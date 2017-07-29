@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 const HOUR_MULIPLIER = 3.0;
 
 
@@ -17,8 +16,16 @@ class AddCreditPage extends Component {
             updateCredit,
             switchView
          } = this.props;
-         updateCredit(account.currentCredit + hours * HOUR_MULIPLIER);
-         switchView('accountpage', account);
+         var amount = hours * HOUR_MULIPLIER;
+         axios.get('/account/1/add', {amount: amount}).then(function(response) {
+             if (response.data && response.data.result === 'ok') {
+                updateCredit(account.currentCredit + amount);
+                switchView('accountpage', account);
+             } else {
+                 // the account ID was not found - what to do?
+                 console.log('no account!')
+             }
+         });
     }
 
     render () {
