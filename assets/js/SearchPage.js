@@ -4,37 +4,12 @@ import React, { Component } from 'react';
 class SearchPage extends Component {
     constructor () {
         super();
-        this.state = {
-            accounts: [
-                {
-                    name: 'John Doe',
-                    id: '1',
-                    lastCredit: '7/20/17',
-                    lastMeal: '5/30/17',
-                    currentCredit: 4.25
-                },
-                {
-                    name: 'Josey',
-                    id: '2',
-                    lastCredit: '7/20/17',
-                    lastMeal: '5/30/17',
-                    currentCredit: 1.75
-                },
-                {
-                    name: 'J Odin',
-                    id: '3',
-                    lastCredit: '7/20/17',
-                    lastMeal: '5/30/17',
-                    currentCredit: 3.00
-                },
-            ]
-        };
     }
 
     render () {
         const {
             accounts
-        } = this.state;
+        } = this.props;
         return (
             <div className="SearchPage">
                 <header>

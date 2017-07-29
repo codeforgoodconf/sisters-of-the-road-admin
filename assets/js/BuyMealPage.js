@@ -6,17 +6,28 @@ class BuyMealPage extends Component {
         super();
     }
 
+    buyMeal (account, amount) {
+        const {
+            updateCredit,
+            switchView
+         } = this.props;
+         updateCredit(account.currentCredit - amount);
+         switchView('accountpage', account);
+    }
+
     render () {
         const {
             account
         } = this.props;
+
+        var amount;
+
         return (
             <div className="BuyMealPage">
                 <div className="header col-sm-12 centered">
                     <h3>{account.name}</h3>
                     <h5>Last worked: {account.lastWorked}</h5>
                     <h5>Last meal: {account.lastMeal}</h5>
-                </div>
                 <div id="calculate" className="jumbotron row center-block">
                     <div className="total">
                         <h3 className="text-center">Meal Total:</h3>
@@ -25,6 +36,13 @@ class BuyMealPage extends Component {
                 </div>
                 <div className="row">
                     <button className="btn btn-success col-sm-offset-5 center-block">
+                <div>
+                    Meal Total: 
+                    <input type="number" min="0.00" step="0.25" max="2500" 
+                           onChange={(event) => amount = event.target.value} />
+                </div>
+                <div>
+                    <button onClick={() => this.buyMeal(account, amount)}>
                         Spend amount
                     </button>
                 </div>

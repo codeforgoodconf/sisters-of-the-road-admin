@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
 
 
+const HOUR_MULIPLIER = 3.0;
+
+
 class AddCreditPage extends Component {
     constructor () {
         super();
+        this.state = {
+            hours: 0
+        };
+    }
+
+    addCredit (account, hours) {
+        const {
+            updateCredit,
+            switchView
+         } = this.props;
+         updateCredit(account.currentCredit + hours * HOUR_MULIPLIER);
+         switchView('accountpage', account);
     }
 
     render () {
         const {
             account
         } = this.props;
+
+        var hours;
+
         return (
             <div className="AddCreditPage">
                 <div className="header col-sm-12 centered">
@@ -25,6 +43,12 @@ class AddCreditPage extends Component {
                 </div>
                 <div className="row">
                     <button className="btn btn-success col-sm-offset-5 center-block">
+                    Hours Worked: 
+                    <input type="number" min="0.00" step="0.25" max="2500" 
+                           onChange={(event) => hours = event.target.value} />
+                </div>
+                <div>
+                    <button onClick={() => this.addCredit(account, hours)}>
                         Add amount
                     </button>
                 </div>
