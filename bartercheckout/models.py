@@ -23,6 +23,6 @@ class BarterEvent(models.Model):
 	#staff_id = models.ForeignKey()
 
 class BarterAccount(models.Model):
-	patron_name = models.CharField(max_length=100)
+	customer_name = models.CharField(max_length=100)
 	balance = models.DecimalField(max_digits=5, decimal_places=2)
 	
