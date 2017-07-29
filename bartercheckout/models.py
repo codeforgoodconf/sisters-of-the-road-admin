@@ -38,6 +38,6 @@ class BarterAccount(models.Model):
 		return self.balance
 	
 	def __str__(self):
-		return 'Account: {}'.format(self.patron_name)
+		return 'Account: {}'.format(self.customer_name)
 
 	
