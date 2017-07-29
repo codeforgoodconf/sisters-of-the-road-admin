@@ -21,8 +21,22 @@ class BarterEvent(models.Model):
 	)
 	event_time = models.DateTimeField(auto_now_add=True)
 	#staff_id = models.ForeignKey()
-
+	amount = models.DecimalField(max_digits=4, decimal_places=2, default=0.00)
+	
+	
+		
 class BarterAccount(models.Model):
 	patron_name = models.CharField(max_length=100)
-	balance = models.DecimalField(max_digits=5, decimal_places=2)
+	balance = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
+	
+	def add_account(self, amount):
+		self.balance += amount
+		return self.balance
+	
+	def subtract_account(self, amount):
+		self.balance -= amount
+		return self.balance
+	
+	def __str__(self):
+		return 'Account: {}'.format(self.patron_name)
 	
