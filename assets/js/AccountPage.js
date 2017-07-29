@@ -7,23 +7,26 @@ class AccountPage extends Component {
     }
 
     render () {
-         return (
+        const {
+            account
+        } = this.props;
+        return (
             <div className="AccountPage">
                 <div className="header col-sm-6 centered">
-                    <h1>Customer Name</h1>
-                    <h5>Last worked: date</h5>
-                    <h5>Last meal: date</h5>
+                    <h1>{account.name}</h1>
+                    <h5>Last worked: {account.lastWorked}</h5>
+                    <h5>Last meal: {account.lastMeal}</h5>
                 </div>
                 <div id="credits" className="centered">
-                    Barter Credits: amount $$$
+                    Barter Credits: ${account.currentCredit}
                 </div>
                 <div className="buttons row text-center">
                     <button className="btn btn-info col-sm-offset-2 centered"
-                            onClick={() => this.props.switchView('buymealpage')}>
+                            onClick={() => this.props.switchView('buymealpage', account)}>
                         Buy Meal
                     </button>
                     <button className="btn btn-success col-sm-offset-2 centered"
-                            onClick={() => this.props.switchView('addcreditpage')}>
+                            onClick={() => this.props.switchView('addcreditpage', account)}>
                         Add Credit
                     </button>
                 </div>

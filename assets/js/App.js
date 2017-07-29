@@ -9,34 +9,42 @@ class App extends Component {
     constructor () {
         super();
         this.state = {
-            currentView: 'searchpage'
+            currentView: 'searchpage',
+            currentAccount: null
         };
     }
 
-    switchView (viewname) {
-        this.setState({currentView: viewname});
+    switchView (viewname, account) {
+        this.setState({
+            currentView: viewname,
+            currentAccount: account
+        });
     }
 
     render () {
         const {
-             currentView
+             currentView,
+             currentAccount
          } = this.state;
 
          if (currentView === 'searchpage') {
             return (
-                <SearchPage switchView={(viewname) => this.switchView(viewname)}/>
+                <SearchPage switchView={(viewname, account) => this.switchView(viewname, account)}/>
             )
          } else if (currentView === 'accountpage') {
             return (
-                <AccountPage switchView={(viewname) => this.switchView(viewname)}/>
+                <AccountPage switchView={(viewname, account) => this.switchView(viewname, account)}
+                             account={currentAccount} />
             );
          } else if (currentView === 'addcreditpage') {
             return (
-                <AddCreditPage switchView={(viewname) => this.switchView(viewname)} />
+                <AddCreditPage switchView={(viewname, account) => this.switchView(viewname, account)} 
+                               account={currentAccount}/>
             )
          } else if (currentView === 'buymealpage') {
             return (
-                <BuyMealPage switchView={(viewname) => this.switchView(viewname)} />
+                <BuyMealPage switchView={(viewname, account) => this.switchView(viewname, account)}
+                             account={currentAccount} />
             )
          }
     }
