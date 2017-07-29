@@ -1,13 +1,23 @@
 body {
-    background-color: silver;
+    background-color: white;
 }
-.header.col-sm-6.centered {
+header * {
     text-align: center;
-    border: 1px solid navy;
-    background: white;
-    border-radius: 15px;
+    margin-top: 5%;
+}
+#seachbar input.input-lg {
+    width: 60%;
+    font-size: 32px;
+    margin: 5% auto;
+}
+.header.col-sm-12.centered {
+    text-align: center;
+    border: 2px solid lightslategray;
+    background: #eee;
     padding-bottom: 2%;
     margin-top: 10%;
+    width: 90%;
+    border-radius: 10px;
 }
 h1 {
     font-weight: 700;
@@ -19,24 +29,59 @@ h1 {
     margin: 0 auto;
     margin-top: 5%;
 }
-
+div#result.jumbotron.row {
+    margin-top: 5px%;
+    padding: 1%;;
+    width: 95%;
+    border: 2px solid lightslategray;
+    border-radius: 10px;
+}
+.jumbotron p span{ 
+    margin-left: 5%;
+}
 #credits {
     text-align: center;
     font-weight: 700;
     font-size: 4rem;
 }
-
-button.centered {
+div.buttons.row {
+    margin: 4% 0 4% 23%;
+}
+button.col-sm-offset-1 {
     height:130px;
     width: 175px;
     margin-bottom: 5%;
     color: white;
+    font-size: 3REM;
+}
+
+button.btn-success.col-sm-offset-5 {
+    height:150px;
+    width: 225px;
+    margin-bottom: 5%;
+    color: white;
+    font-size: 3REM;
+}
+
+btn.btn-info.col-sm-offset-5 {
+    margin-left:5%;
 }
 
 button * {
     font-weight: 700;
     font-size: 36;
 }
+div#calculate.jumbotron.row {
+    margin-top: 2%;
+    padding-top: 2%;
+    width: 75%;
+    border: 2px solid lightslategray;
+    border-radius: 10px;
+}
 
+input.numbers, input#total {
+    font-size: 32px;
+    font-weight: 700;
+}
 
 

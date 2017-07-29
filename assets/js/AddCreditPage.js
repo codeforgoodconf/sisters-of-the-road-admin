@@ -12,23 +12,27 @@ class AddCreditPage extends Component {
         } = this.props;
         return (
             <div className="AddCreditPage">
-                <div>
+                <div className="header col-sm-12 centered">
                     <h3>{account.name}</h3>
                     <h5>Last worked: {account.lastWorked}</h5>
                     <h5>Last meal: {account.lastMeal}</h5>
                 </div>
-                <div>
-                    Hours Worked: 
-                    <input type="number" min="0.00" step="0.25" max="2500" />
+                <div id="calculate" className="jumbotron row center-block">
+                    <div className="total">
+                        <h3 className="text-center">Hours Worked:</h3>
+                        <input id="hours" className="numbers col-sm-offset-3 input-lg center-block text-center" type="number" min="0.00" step="0.25" max="2500" />
+                    </div>
                 </div>
-                <div>
-                    <button>
+                <div className="row">
+                    <button className="btn btn-success col-sm-offset-5 center-block">
                         Add amount
                     </button>
                 </div>
-                <button onClick={() => this.props.switchView('accountpage', account)}>
-                    Cancel
-                </button>
+                <div>
+                    <button className="btn btn-info col-sm-2 col-sm-offset-5" onClick={() => this.props.switchView('accountpage', account)}>
+                        Cancel
+                    </button>
+                </div>
             </div>
          );
     }

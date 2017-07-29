@@ -37,17 +37,25 @@ class SearchPage extends Component {
         } = this.state;
         return (
             <div className="SearchPage">
-                I'm the search page!
-
+                <header>
+                    <h1 class="text-center">Sisters of the Road Cafe</h1>
+                </header>
+                <div id="seachbar">
+                    <input className="input-lg center-block" typeName="text" placeholder="Search for patron"/>
+                </div>
+                <div className="row">
                 {accounts.map((account) =>
-                    <div style={{borderStyle: 'solid', margin: '5px'}}
+                    <div id="result" className="jumbotron row text-center center-block"
                          onClick={() => this.props.switchView('accountpage', account)}
                          key={account.id}>
-                        <p>{account.name}</p>
-                        <p>Last credit: {account.lastCredit}</p>
-                        <p>Last meal: {account.lastMeal}</p>
+                        <p>
+                            {account.name}
+                            <span>Last credit: {account.lastCredit}</span>
+                            <span>Last meal: {account.lastMeal}</span>
+                        </p>
                     </div>
                 )}
+                </div>
             </div>
          );
     }
