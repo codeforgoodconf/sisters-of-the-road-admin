@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 from django.http import HttpResponse, JsonResponse
 from .models import BarterAccount
 
@@ -14,3 +15,15 @@ def account_add(request, account_id):
 
 def account_subtract(request):
     return JsonResponse({"foo":"bar"})
+
+from django.http import HttpResponse
+
+def home(request):
+    return render(request, 'index.html', {})
+
+def hello_api(request):
+    return HttpResponse('Hello')
+
+def account(request):
+    return
+
