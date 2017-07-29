@@ -35,7 +35,6 @@ class SearchPage extends Component {
         const {
             accounts
         } = this.state;
-        console.log(accounts);
         return (
             <div className="SearchPage">
                 I'm the search page!

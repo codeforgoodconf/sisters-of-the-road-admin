@@ -7,12 +7,15 @@ class AddCreditPage extends Component {
     }
 
     render () {
-         return (
+        const {
+            account
+        } = this.props;
+        return (
             <div className="AddCreditPage">
                 <div>
-                    <h3>Customer Name</h3>
-                    <h5>Last worked: date</h5>
-                    <h5>Last meal: date</h5>
+                    <h3>{account.name}</h3>
+                    <h5>Last worked: {account.lastWorked}</h5>
+                    <h5>Last meal: {account.lastMeal}</h5>
                 </div>
                 <div>
                     Hours Worked: 
@@ -23,7 +26,7 @@ class AddCreditPage extends Component {
                         Add amount
                     </button>
                 </div>
-                <button onClick={() => this.props.switchView('accountpage')}>
+                <button onClick={() => this.props.switchView('accountpage', account)}>
                     Cancel
                 </button>
             </div>
