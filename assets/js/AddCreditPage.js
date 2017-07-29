@@ -38,17 +38,17 @@ class AddCreditPage extends Component {
                 <div id="calculate" className="jumbotron row center-block">
                     <div className="total">
                         <h3 className="text-center">Hours Worked:</h3>
-                        <input id="hours" className="numbers col-sm-offset-3 input-lg center-block text-center" type="number" min="0.00" step="0.25" max="2500" />
+                        <input id="hours"
+                               className="numbers col-sm-offset-3 input-lg center-block text-center"
+                               type="number"
+                               min="0.00"
+                               step="0.25"
+                               max="2500"
+                               onChange={(event) => hours = event.target.value} />
                     </div>
                 </div>
-                <div className="row">
-                    <button className="btn btn-success col-sm-offset-5 center-block">
-                    Hours Worked: 
-                    <input type="number" min="0.00" step="0.25" max="2500" 
-                           onChange={(event) => hours = event.target.value} />
-                </div>
                 <div>
-                    <button onClick={() => this.addCredit(account, hours)}>
+                    <button className="btn btn-success col-sm-offset-5 center-block" onClick={() => this.addCredit(account, hours)}>
                         Add amount
                     </button>
                 </div>

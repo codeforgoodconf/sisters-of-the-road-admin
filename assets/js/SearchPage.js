@@ -13,10 +13,10 @@ class SearchPage extends Component {
         return (
             <div className="SearchPage">
                 <header>
-                    <h1 class="text-center">Sisters of the Road Cafe</h1>
+                    <h1 className="text-center">Sisters of the Road Cafe</h1>
                 </header>
                 <div id="seachbar">
-                    <input className="input-lg center-block" typeName="text" placeholder="Search for patron"/>
+                    <input className="input-lg center-block" type="text" placeholder="Search for patron"/>
                 </div>
                 <div className="row">
                 {accounts.map((account) =>
