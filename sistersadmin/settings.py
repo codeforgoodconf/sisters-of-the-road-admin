@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'barter',
         'USER': 'sisters',
-        'PASSWORD': '',
+        'PASSWORD': 'sisters',
         'HOST': 'localhost',
         'PORT': '',
     }
