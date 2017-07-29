@@ -7,6 +7,7 @@ def home(request):
     return render(request, 'index.html', {})
 	
 def account_add(request, account_id):
+    print(request.body)
     ba = BarterAccount.objects.filter(id=account_id)
     if len(ba) > 0:
         ba = ba[0]
