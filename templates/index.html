@@ -1,10 +1,11 @@
 {% load render_bundle from webpack_loader %}
+{% load staticfiles %}
 <html>
+    <head>
+        {% include "universal-head.html" %} 
+    </head>
     <body>
-        <div id="container"></div>
+        <div id="root"></div>
         {% render_bundle 'main' %}
-
-        <p>Hi!</p>
-        <p>I'm a Django/React app!</p>
     </body>
 </html>

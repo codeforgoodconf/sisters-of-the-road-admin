@@ -1,6 +1,7 @@
 # PostgresSQL install and setup
 
 1. Make sure you have the current requirements.txt
+    pip install -r requirements.txt
 2. Install postgres
 3. Create user:
     in terminal:
