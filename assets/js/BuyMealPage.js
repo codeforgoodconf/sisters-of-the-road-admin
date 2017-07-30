@@ -39,7 +39,7 @@ class BuyMealPage extends Component {
                 <div className="header col-sm-12 centered">
                     <h3>{account.name}</h3>
                     <h5>Last worked: {account.lastCredit}</h5>
-                    <h5>Last meal: {account.lastMeal}</h5>
+                    <h5>Last purchase: {account.lastMeal}</h5>
                 </div>
                 <div id="calculate" className="jumbotron row center-block">
                     <div className="total">
