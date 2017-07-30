@@ -107,3 +107,7 @@ assets/bundles/
 
 # npm
 node_modules/
+
+#misc
+
+*~
