@@ -22,8 +22,7 @@ def list_accounts(request):
     query_result = BarterAccount.objects.all()
     account_list = []
     for account in query_result:
-       	account_dict = {'Name': account.patron_name,
+       	account_dict = {'Name': account.customer_name,
        					'Balance': account.balance}
        	account_list.append(account_dict)
-    print(account_list)
     return JsonResponse(account_list, safe=False)
