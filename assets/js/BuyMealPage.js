@@ -12,14 +12,14 @@ class BuyMealPage extends Component {
 
     buyMeal (account, amount) {
         const {
-            updateCredit,
+            updateBalance,
             switchView
          } = this.props;
          amount = Number(amount);
          axios.post('/account/1/subtract', {amount: amount}).then(function(response) {
              if (response.data && response.data.result === 'ok') {
-                updateCredit(account.currentCredit - amount);
-                switchView('accountpage', account);
+                updateBalance(amount*-1.0);
+                switchView('confirmationpage', account);
              } else {
                  // the account ID was not found - what to do?
                  console.log('no account!')
@@ -39,7 +39,7 @@ class BuyMealPage extends Component {
                 <div className="header col-sm-12 centered">
                     <h3>{account.name}</h3>
                     <h5>Last worked: {account.lastCredit}</h5>
-                    <h5>Last meal: {account.lastMeal}</h5>
+                    <h5>Last purchase: {account.lastMeal}</h5>
                 </div>
                 <div id="calculate" className="jumbotron row center-block">
                     <div className="total">

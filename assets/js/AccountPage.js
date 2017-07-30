@@ -15,7 +15,7 @@ class AccountPage extends Component {
                 <div className="header col-sm-12 centered">
                     <h1>{account.name}</h1>
                     <h5>Last worked: {account.lastCredit}</h5>
-                    <h5>Last meal: {account.lastMeal}</h5>
+                    <h5>Last purchase: {account.lastMeal}</h5>
                 </div>
                 <div id="credits" className="centered">
                     Barter Credits: ${account.currentCredit}

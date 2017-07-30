@@ -3,7 +3,7 @@ import SearchPage from './SearchPage';
 import AccountPage from './AccountPage';
 import BuyMealPage from './BuyMealPage';
 import AddCreditPage from './AddCreditPage';
-
+import ConfirmationPage from './ConfirmationPage';
 
 class App extends Component {
     constructor () {
@@ -35,8 +35,10 @@ class App extends Component {
         });
     }
 
-    updateCredit (newCredit) {
-        this.state.currentAccount.currentCredit = newCredit;
+    updateBalance (amount) {
+        this.state.currentAccount.currentCredit += amount;
+        this.state.currentAccount.lastAdded = amount;
+
     }
 
     render () {
@@ -60,14 +62,20 @@ class App extends Component {
             return (
                 <AddCreditPage switchView={(viewname, account) => this.switchView(viewname, account)} 
                                account={currentAccount}
-                               updateCredit={(newCredit) => this.updateCredit(newCredit)} />
+                               updateBalance={(newCredit) => this.updateBalance(newCredit)} />
             )
          } else if (currentView === 'buymealpage') {
             return (
                 <BuyMealPage switchView={(viewname, account) => this.switchView(viewname, account)}
                              account={currentAccount}
-                             updateCredit={(newCredit) => this.updateCredit(newCredit)} />
+                             updateBalance={(newCredit) => this.updateBalance(newCredit)} />
             )
+         } else if (currentView == "confirmationpage") {
+             return (
+                 <ConfirmationPage switchView={(viewname, account) => this.switchView(viewname, account)}
+                             account={currentAccount}/>
+                              
+             )
          }
     }
 }
