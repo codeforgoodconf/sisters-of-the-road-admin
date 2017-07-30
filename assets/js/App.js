@@ -17,11 +17,11 @@ class App extends Component {
             let accounts = [];
             response.data.forEach((dbaccount, index) => {
                 accounts.push({
-                    name: dbaccount.Name,
-                    id: String(index),
+                    name: dbaccount.name,
+                    id: dbaccount.account_id,
                     lastCredit: "5/3/2017",
                     lastMeal: "3/20/17",
-                    currentCredit: dbaccount.Balance
+                    currentCredit: Number(dbaccount.balance)
                 });
             });
             this.setState({accounts: accounts});

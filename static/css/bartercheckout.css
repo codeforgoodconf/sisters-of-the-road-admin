@@ -8,12 +8,12 @@ Permanent Marker, Oswald, sans-serif;*/
 body {
     background-color: white;
     font-family: Oswald, sans-sarif;
-    font-color: white;
 }
 header * {
     text-align: center;
     margin-top: 5%;
     background-color: darkslateblue;
+    color: white;
 }
 #seachbar input.input-lg {
     width: 60%;
@@ -24,6 +24,7 @@ header * {
     text-align: center;
     border: 2px solid slateblue;
     background: darkslateblue;
+    color: white;
     padding-bottom: 2%;
     margin-top: 10%;
     width: 90%;
@@ -47,7 +48,6 @@ div#result.jumbotron.row {
     width: 95%;
     border: 2px solid lightslategray;
     border-radius: 10px;
-    background: darkforestgreen;
 }
 .jumbotron p span{ 
     margin-left: 5%;
@@ -89,7 +89,6 @@ div#calculate.jumbotron.row {
     padding-top: 2%;
     width: 75%;
     border: 2px solid lightslategray;
-    background: darkforestgreen;
     border-radius: 10px;
 }
 
