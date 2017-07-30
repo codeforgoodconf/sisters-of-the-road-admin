@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+axios.defaults.xsrfCookieName = "csrftoken";
 
 
 class BuyMealPage extends Component {
@@ -11,8 +15,16 @@ class BuyMealPage extends Component {
             updateCredit,
             switchView
          } = this.props;
-         updateCredit(account.currentCredit - amount);
-         switchView('accountpage', account);
+         amount = Number(amount);
+         axios.post('/account/1/subtract', {amount: amount}).then(function(response) {
+             if (response.data && response.data.result === 'ok') {
+                updateCredit(account.currentCredit - amount);
+                switchView('accountpage', account);
+             } else {
+                 // the account ID was not found - what to do?
+                 console.log('no account!')
+             }
+         });
     }
 
     render () {
