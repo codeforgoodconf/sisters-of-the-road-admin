@@ -20,7 +20,9 @@ def list_accounts(request):
     account_list = []
     for account in query_result:
             account_dict = {'Name': account.customer_name,
-                           'Balance': account.balance}
+                           'Balance': account.balance,
+                           'Last Add': account.last_add or 'Nothing yet!',
+                           'Last Subtract': account.last_subtract or 'Nothing yet!'}
             account_list.append(account_dict)
     return JsonResponse(account_list, safe=False)
 
@@ -30,7 +32,9 @@ def search_accounts(request):
     account_list = []
     for account in query_result:
             account_dict = {'Name': account.customer_name,
-                           'Balance': account.balance}
+                           'Balance': account.balance,
+                           'Last Add': account.last_add or 'Nothing yet!',
+                           'Last Subtract': account.last_subtract or 'Nothing yet!'}
             account_list.append(account_dict)
     return JsonResponse(account_list, safe=False)
 
