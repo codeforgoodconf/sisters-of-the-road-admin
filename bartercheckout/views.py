@@ -28,7 +28,7 @@ def list_accounts(request):
 
 def search_accounts(request):
     search_text = request.GET.get('q')
-    query_result = BarterAccount.objects.filter(customer_name__iexact=search_text)
+    query_result = BarterAccount.objects.filter(customer_name__icontains=search_text)
     account_list = []
     for account in query_result:
             account_dict = {'name': account.customer_name,
