@@ -19,9 +19,19 @@ def list_accounts(request):
     query_result = BarterAccount.objects.all()
     account_list = []
     for account in query_result:
-       	account_dict = {'Name': account.customer_name,
-       					'Balance': account.balance}
-       	account_list.append(account_dict)
+            account_dict = {'Name': account.customer_name,
+                           'Balance': account.balance}
+            account_list.append(account_dict)
+    return JsonResponse(account_list, safe=False)
+
+def search_accounts(request):
+    search_text = request.GET.get('q')
+    query_result = BarterAccount.objects.filter(customer_name__iexact=search_text)
+    account_list = []
+    for account in query_result:
+            account_dict = {'Name': account.customer_name,
+                           'Balance': account.balance}
+            account_list.append(account_dict)
     return JsonResponse(account_list, safe=False)
 
 def add(request, account_id):
