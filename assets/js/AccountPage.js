@@ -32,7 +32,7 @@ class AccountPage extends Component {
                 </div>
                 <div className="text-center row"
                     onClick={() => this.props.switchView('searchpage')}>
-                    <button className="btn btn-danger col-sm-offset-5 center-block">Back to Search</button>
+                    <button className="btn btn-lg btn-danger col-sm-offset-5 center-block">Back to Search</button>
                 </div>
             </div>
          );

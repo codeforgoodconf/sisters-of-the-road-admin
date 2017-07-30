@@ -1,9 +1,19 @@
+/*website colors: 
+forestgreen
+darkslateblue*/
+/*fonts:
+Oswald, sans-sarif;
+Permanent Marker, Oswald, sans-serif;*/
+
 body {
     background-color: white;
+    font-family: Oswald, sans-sarif;
 }
 header * {
     text-align: center;
     margin-top: 5%;
+    background-color: darkslateblue;
+    color: white;
 }
 #seachbar input.input-lg {
     width: 60%;
@@ -12,16 +22,19 @@ header * {
 }
 .header.col-sm-12.centered {
     text-align: center;
-    border: 2px solid lightslategray;
-    background: #eee;
+    border: 2px solid slateblue;
+    background: darkslateblue;
+    color: white;
     padding-bottom: 2%;
     margin-top: 10%;
     width: 90%;
     border-radius: 10px;
 }
-h1 {
+header h1 {
     font-weight: 700;
     font-size: 4rem;
+    color: white;
+    padding:5% auto;
 }
 
 .centered{

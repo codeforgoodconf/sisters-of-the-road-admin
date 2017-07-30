@@ -11,30 +11,21 @@ class App extends Component {
         this.state = {
             currentView: 'searchpage',
             currentAccount: null,
-            accounts: [
-                {
-                    name: 'John Doe',
-                    id: '1',
-                    lastCredit: '7/20/17',
-                    lastMeal: '5/30/17',
-                    currentCredit: 4.25
-                },
-                {
-                    name: 'Josey',
-                    id: '2',
-                    lastCredit: '7/20/17',
-                    lastMeal: '5/30/17',
-                    currentCredit: 1.75
-                },
-                {
-                    name: 'J Odin',
-                    id: '3',
-                    lastCredit: '7/20/17',
-                    lastMeal: '5/30/17',
-                    currentCredit: 3.00
-                },
-            ]
+            accounts: []
         };
+        axios.get('/account/list').then((response) => {
+            let accounts = [];
+            response.data.forEach((dbaccount, index) => {
+                accounts.push({
+                    name: dbaccount.name,
+                    id: dbaccount.account_id,
+                    lastCredit: "5/3/2017",
+                    lastMeal: "3/20/17",
+                    currentCredit: Number(dbaccount.balance)
+                });
+            });
+            this.setState({accounts: accounts});
+        });
     }
 
     switchView (viewname, account) {

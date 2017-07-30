@@ -109,5 +109,5 @@ assets/bundles/
 node_modules/
 
 #misc
-
+.vscode/
 *~
