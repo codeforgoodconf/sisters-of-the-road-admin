@@ -26,7 +26,7 @@ class SearchPage extends Component {
                         <p>
                             {account.name}
                             <span>Last credit: {account.lastCredit}</span>
-                            <span>Last meal: {account.lastMeal}</span>
+                            <span>Last purchase: {account.lastMeal}</span>
                         </p>
                     </div>
                 )}
