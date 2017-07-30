@@ -25,7 +25,7 @@ class BarterEvent(models.Model):
 	
 			
 class BarterAccount(models.Model):
-	patron_name = models.CharField(max_length=100)
+	customer_name = models.CharField(max_length=100)
 	balance = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
 	
 	def add(self, amount):
@@ -37,5 +37,6 @@ class BarterAccount(models.Model):
 		return self.balance
 	
 	def __str__(self):
-		return 'Account: {}'.format(self.patron_name)
+		return 'Account: {}'.format(self.customer_name)
+
 	
