@@ -38,7 +38,6 @@ class App extends Component {
     updateBalance (amount) {
         this.state.currentAccount.currentCredit += amount;
         this.state.currentAccount.lastAdded = amount;
-
     }
 
     render () {

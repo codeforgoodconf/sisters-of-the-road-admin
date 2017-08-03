@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
 
@@ -48,19 +49,21 @@ class AddCreditPage extends Component {
                         <input id="amount"
                             className="numbers col-sm-offset-3 input-lg center-block text-center"
                             type="number"
-                            min="0.00"
-                            step="0.25"
-                            max="2500"
+                            min="0"
+                            step="25"
                             onChange={(event) => amount = event.target.value} />
                     </div>
                 </div>
                 <div>
-                    <button type="submit" className="btn btn-success col-sm-offset-5 center-block" onClick={() => this.addCredit(account, amount)}>
+                    <button type="submit"
+                            className="btn btn-success col-sm-offset-5 center-block"
+                            onClick={() => this.addCredit(account, amount)}>
                         Add amount
                     </button>
                 </div>
                 <div>
-                    <button className="btn btn-info col-sm-2 col-sm-offset-5" onClick={() => this.props.switchView('accountpage', account)}>
+                    <button className="btn btn-info col-sm-2 col-sm-offset-5"
+                            onClick={() => this.props.switchView('accountpage', account)}>
                         Cancel
                     </button>
                 </div>

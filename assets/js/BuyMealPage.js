@@ -18,7 +18,7 @@ class BuyMealPage extends Component {
          amount = Number(amount);
          axios.post('/account/'+ account.id + '/subtract', {amount: amount}).then(function(response) {
              if (response.data && response.data.result === 'ok') {
-                updateBalance(amount*-1.0);
+                updateBalance(amount * -1);
                 switchView('confirmationpage', account);
              } else {
                  // the account ID was not found - what to do?
@@ -47,18 +47,19 @@ class BuyMealPage extends Component {
                         <input id="total"
                                className="input-lg col-sm-offset-3 text-center center-block"
                                type="number"
-                               min="0.00"
-                               step="0.25"
-                               max="2500"
+                               min="0"
+                               step="25"
                                onChange={(event) => amount = event.target.value} />
                     </div>
                 </div>
                 <div>
-                    <button className="btn btn-success col-sm-offset-5 center-block" onClick={() => this.buyMeal(account, amount)}>
+                    <button className="btn btn-success col-sm-offset-5 center-block"
+                            onClick={() => this.buyMeal(account, amount)}>
                         Spend amount
                     </button>
                 </div>
-                <button className="btn btn-info col-sm-offset-5 center-block" onClick={() => this.props.switchView('accountpage', account)}>
+                <button className="btn btn-info col-sm-offset-5 center-block"
+                        onClick={() => this.props.switchView('accountpage', account)}>
                     Cancel
                 </button>
             </div>
