@@ -10,14 +10,17 @@ axios.defaults.xsrfCookieName = "csrftoken";
 class AddCreditPage extends Component {
     constructor () {
         super();
+        this.state = {
+            amount: ''
+        };
     }
 
-    addCredit (account, amount) {
+    addCredit (account) {
         const {
             updateBalance,
             switchView
          } = this.props;
-         amount = Number(amount);
+         let amount = Number(this.state.amount) * 100;
          axios.post('/account/' + account.id + '/add', {amount: amount}).then(function(response) {
              if (response.data && response.data.result === 'ok') {
                 updateBalance(amount);
@@ -29,12 +32,32 @@ class AddCreditPage extends Component {
          });
     }
 
+    onAmountChange (amount) {
+        if (amount === undefined) {
+            return;
+        }
+
+        let amountStr = String(amount).replace('.', ''),
+            len = amountStr.length;
+        if (len === 1) {
+            amountStr = amountStr + '.00';
+        } else if (len === 2) {
+            amountStr = amountStr.slice(0, 1) + '.' + amountStr.slice(1, 2) + '0';
+        } else {
+            amountStr = amountStr.slice(0, len - 2) + '.' + amountStr.slice(len - 2, len);
+        }
+
+        if (isNaN(Number(amountStr))) {
+            this.setState({amount: ''});
+        } else {
+            this.setState({amount: Number(amountStr)});
+        }
+    }
+
     render () {
         const {
             account
         } = this.props;
-
-        var amount;
 
         return (
             <div className="AddCreditPage">
@@ -50,14 +73,16 @@ class AddCreditPage extends Component {
                             className="numbers col-sm-offset-3 input-lg center-block text-center"
                             type="number"
                             min="0"
-                            step="25"
-                            onChange={(event) => amount = event.target.value} />
+                            step="0.25"
+                            value={this.state.amount}
+                            placeholder={0}
+                            onChange={(event) => this.onAmountChange(event.target.value)} /> 
                     </div>
                 </div>
                 <div>
                     <button type="submit"
                             className="btn btn-success col-sm-offset-5 center-block"
-                            onClick={() => this.addCredit(account, amount)}>
+                            onClick={() => this.addCredit(account)}>
                         Add amount
                     </button>
                 </div>
