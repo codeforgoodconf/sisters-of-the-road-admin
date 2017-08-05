@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import DollarInput from './DollarInput'
 
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -8,14 +9,17 @@ axios.defaults.xsrfCookieName = "csrftoken";
 class BuyMealPage extends Component {
     constructor () {
         super();
+        this.state = {
+            amount: ''
+        };
     }
 
-    buyMeal (account, amount) {
+    buyMeal (account) {
         const {
             updateBalance,
             switchView
          } = this.props;
-         amount = Number(amount);
+         let amount = Number(this.state.amount) * 100;
          axios.post('/account/'+ account.id + '/subtract', {amount: amount}).then(function(response) {
              if (response.data && response.data.result === 'ok') {
                 updateBalance(amount * -1);
@@ -27,12 +31,14 @@ class BuyMealPage extends Component {
          });
     }
 
+    updateAmount (amount) {
+        this.setState({amount: amount});
+    }
+
     render () {
         const {
             account
         } = this.props;
-
-        var amount;
 
         return (
             <div className="BuyMealPage">
@@ -44,17 +50,12 @@ class BuyMealPage extends Component {
                 <div id="calculate" className="jumbotron row center-block">
                     <div className="total">
                         <h3 className="text-center">Meal Total:</h3>
-                        <input id="total"
-                               className="input-lg col-sm-offset-3 text-center center-block"
-                               type="number"
-                               min="0"
-                               step="25"
-                               onChange={(event) => amount = event.target.value} />
+                        <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
                     </div>
                 </div>
                 <div>
                     <button className="btn btn-success col-sm-offset-5 center-block"
-                            onClick={() => this.buyMeal(account, amount)}>
+                            onClick={() => this.buyMeal(account)}>
                         Spend amount
                     </button>
                 </div>
