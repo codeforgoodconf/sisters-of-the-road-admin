@@ -10,31 +10,8 @@ class DollarInput extends Component {
     }
 
     onAmountChange (amount) {
-        const {
-            updateAmount
-        } = this.props;
-
-        if (amount === undefined) {
-            return;
-        }
-
-        let amountStr = String(amount).replace('.', ''),
-            len = amountStr.length;
-        if (len === 1) {
-            amountStr = amountStr + '.00';
-        } else if (len === 2) {
-            amountStr = amountStr.slice(0, 1) + '.' + amountStr.slice(1, 2) + '0';
-        } else {
-            amountStr = amountStr.slice(0, len - 2) + '.' + amountStr.slice(len - 2, len);
-        }
-
-        if (isNaN(Number(amountStr))) {
-            this.setState({amount: ''});
-        } else {
-            this.setState({amount: Number(amountStr)});
-        }
-
-        updateAmount(amount);
+        this.setState({amount: amount});
+        this.props.updateAmount(amount);
     }
 
     render () {
