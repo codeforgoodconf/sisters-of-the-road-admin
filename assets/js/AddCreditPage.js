@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import DollarInput from './DollarInput';
+
 
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -9,14 +11,17 @@ axios.defaults.xsrfCookieName = "csrftoken";
 class AddCreditPage extends Component {
     constructor () {
         super();
+        this.state = {
+            amount: ''
+        };
     }
 
-    addCredit (account, amount) {
+    addCredit (account) {
         const {
             updateBalance,
             switchView
          } = this.props;
-         amount = Number(amount);
+         let amount = Number(this.state.amount) * 100;
          axios.post('/account/' + account.id + '/add', {amount: amount}).then(function(response) {
              if (response.data && response.data.result === 'ok') {
                 updateBalance(amount);
@@ -28,12 +33,14 @@ class AddCreditPage extends Component {
          });
     }
 
+    updateAmount (amount) {
+        this.setState({amount: amount});
+    }
+
     render () {
         const {
             account
         } = this.props;
-
-        var amount;
 
         return (
             <div className="AddCreditPage">
@@ -45,22 +52,19 @@ class AddCreditPage extends Component {
                 <div id="calculate" className="jumbotron row center-block">
                     <div className="total">
                         <h3 className="text-center">Amount to add:</h3>
-                        <input id="amount"
-                            className="numbers col-sm-offset-3 input-lg center-block text-center"
-                            type="number"
-                            min="0.00"
-                            step="0.25"
-                            max="2500"
-                            onChange={(event) => amount = event.target.value} />
+                        <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
                     </div>
                 </div>
                 <div>
-                    <button type="submit" className="btn btn-success col-sm-offset-5 center-block" onClick={() => this.addCredit(account, amount)}>
+                    <button type="submit"
+                            className="btn btn-success col-sm-offset-5 center-block"
+                            onClick={() => this.addCredit(account)}>
                         Add amount
                     </button>
                 </div>
                 <div>
-                    <button className="btn btn-info col-sm-2 col-sm-offset-5" onClick={() => this.props.switchView('accountpage', account)}>
+                    <button className="btn btn-info col-sm-2 col-sm-offset-5"
+                            onClick={() => this.props.switchView('accountpage', account)}>
                         Cancel
                     </button>
                 </div>

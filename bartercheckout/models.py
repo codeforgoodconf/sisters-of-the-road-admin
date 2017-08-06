@@ -22,7 +22,7 @@ class BarterEvent(models.Model):
         )
 
     event_time = models.DateTimeField(auto_now_add=True)
-    amount = models.DecimalField(max_digits=4, decimal_places=2, default=0.00)
+    amount = models.IntegerField(default=0)
     #staff_id = models.ForeignKey()
     def __str__(self):
         if self.event_type == 'Add':
@@ -34,12 +34,12 @@ class BarterEvent(models.Model):
 
 class BarterAccount(models.Model):
     customer_name = models.CharField(max_length=100)
-    balance = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
+    balance = models.IntegerField(default=0)
     last_add = models.DateField(null=True)
     last_subtract = models.DateField(null=True)
 
     def add(self, amount):
-        data = {'barter_account':self, 'event_type':'Add', 'amount':amount}
+        data = {'barter_account': self, 'event_type': 'Add', 'amount': amount}
         event = BarterEvent(**data)
         self.last_add = date.today()
         self.balance += amount
@@ -47,7 +47,7 @@ class BarterAccount(models.Model):
         return self.balance
 
     def subtract(self, amount):
-        data = {'barter_account':self, 'event_type':'Subtract', 'amount':amount}
+        data = {'barter_account': self, 'event_type': 'Subtract', 'amount': amount}
         event = BarterEvent(**data)
         self.last_subtract = date.today()
         self.balance -= amount
