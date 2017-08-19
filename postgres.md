@@ -29,13 +29,15 @@
     
         barter=>
 
-    in terminal run:
+5. Make any database migrations 
+    Navigate to the root directorty of the django project
+    Then run:
     
-        python manage.py migrate
-        python manage.py createsuperuser --username <yourusername>
+        python3 manage.py migrate
+        python3 manage.py createsuperuser --username <yourusername>
 
-5. You'll be prompted for an email address and password, and then you should be able to start the server:
+6. You'll be prompted for an email address and password, and then you should be able to start the server:
 
-        python manage.py runserver
+        python3 manage.py runserver
         
     go to `localhost:8000/admin` and login!
