@@ -51,6 +51,10 @@ module.exports = {
         //tells webpack where to look for modules
         modules: [__dirname, 'node_modules'],
         //extensions that should be used to resolve modules
-        extensions: ['*', '.js', '.jsx'] 
+        extensions: ['*', '.js', '.jsx'],
+        alias: {
+            "react": "preact-compat",
+            "react-dom": "preact-compat"
+        }
     }   
 }
