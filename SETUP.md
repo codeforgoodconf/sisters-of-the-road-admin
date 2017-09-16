@@ -58,7 +58,7 @@ How to get this project running on your machine.
 
 ## 2. Download the project.
 
-1. Fork this repository.
+1. [Fork this repository.](https://github.com/codeforgoodconf/sisters-of-the-road-admin#fork-destination-box)
 
 2. Clone git repository and move into that.
 

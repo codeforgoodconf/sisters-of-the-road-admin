@@ -2,10 +2,11 @@
 
 At Sisters of the Road Cafe, anyone can come in and purchase an affordable meal.
 Those without the ability to afford a meal can trade volunteer time for cafe
-credits. Currently, these volunteer credits are tracked manually, and the purpose
-of this app is twofold:
+credits. Currently, these volunteer credits are tracked manually, and the
+purpose of this app is twofold:
 
-- Provide a **Point of Sale** style interface, suitable for an iPad, for checking out with credits
+- Provide a **Point of Sale** style interface, suitable for an iPad, for
+  checking out with credits
 - Provide an administrative view into volunteers' credit balances
 
 With a system like this, the checkout process at the cafe can go more smoothly,
@@ -13,15 +14,20 @@ making running the checkout counter easier and faster. Administrators at the
 cafe will be able to log into the Django Admin to look at volunteers, make
 notes, and adjust balances as needed.
 
-# Technology
+## Technology
 
 This tool is a Django app. The POS interface will likely require some kind of
 Javascript layer, but a heavy single page app is not required. Either standalone
 vanilla JS, jQuery or Angular should suffice.
 
-# Event MVP Functionality Overview
+## Setup/Installation Instructions
 
-Staff users can... 
+**See the [Setup](SETUP.md) document** for instructions on how to run this app on your machine
+and contribute to its development.
+
+## Event MVP Functionality Overview
+
+Staff users can...
 
 * Log in and see the main barter-checkout page
 * Search for a barter account by customer name (fuzzy search)
@@ -48,17 +54,10 @@ Admin interface is…
 
 * not accessible to regular staff users
 
-# Contributors
+## Contributors
 
-* Rachel Wilson
-* Andrew Harvey
-* Schola Choi
-* Cynthia Prevatte
-* Juliana Arrighi
-* [Melissa Lewis](https://twitter.com/iff_or)
-* Ashley Fisher
-* Treasure Porth
+See [Authors](AUTHORS.md).
 
-# License
+## License
 
-GNU AGPL 3.0
+See [License](LICENSE).
