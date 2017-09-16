@@ -11,24 +11,24 @@ class ConfirmationPage extends Component {
         } = this.props;
        
         return (
-            <div className="ConfirmationPage">
-                <div className="header col-sm-12 centered">
+            <div class="ConfirmationPage">
+                <div class="header col-sm-12 centered">
                     <h3>{account.name}</h3>
                 </div>
-                <div id="calculate" className="jumbotron row center-block">
-                    <div className="total">
+                <div id="calculate" class="jumbotron row center-block">
+                    <div class="total">
                         {account.lastAdded > 0 &&
-                            <h3 className="text-center">Amount added: ${account.lastAdded / 100}</h3>
+                            <h3 class="text-center">Amount added: ${account.lastAdded / 100}</h3>
                         }
                         {account.lastAdded < 0 &&
-                            <h3 className="text-center">Amount spent: ${(account.lastAdded * -1) / 100}</h3>
+                            <h3 class="text-center">Amount spent: ${(account.lastAdded * -1) / 100}</h3>
                         }
                                                 
-                        <h3 className="text-center">New balance: ${account.currentCredit / 100}</h3>
+                        <h3 class="text-center">New balance: ${account.currentCredit / 100}</h3>
                     </div>
                 </div>
                 
-                <button className="btn btn-info col-sm-offset-5 center-block" onClick={() => this.props.switchView('searchpage')}>
+                <button class="btn btn-info col-sm-offset-5 center-block" onClick={() => this.props.switchView('searchpage')}>
                     Back to Search
                 </button>
             </div>

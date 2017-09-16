@@ -43,27 +43,27 @@ class AddCreditPage extends Component {
         } = this.props;
 
         return (
-            <div className="AddCreditPage">
-                <div className="header col-sm-12 centered">
+            <div class="AddCreditPage">
+                <div class="header col-sm-12 centered">
                     <h3>{account.name}</h3>
                     <h5>Last worked: {account.lastCredit}</h5>
                     <h5>Last purchase: {account.lastMeal}</h5>
                 </div>
-                <div id="calculate" className="jumbotron row center-block">
-                    <div className="total">
-                        <h3 className="text-center">Amount to add:</h3>
+                <div id="calculate" class="jumbotron row center-block">
+                    <div class="total">
+                        <h3 class="text-center">Amount to add:</h3>
                         <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
                     </div>
                 </div>
                 <div>
                     <button type="submit"
-                            className="btn btn-success col-sm-offset-5 center-block"
+                            class="btn btn-success col-sm-offset-5 center-block"
                             onClick={() => this.addCredit(account)}>
                         Add amount
                     </button>
                 </div>
                 <div>
-                    <button className="btn btn-info col-sm-2 col-sm-offset-5"
+                    <button class="btn btn-info col-sm-2 col-sm-offset-5"
                             onClick={() => this.props.switchView('accountpage', account)}>
                         Cancel
                     </button>
