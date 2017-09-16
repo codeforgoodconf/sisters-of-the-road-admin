@@ -15,9 +15,7 @@ notes, and adjust balances as needed.
 
 # Technology
 
-This tool is a Django app. The POS interface will likely require some kind of
-Javascript layer, but a heavy single page app is not required. Either standalone
-vanilla JS, jQuery or Angular should suffice.
+This tool is a Django app with Preact frontend and Postgres for the database.
 
 # Event MVP Functionality Overview
 

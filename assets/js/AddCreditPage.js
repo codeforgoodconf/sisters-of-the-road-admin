@@ -45,13 +45,15 @@ class AddCreditPage extends Component {
         return (
             <div className="AddCreditPage">
                 <div className="header col-sm-12 centered">
-                    <h3>{account.name}</h3>
-                    <h5>Last worked: {account.lastCredit}</h5>
-                    <h5>Last purchase: {account.lastMeal}</h5>
+                    <h1>{account.name}</h1>
+                    <h3>Last worked: {account.lastCredit}</h3>
+                    <h3>Last purchase: {account.lastMeal}</h3>
+                    
                 </div>
                 <div id="calculate" className="jumbotron row center-block">
-                    <div className="total">
-                        <h3 className="text-center">Amount to add:</h3>
+                    <div className="total" className="text-center">
+                        <h3>Current Barter Credits: ${(account.currentCredit / 100).toFixed(2)}</h3>
+                        <h3>Amount to add:</h3>
                         <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
                     </div>
                 </div>

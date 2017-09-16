@@ -26,7 +26,7 @@ $ source venv/bin/activate
 $ pip install -r requirements.txt
 ```
 
-## Set up for [React](https://en.wikipedia.org/wiki/React_(JavaScript_library))
+## Set up for [Preact](https://preactjs.com/)
 
 ```
 $ npm install
