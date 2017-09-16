@@ -86,7 +86,6 @@ How to get this project running on your machine.
 
     ```sh
     npm install
-    webpack --config webpack.config.js
     ```
 
 3. Setup PostgreSQL database.
@@ -157,6 +156,16 @@ How to get this project running on your machine.
     ```
 
     That should output a lot of `NotImplementedError` messages.
+
+## 6. Develop the app.
+
+This project uses Webpack to compile source files.
+
+Run Webpack every time changes are made to the Javascript files:
+
+    ```sh
+    webpack --config webpack.config.js
+    ```
 
 ---
 
