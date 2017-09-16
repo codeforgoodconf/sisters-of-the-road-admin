@@ -41,28 +41,27 @@ class BuyMealPage extends Component {
         } = this.props;
 
         return (
-            <div className="BuyMealPage">
-                <div className="header col-sm-12 centered">
+            <div class="BuyMealPage">
+                <div class="header col-sm-12 centered">
                     <h1>{account.name}</h1>
                     <h3>Last worked: {account.lastCredit}</h3>
                     <h3>Last purchase: {account.lastMeal}</h3>                      
                 </div>
                 
-                <div id="calculate" className="jumbotron row center-block">
-                    <div className="total" className="text-center">
+                <div id="calculate" class="jumbotron row center-block">
+                    <div class="total" class="text-center">
                         <h3>Current Barter Credits: ${(account.currentCredit / 100).toFixed(2)}</h3>
                         <h3>Meal Total:</h3>
                         <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
                     </div>
                 </div>
                 <div>
-                    <button className="btn btn-success col-sm-offset-5 center-block"
+                    <button class="btn btn-success col-sm-offset-5 center-block"
                             onClick={() => this.buyMeal(account)}>
                         Spend amount
                     </button>
                 </div>
-                
-                <button className="btn btn-info col-sm-offset-5 center-block"
+                <button class="btn btn-info col-sm-offset-5 center-block"
                         onClick={() => this.props.switchView('accountpage', account)}>
                     Cancel
                 </button>
