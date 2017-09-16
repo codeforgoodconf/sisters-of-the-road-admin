@@ -29,6 +29,8 @@
     "webpack-bundle-tracker": "^0.2.0"
   },
   "dependencies": {
-    "axios": "^0.16.2"
+    "axios": "^0.16.2",
+    "preact": "^8.2.5",
+    "preact-compat": "^3.17.0"
   }
 }
