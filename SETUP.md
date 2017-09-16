@@ -6,75 +6,71 @@ How to get this project running on your machine.
 
 1. [Install Git.](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-  Check that it's installed:
+    Check that it's installed:
 
-    ```
-    which git
-    ```
+      ```sh
+      which git
+      ```
 
     That should return a path (e.g., `/usr/local/bin/git`).
 
-1. Install Python 3. You have a few options:
+2. Install Python 3. You have a few options:
 
-  - Using a downloadable installer for any operating system: https://www.python.org/downloads/
+    - Using a downloadable installer for any operating system: https://www.python.org/downloads/
 
-  - With [Homebrew](https://brew.sh/) for macOS:
+    - With [Homebrew](https://brew.sh/) for macOS:
+
+        ```sh
+        brew install python3
+        ```
+
+    - With [Scoop](http://scoop.sh/) for Windows:
+
+        ```sh
+        scoop install python3
+        ```
+
+    - Once installed, check that it's installed:
+
+        ```sh
+        which python3
+        ```
+
+        That should return a path (e.g., `/usr/local/bin/python3`).
+
+3. Install PostgreSQL.
+
+    - With [Postgres.app](https://postgresapp.com/) for macOS.
+
+    - With [BigSQL](https://www.openscg.com/bigsql/postgresql/installers.jsp/) for Windows.
+
+    - Other [options are available](https://www.postgresql.org/download/).
+
+    - Once that's downloaded and installed, check that it's installed:
 
       ```sh
-      brew install python3
+      which postgres
       ```
 
-  - With [Scoop](http://scoop.sh/) for Windows:
+      That should return a path (e.g., `/usr/local/bin/postgres`).
 
-      ```sh
-      scoop install python3
-      ```
-
-  - Once installed, check that it's installed:
-
-      ```sh
-      which python3
-      ```
-
-      That should return a path (e.g., `/usr/local/bin/python3`).
-
-1. Install PostgreSQL.
-
-  - With [Postgres.app](https://postgresapp.com/) for macOS.
-
-  - With [BigSQL](https://www.openscg.com/bigsql/postgresql/installers.jsp/) for Windows.
-
-  - Other [options are available](https://www.postgresql.org/download/).
-
-  <!-- Any of the interactive/graphical installer options (e.g., EnterpriseDB or BigSQL) will work just fine.
-
-  While running the installer you will be prompted to choose a password for the default `postgres` user. Use `admin`.
- -->
-  Once that's downloaded and installed, check that it's installed:
-
-    ```sh
-    which postgres
-    ```
-
-    That should return a path (e.g., `/usr/local/bin/postgres`).
-
-1. [Install Node.js.](https://nodejs.org/en/)
+4. [Install Node.js.](https://nodejs.org/en/)
 
 ## 2. Download the project.
 
 1. Fork this repository.
 
-1. Clone git repository and move into that.
+2. Clone git repository and move into that.
 
-    ```sh
-    git clone git@github.com:YOUR_GITHUB_USERNAME/sisters-of-the-road-admin.git
-    ```
+      ```sh
+      git clone git@github.com:YOUR_GITHUB_USERNAME/sisters-of-the-road-admin.git
+      ```
 
-1. Move into that repository.
+3. Move into that repository.
 
-    ```sh
-    cd sisters-of-the-road-admin
-    ```
+      ```sh
+      cd sisters-of-the-road-admin
+      ```
 
 ## 3. Set up development environment:
 
@@ -86,14 +82,14 @@ How to get this project running on your machine.
     pip install -r requirements.txt
     ```
 
-1. Install Node.js dependencies.
+2. Install Node.js dependencies.
 
     ```sh
     npm install
     webpack --config webpack.config.js
     ```
 
-1. Setup PostgreSQL database.
+3. Setup PostgreSQL database.
 
     - Create a user:
 
@@ -152,15 +148,15 @@ How to get this project running on your machine.
 
 ## 5. Run the tests.
 
-1. First, stop the running app with <kb>Ctrl</kbd>+<kbd>c</kbd>.
+1. First, stop the running app with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
 
-1. Run tests:
+2. Run tests:
 
     ```sh
     python manage.py behave
     ```
 
-    That should output a lot of `NotImplementedError`s.
+    That should output a lot of `NotImplementedError` messages.
 
 ---
 
