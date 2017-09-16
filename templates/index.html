@@ -1,5 +1,6 @@
 {% load render_bundle from webpack_loader %}
 {% load staticfiles %}
+{% csrf_token %}
 <html>
     <head>
         {% include "universal-head.html" %} 

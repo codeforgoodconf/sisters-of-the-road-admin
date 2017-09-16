@@ -10,22 +10,8 @@ class App extends Component {
         super();
         this.state = {
             currentView: 'searchpage',
-            currentAccount: null,
-            accounts: []
+            currentAccount: null
         };
-        axios.get('/account/list').then((response) => {
-            let accounts = [];
-            response.data.forEach((dbaccount, index) => {
-                accounts.push({
-                    name: dbaccount.name,
-                    id: dbaccount.account_id,
-                    lastCredit: "5/3/2017",
-                    lastMeal: "3/20/17",
-                    currentCredit: Number(dbaccount.balance)
-                });
-            });
-            this.setState({accounts: accounts});
-        });
     }
 
     switchView (viewname, account) {
@@ -43,14 +29,12 @@ class App extends Component {
     render () {
         const {
              currentView,
-             currentAccount,
-             accounts
+             currentAccount
          } = this.state;
 
          if (currentView === 'searchpage') {
             return (
-                <SearchPage switchView={(viewname, account) => this.switchView(viewname, account)}
-                            accounts={accounts}/>
+                <SearchPage switchView={(viewname, account) => this.switchView(viewname, account)} />
             )
          } else if (currentView === 'accountpage') {
             return (
