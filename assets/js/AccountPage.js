@@ -14,11 +14,11 @@ class AccountPage extends Component {
             <div class="AccountPage">
                 <div class="header col-sm-12 centered">
                     <h1>{account.name}</h1>
-                    <h5>Last worked: {account.lastCredit}</h5>
-                    <h5>Last purchase: {account.lastMeal}</h5>
+                    <h3>Last worked: {account.lastCredit}</h3>
+                    <h3>Last purchase: {account.lastMeal}</h3>
                 </div>
                 <div id="credits" class="centered">
-                    Barter Credits: ${account.currentCredit / 100}
+                    Barter Credits: ${(account.currentCredit / 100).toFixed(2)}
                 </div>
                 <div class="buttons row center-block">
                     <button class="btn btn-info col-sm-offset-1"
