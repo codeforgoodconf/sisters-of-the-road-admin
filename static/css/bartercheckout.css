@@ -15,7 +15,11 @@ header * {
     background-color: darkslateblue;
     color: white;
 }
-#seachbar input.input-lg {
+
+#logo {
+    margin-top: 5%;
+}
+#searchbar input.input-lg {
     width: 60%;
     font-size: 32px;
     margin: 5% auto;
