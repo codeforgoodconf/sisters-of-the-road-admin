@@ -63,7 +63,7 @@ class BuyMealPage extends Component {
                 <button class="btn btn-info col-sm-offset-5 center-block"
                         onClick={() => this.props.switchView('accountpage', account)}>
                     Cancel
-                </button>                
+                </button>          
             </div>
          );
     }
