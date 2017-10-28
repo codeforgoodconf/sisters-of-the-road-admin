@@ -51,6 +51,7 @@ class AddCreditPage extends Component {
                 </div>
                 <div id="calculate" class="jumbotron row center-block">
                     <div class="total">
+                        <h3>Current Barter Credits: ${(account.currentCredit / 100).toFixed(2)}</h3>
                         <h3 class="text-center">Amount to add:</h3>
                         <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
                     </div>
