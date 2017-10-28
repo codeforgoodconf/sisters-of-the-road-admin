@@ -22,6 +22,10 @@ class AccountPage extends Component {
                 </div>
                 <div class="buttons row center-block">
                     <button class="btn btn-info col-sm-offset-1"
+                            onClick={() => this.props.switchView('buycardpage', account)}>
+                        Buy Card
+                    </button>
+                    <button class="btn btn-info col-sm-offset-1"
                             onClick={() => this.props.switchView('buymealpage', account)}>
                         Buy Meal
                     </button>
