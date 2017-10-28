@@ -43,7 +43,6 @@ class AddCreditPage extends Component {
         } = this.props;
 
         return (
-
             <div class="AddCreditPage">
                 <div class="header col-sm-12 centered">
                     <h3>{account.name}</h3>

@@ -41,7 +41,6 @@ class BuyMealPage extends Component {
         } = this.props;
 
         return (
-
             <div class="BuyMealPage">
                 <div class="header col-sm-12 centered">
                     <h3>{account.name}</h3>
@@ -64,8 +63,7 @@ class BuyMealPage extends Component {
                 <button class="btn btn-info col-sm-offset-5 center-block"
                         onClick={() => this.props.switchView('accountpage', account)}>
                     Cancel
-                </button>
-                
+                </button>                
             </div>
          );
     }
