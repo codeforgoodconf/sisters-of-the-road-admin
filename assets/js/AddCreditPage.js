@@ -43,29 +43,29 @@ class AddCreditPage extends Component {
         } = this.props;
 
         return (
-            <div className="AddCreditPage">
-                <div className="header col-sm-12 centered">
-                    <h1>{account.name}</h1>
-                    <h3>Last worked: {account.lastCredit}</h3>
-                    <h3>Last purchase: {account.lastMeal}</h3>
-                    
+
+            <div class="AddCreditPage">
+                <div class="header col-sm-12 centered">
+                    <h3>{account.name}</h3>
+                    <h5>Last worked: {account.lastCredit}</h5>
+                    <h5>Last purchase: {account.lastMeal}</h5>
                 </div>
-                <div id="calculate" className="jumbotron row center-block">
-                    <div className="total" className="text-center">
+                <div id="calculate" class="jumbotron row center-block">
+                    <div class="total">
                         <h3>Current Barter Credits: ${(account.currentCredit / 100).toFixed(2)}</h3>
-                        <h3>Amount to add:</h3>
+                        <h3 class="text-center">Amount to add:</h3>
                         <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
                     </div>
                 </div>
                 <div>
                     <button type="submit"
-                            className="btn btn-success col-sm-offset-5 center-block"
+                            class="btn btn-success col-sm-offset-5 center-block"
                             onClick={() => this.addCredit(account)}>
                         Add amount
                     </button>
                 </div>
                 <div>
-                    <button className="btn btn-info col-sm-2 col-sm-offset-5"
+                    <button class="btn btn-info col-sm-2 col-sm-offset-5"
                             onClick={() => this.props.switchView('accountpage', account)}>
                         Cancel
                     </button>

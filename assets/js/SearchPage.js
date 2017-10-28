@@ -37,26 +37,26 @@ class SearchPage extends Component {
             searchQuery
         } = this.state;
         return (
-            <div className="SearchPage">
+            <div class="SearchPage">
                 <header>
-                    <h1 className="text-center">Sisters of the Road Cafe</h1>
+                    <h1 class="text-center">Sisters of the Road Cafe</h1>
                 </header>
                 <div id="seachbar">
-                    <input className="input-lg center-block"
+                    <input class="input-lg center-block"
                            type="text"
                            placeholder="Search for patron"
                            onChange={(event) => this.onSearchChange(event.target.value)}/>
                     
                 </div>
-                <div className="row">
-                    <button className="btn btn-info col-sm-offset-5 center-block"
+                <div class="row">
+                    <button class="btn btn-info col-sm-offset-5 center-block"
                             onClick={() => this.searchAccounts(searchQuery)}>
                         Search
                     </button>
                 </div>
-                <div className="row">
+                <div class="row">
                 {accounts.map((account) =>
-                    <div id="result" className="jumbotron row text-center center-block"
+                    <div id="result" class="jumbotron row text-center center-block"
                          onClick={() => this.props.switchView('accountpage', account)}
                          key={account.id}>
                         <p>

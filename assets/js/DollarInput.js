@@ -17,7 +17,7 @@ class DollarInput extends Component {
     render () {
         return (
             <input id="amount"
-                className="numbers col-sm-offset-3 input-lg center-block text-center"
+                class="numbers col-sm-offset-3 input-lg center-block text-center"
                 type="number"
                 min="0"
                 step="0.25"
