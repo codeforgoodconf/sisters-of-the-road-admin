@@ -17,7 +17,7 @@ class AccountPage extends Component {
                     <h3>Last worked: {account.lastCredit}</h3>
                     <h3>Last purchase: {account.lastMeal}</h3>
                 </div>
-                <div id="credits" className="centered">
+                <div id="credits" class="centered">
                     Barter Credits: ${(account.currentCredit / 100).toFixed(2)}
                 </div>
                 <div class="buttons row center-block">
