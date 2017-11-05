@@ -39,11 +39,8 @@ class BarterAccount(models.Model):
     last_subtract = models.DateField(null=True)
 
     def add(self, amount):
-        data = {'barter_account': self, 'event_type': 'Add', 'amount': amount}
-        event = BarterEvent(**data)
         self.last_add = date.today()
         self.balance += amount
-        event.save()
         return self.balance
 
     def subtract(self, amount):

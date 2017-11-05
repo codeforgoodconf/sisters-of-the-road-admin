@@ -7,7 +7,7 @@ import json
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 
-from .models import BarterAccount
+from .models import BarterAccount, BarterEvent
 
 def home(request):
     """
@@ -72,3 +72,56 @@ def subtract(request, account_id):
         return JsonResponse({'error': 'noSuchAccount'})
 
 
+def credit(request, account_id):
+    """
+    Add a dollar amount to the specified account
+    -Get account
+    -Add money
+    -Create event
+    """
+    accounts = BarterAccount.objects.filter(id=account_id)
+    # The filter method returns None if there's no account that matches the id
+    # If accounts equals None, return an error
+    if accounts:
+        # The filter method returns a list. There should only be 1 item
+        # in this list because ID is a primary key. But we still need to
+        # grab the first item from the list.
+        account = accounts[0]
+
+        # Get amount to add from request
+        body_unicode = request.body.decode('utf-8')
+        body_data = json.loads(body_unicode)
+        amount = body_data['amount']
+
+        # Update the barter account
+        newBalance = account.add(amount)
+        account.save()
+
+        # Create event
+        data = {'barter_account': account, 'event_type': 'Add', 'amount': amount}
+        event = BarterEvent(**data)
+        event.save()
+
+        return JsonResponse({'result': 'ok'})
+    else:
+        return JsonResponse({'error': 'noSuchAccount'})
+    
+
+def buy_meal(request, account_id):
+    """
+    Subtract a dollar amount from the specified account
+    -Get account
+    -Subtract money
+    -Create event
+    """
+    ba = BarterAccount.objects.filter(id=account_id)
+    if len(ba) > 0:
+        ba = ba[0]
+        body_unicode = request.body.decode('utf-8')
+        body_data = json.loads(body_unicode)
+        ba.subtract(body_data['amount'])
+        ba.save()
+        return JsonResponse({'result': 'ok'})
+    else:
+        return JsonResponse({'error': 'noSuchAccount'})
+    create_event()

@@ -22,7 +22,7 @@ class AddCreditPage extends Component {
             switchView
          } = this.props;
          let amount = Number(this.state.amount) * 100;
-         axios.post('/account/' + account.id + '/add', {amount: amount}).then(function(response) {
+         axios.post('/account/' + account.id + '/credit', {amount: amount}).then(function(response) {
              if (response.data && response.data.result === 'ok') {
                 updateBalance(amount);
                 switchView('confirmationpage', account);
