@@ -20,7 +20,7 @@ class BuyMealPage extends Component {
             switchView
          } = this.props;
          let amount = Number(this.state.amount) * 100;
-         axios.post('/account/'+ account.id + '/subtract', {amount: amount}).then(function(response) {
+         axios.post('/account/'+ account.id + '/buy_meal', {amount: amount}).then(function(response) {
              if (response.data && response.data.result === 'ok') {
                 updateBalance(amount * -1);
                 switchView('confirmationpage', account);

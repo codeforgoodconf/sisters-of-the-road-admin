@@ -7,11 +7,13 @@ class BarterEvent(models.Model):
 
     ADD = 'Add'
     SUBTRACT = 'Subtract'
+    BUY_MEAL = 'Buy_meal'
     NOTE = 'Note'
 
     EVENT_TYPE_CHOICES = (
         (ADD, 'Add'),
         (SUBTRACT, 'Subtract'),
+        (BUY_MEAL, 'Buy_meal'),
         (NOTE, 'Note'),
         )
 
@@ -44,11 +46,8 @@ class BarterAccount(models.Model):
         return self.balance
 
     def subtract(self, amount):
-        data = {'barter_account': self, 'event_type': 'Subtract', 'amount': amount}
-        event = BarterEvent(**data)
         self.last_subtract = date.today()
         self.balance -= amount
-        event.save()
         return self.balance
 
     def __str__(self):
