@@ -132,3 +132,27 @@ def buy_meal(request, account_id):
         return JsonResponse({'result': 'ok'})
     else:
         return JsonResponse({'error': 'noSuchAccount'})
+
+def buy_card(request, account_id):
+    """
+    Same as buy_meal, but creates buy_card event
+    """
+    accounts = BarterAccount.objects.filter(id=account_id)
+    if accounts:
+        account = accounts[0]
+        body_unicode = request.body.decode('utf-8')
+        body_data = json.loads(body_unicode)
+        amount = body_data['amount']
+
+        # Update the barter account
+        newBalance = account.subtract(amount)
+        account.save()
+
+        # Create event
+        data = {'barter_account': account, 'event_type': 'Buy_card', 'amount': amount}
+        event = BarterEvent(**data)
+        event.save()
+
+        return JsonResponse({'result': 'ok'})
+    else:
+        return JsonResponse({'error': 'noSuchAccount'})

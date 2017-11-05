@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SearchPage from './SearchPage';
 import AccountPage from './AccountPage';
 import BuyMealPage from './BuyMealPage';
+import BuyCardPage from './BuyCardPage';
 import AddCreditPage from './AddCreditPage';
 import ConfirmationPage from './ConfirmationPage';
 
@@ -50,6 +51,12 @@ class App extends Component {
          } else if (currentView === 'buymealpage') {
             return (
                 <BuyMealPage switchView={(viewname, account) => this.switchView(viewname, account)}
+                             account={currentAccount}
+                             updateBalance={(newCredit) => this.updateBalance(newCredit)} />
+            )
+         } else if (currentView === 'buycardpage') {
+            return (
+                <BuyCardPage switchView={(viewname, account) => this.switchView(viewname, account)}
                              account={currentAccount}
                              updateBalance={(newCredit) => this.updateBalance(newCredit)} />
             )
