@@ -18,13 +18,13 @@ class ConfirmationPage extends Component {
                 <div id="calculate" class="jumbotron row center-block">
                     <div class="total">
                         {account.lastAdded > 0 &&
-                            <h3 class="text-center">Amount added: ${account.lastAdded / 100}</h3>
+                            <h3 class="text-center">Amount added: ${(account.lastAdded / 100).toFixed(2)}</h3>
                         }
                         {account.lastAdded < 0 &&
-                            <h3 class="text-center">Amount spent: ${(account.lastAdded * -1) / 100}</h3>
+                            <h3 class="text-center">Amount spent: ${((account.lastAdded * -1) / 100).toFixed(2)}</h3>
                         }
                                                 
-                        <h3 class="text-center">New balance: ${account.currentCredit / 100}</h3>
+                        <h3 class="text-center">New balance: ${(account.currentCredit / 100).toFixed(2)}</h3>
                     </div>
                 </div>
                 
