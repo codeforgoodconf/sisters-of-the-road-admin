@@ -6,19 +6,21 @@ class BarterEvent(models.Model):
     barter_account = models.ForeignKey('BarterAccount')
 
     ADD = 'Add'
-    SUBTRACT = 'Subtract'
+    BUY_MEAL = 'Buy_meal'
+    BUY_CARD = 'Buy_card'
     NOTE = 'Note'
 
     EVENT_TYPE_CHOICES = (
         (ADD, 'Add'),
-        (SUBTRACT, 'Subtract'),
+        (BUY_MEAL, 'Buy_meal'),
+        (BUY_CARD, 'Buy_card'),
         (NOTE, 'Note'),
         )
 
     event_type = models.CharField(
         max_length=20,
         choices = EVENT_TYPE_CHOICES,
-        default = SUBTRACT,
+        default = BUY_MEAL,
         )
 
     event_time = models.DateTimeField(auto_now_add=True)
@@ -39,19 +41,13 @@ class BarterAccount(models.Model):
     last_subtract = models.DateField(null=True)
 
     def add(self, amount):
-        data = {'barter_account': self, 'event_type': 'Add', 'amount': amount}
-        event = BarterEvent(**data)
         self.last_add = date.today()
         self.balance += amount
-        event.save()
         return self.balance
 
     def subtract(self, amount):
-        data = {'barter_account': self, 'event_type': 'Subtract', 'amount': amount}
-        event = BarterEvent(**data)
         self.last_subtract = date.today()
         self.balance -= amount
-        event.save()
         return self.balance
 
     def __str__(self):

@@ -7,7 +7,7 @@ import json
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 
-from .models import BarterAccount
+from .models import BarterAccount, BarterEvent
 
 def home(request):
     """
@@ -40,35 +40,84 @@ def search_accounts(request):
             account_list.append(account_dict)
     return JsonResponse(account_list, safe=False)
 
-def add(request, account_id):
+def credit(request, account_id):
     """
-    Add a dollar amount to the specified account
+    Add credit to a BarterAccount and create a BarterEvent
+    as a record of the transaction.
     """
-    ba = BarterAccount.objects.filter(id=account_id)
-    if len(ba) > 0:
-        ba = ba[0]
+    accounts = BarterAccount.objects.filter(id=account_id)
+    # The filter method returns None if there's no account that matches the id
+    # If accounts equals None, return an error
+    if accounts:
+        # The filter method returns a list. There should only be 1 item
+        # in this list because ID is a primary key. But we still need to
+        # grab the first item from the list.
+        account = accounts[0]
+
+        # Get amount to add from request
         body_unicode = request.body.decode('utf-8')
         body_data = json.loads(body_unicode)
-        newBalance = ba.add(body_data['amount'])
-        ba.save()
+        amount = body_data['amount']
+
+        # Update the barter account
+        newBalance = account.add(amount)
+        account.save()
+
+        # Create event
+        data = {'barter_account': account, 'event_type': 'Add', 'amount': amount}
+        event = BarterEvent(**data)
+        event.save()
+
         return JsonResponse({'result': 'ok'})
     else:
         return JsonResponse({'error': 'noSuchAccount'})
 
-
-def subtract(request, account_id):
+def buy_meal(request, account_id):
     """
-    Subtract a dollar amount to the specified account
+    Spend from a BarterAccount to purchase a meal and
+    create a BarterEvent as a record of the transaction.
     """
-    ba = BarterAccount.objects.filter(id=account_id)
-    if len(ba) > 0:
-        ba = ba[0]
+    accounts = BarterAccount.objects.filter(id=account_id)
+    if accounts:
+        account = accounts[0]
         body_unicode = request.body.decode('utf-8')
         body_data = json.loads(body_unicode)
-        ba.subtract(body_data['amount'])
-        ba.save()
+        amount = body_data['amount']
+
+        # Update the barter account
+        newBalance = account.subtract(amount)
+        account.save()
+
+        # Create event
+        data = {'barter_account': account, 'event_type': 'Buy_meal', 'amount': amount}
+        event = BarterEvent(**data)
+        event.save()
+
         return JsonResponse({'result': 'ok'})
     else:
         return JsonResponse({'error': 'noSuchAccount'})
 
+def buy_card(request, account_id):
+    """
+    Spend from a BarterAccount to purchase a barter card and
+    create a BarterEvent as a record of the transaction.
+    """
+    accounts = BarterAccount.objects.filter(id=account_id)
+    if accounts:
+        account = accounts[0]
+        body_unicode = request.body.decode('utf-8')
+        body_data = json.loads(body_unicode)
+        amount = body_data['amount']
 
+        # Update the barter account
+        newBalance = account.subtract(amount)
+        account.save()
+
+        # Create event
+        data = {'barter_account': account, 'event_type': 'Buy_card', 'amount': amount}
+        event = BarterEvent(**data)
+        event.save()
+
+        return JsonResponse({'result': 'ok'})
+    else:
+        return JsonResponse({'error': 'noSuchAccount'})
