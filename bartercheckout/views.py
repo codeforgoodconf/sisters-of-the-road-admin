@@ -40,44 +40,10 @@ def search_accounts(request):
             account_list.append(account_dict)
     return JsonResponse(account_list, safe=False)
 
-def add(request, account_id):
-    """
-    Add a dollar amount to the specified account
-    """
-    ba = BarterAccount.objects.filter(id=account_id)
-    if len(ba) > 0:
-        ba = ba[0]
-        body_unicode = request.body.decode('utf-8')
-        body_data = json.loads(body_unicode)
-        newBalance = ba.add(body_data['amount'])
-        ba.save()
-        return JsonResponse({'result': 'ok'})
-    else:
-        return JsonResponse({'error': 'noSuchAccount'})
-
-
-def subtract(request, account_id):
-    """
-    Subtract a dollar amount to the specified account
-    """
-    ba = BarterAccount.objects.filter(id=account_id)
-    if len(ba) > 0:
-        ba = ba[0]
-        body_unicode = request.body.decode('utf-8')
-        body_data = json.loads(body_unicode)
-        ba.subtract(body_data['amount'])
-        ba.save()
-        return JsonResponse({'result': 'ok'})
-    else:
-        return JsonResponse({'error': 'noSuchAccount'})
-
-
 def credit(request, account_id):
     """
-    Add a dollar amount to the specified account
-    -Get account
-    -Add money
-    -Create event
+    Add credit to a BarterAccount and create a BarterEvent
+    as a record of the transaction.
     """
     accounts = BarterAccount.objects.filter(id=account_id)
     # The filter method returns None if there's no account that matches the id
@@ -108,10 +74,8 @@ def credit(request, account_id):
 
 def buy_meal(request, account_id):
     """
-    Subtract a dollar amount from the specified account
-    -Get account
-    -Subtract money
-    -Create event
+    Spend from a BarterAccount to purchase a meal and
+    create a BarterEvent as a record of the transaction.
     """
     accounts = BarterAccount.objects.filter(id=account_id)
     if accounts:
@@ -135,7 +99,8 @@ def buy_meal(request, account_id):
 
 def buy_card(request, account_id):
     """
-    Same as buy_meal, but creates buy_card event
+    Spend from a BarterAccount to purchase a barter card and
+    create a BarterEvent as a record of the transaction.
     """
     accounts = BarterAccount.objects.filter(id=account_id)
     if accounts:

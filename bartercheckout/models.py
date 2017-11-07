@@ -6,14 +6,12 @@ class BarterEvent(models.Model):
     barter_account = models.ForeignKey('BarterAccount')
 
     ADD = 'Add'
-    SUBTRACT = 'Subtract'
     BUY_MEAL = 'Buy_meal'
     BUY_CARD = 'Buy_card'
     NOTE = 'Note'
 
     EVENT_TYPE_CHOICES = (
         (ADD, 'Add'),
-        (SUBTRACT, 'Subtract'),
         (BUY_MEAL, 'Buy_meal'),
         (BUY_CARD, 'Buy_card'),
         (NOTE, 'Note'),
