@@ -41,7 +41,10 @@ class SearchPage extends Component {
                 <header>
                     <h1 class="text-center">Sisters of the Road Cafe</h1>
                 </header>
-                <div id="seachbar">
+                <div id="logo">
+                    <img src="../../static/img/SOTR_logo.png" class="img-responsive center-block" />
+                </div>
+                <div id="searchbar">
                     <input class="input-lg center-block"
                            type="text"
                            placeholder="Search for patron"
