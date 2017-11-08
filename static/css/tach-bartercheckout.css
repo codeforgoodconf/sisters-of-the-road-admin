@@ -1,0 +1,23 @@
+.navbar-default {
+    font-family: Oswald, sans-sarif;
+    padding: 0 25px;
+    border: 1px solid transparent;
+    display: block;
+}
+
+.logo {
+    height: 80px;
+    margin-top: 19px;
+}
+
+#nav-title {
+    padding-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.purple-bg{ background-color: #A4A3CA }
+
+.purple-text{ color: #A4A3CA }
+
+.dk-gray-text{ color: #333 }

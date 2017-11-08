@@ -1,48 +1,37 @@
-/*website colors: 
-forestgreen
-darkslateblue*/
-/*fonts:
+/* website colors: 
+Dark purple: #63568B
+Light Purple: #A4A3CA
+Green: #9AC1A0;
+Gray: #232323;
+Blue: #005876;
+*/
+
+/* fonts:
 Oswald, sans-sarif;
-Permanent Marker, Oswald, sans-serif;*/
+Permanent Marker, Oswald, sans-serif;
+*/
+
 
 body {
     background-color: white;
-    font-family: Oswald, sans-sarif;
-}
-header * {
-    text-align: center;
-    margin-top: 5%;
-    background-color: darkslateblue;
-    color: white;
+    font-family: Arial, sans-sarif;
 }
 
-#error-msg {
-    color: red;
+
+.btn-success{
+    background-color: #9AC1A0;
 }
 
-#logo {
-    margin-top: 5%;
+.btn-default{
+    background-color: #A4A3C9;
 }
-#searchbar input.input-lg {
-    width: 60%;
-    font-size: 32px;
-    margin: 5% auto;
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
 }
-.header.col-sm-12.centered {
-    text-align: center;
-    border: 2px solid slateblue;
-    background: darkslateblue;
-    color: white;
-    padding-bottom: 2%;
-    margin-top: 10%;
-    width: 90%;
-    border-radius: 10px;
-}
-header h1 {
-    font-weight: 700;
-    font-size: 4rem;
-    color: white;
-    padding:5% auto;
+
+#root{
+    margin: 0% 5%;
 }
 
 .centered{
@@ -51,24 +40,58 @@ header h1 {
     margin-top: 5%;
 }
 
-div#result.jumbotron.row {
-    margin-top: 5px%;
-    padding: 1%;;
-    width: 95%;
-    border: 2px solid lightslategray;
+
+/************* HEADER **************/
+.navbar-default {
+    background-color: #A4A3CA;
+    font-family: Oswald, sans-sarif;
+    border-radius: 0;
+    padding: 0 25px;
+}
+
+.logo {
+    height: 80px;
+    float: right;
+    margin-top: 19px;
+}
+
+#nav-title {
+    font-weight: 700;
+    font-size: 5rem;
+    padding-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+
+/************* SEARCH PAGE **************/
+
+#searchbar input {
+    margin: 5% auto;
+    border-width: 1px;
+    border-color: #A4A3C9;
     border-radius: 10px;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
 }
-.jumbotron p span{ 
-    margin-left: 5%;
+
+#searchbar{
+    font-family: 'Oswald', sans-serif;
 }
+
+/************* OTHER **************/
 #credits {
     text-align: center;
     font-weight: 700;
     font-size: 4rem;
 }
+
 div.buttons.row {
     margin: 4% 0 4% 23%;
 }
+
 button.col-sm-offset-1 {
     height:130px;
     width: 175px;
@@ -101,10 +124,17 @@ div#calculate.jumbotron.row {
     border-radius: 10px;
 }
 
+.header.col-sm-12.centered {
+    text-align: center;
+    border: 2px solid slateblue;
+    background: darkslateblue;
+    color: white;
+    padding-bottom: 2%;
+    margin-top: 10%;
+    width: 90%;
+}
+
 input.numbers, input#total {
     font-size: 32px;
     font-weight: 700;
 }
-
-
-

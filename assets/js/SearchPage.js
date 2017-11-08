@@ -38,37 +38,32 @@ class SearchPage extends Component {
         } = this.state;
         return (
             <div class="SearchPage">
-                <header>
-                    <h1 class="text-center">Sisters of the Road Cafe</h1>
-                </header>
-                <div id="logo">
-                    <img src="../../static/img/SOTR_logo.png" class="img-responsive center-block" />
-                </div>
-                <div id="searchbar">
-                    <input class="input-lg center-block"
-                           type="text"
-                           placeholder="Search for patron"
-                           onChange={(event) => this.onSearchChange(event.target.value)}/>
-                    
-                </div>
-                <div class="row">
-                    <button class="btn btn-info col-sm-offset-5 center-block"
-                            onClick={() => this.searchAccounts(searchQuery)}>
-                        Search
-                    </button>
-                </div>
-                <div class="row">
-                {accounts.map((account) =>
-                    <div id="result" class="jumbotron row text-center center-block"
-                         onClick={() => this.props.switchView('accountpage', account)}
-                         key={account.id}>
-                        <p>
-                            {account.name}
-                            <span>Last credit: {account.lastCredit}</span>
-                            <span>Last purchase: {account.lastMeal}</span>
-                        </p>
+                <div class="form-group">
+                    <div id="searchbar" class="input-group">
+                        <input class="input-lg center-block form-control"
+                               type="text"
+                               placeholder="Search barter accounts"
+                               onChange={(event) => this.onSearchChange(event.target.value)}/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-lg btn-default" type="button"
+                                    onClick={() => this.searchAccounts(searchQuery)}>
+                                Search
+                            </button>
+                        </span>
                     </div>
-                )}
+                </div>
+                <div class="row">
+                    <ul class="list-group">
+                    {accounts.map((account) =>
+                        <li class="list-group-item row"
+                            onClick={() => this.props.switchView('accountpage', account)}
+                            key={account.id}>
+                            <p class="col-sm-4"> {account.name} </p>
+                            <p class="col-sm-4">Last credit: {account.lastCredit}</p>
+                            <p class="col-sm-4">Last purchase: {account.lastMeal}</p>
+                        </li>
+                    )}
+                    </ul>
                 </div>
             </div>
          );
