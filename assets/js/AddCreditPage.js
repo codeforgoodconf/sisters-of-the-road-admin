@@ -26,7 +26,10 @@ class AddCreditPage extends Component {
              if (response.data && response.data.result === 'ok') {
                 updateBalance(amount);
                 switchView('confirmationpage', account);
-             } else {
+             } else if (response.data && response.data.result === 'limit_error'){
+                console.log('balance can\'t exceed $50')
+             } 
+             else {
                  // the account ID was not found - what to do?
                  console.log('no account!')
              }
