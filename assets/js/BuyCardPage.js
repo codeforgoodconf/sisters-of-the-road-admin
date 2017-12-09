@@ -21,13 +21,16 @@ class BuyCardPage extends Component {
          } = this.props;
          let amount = Number(this.state.amount) * 100;
          axios.post('/account/'+ account.id + '/buy_card', {amount: amount}).then(function(response) {
-             if (response.data && response.data.result === 'ok') {
-                updateBalance(amount * -1);
-                switchView('confirmationpage', account);
-             } else {
-                 // the account ID was not found - what to do?
-                 console.log('no account!')
-             }
+            if (response.data && response.data.result === 'ok') {
+            updateBalance(amount * -1);
+            switchView('confirmationpage', account);
+            } else if (response.data && response.data.result === 'limit_error'){
+            console.log('balance can\'t go below $0')
+            } 
+            else {
+                // the account ID was not found - what to do?
+                console.log('no account!')
+            }
          });
     }
 

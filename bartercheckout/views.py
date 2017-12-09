@@ -88,7 +88,10 @@ def buy_meal(request, account_id):
         amount = body_data['amount']
 
         # Update the barter account
-        newBalance = account.subtract(amount)
+        try:
+            newBalance = account.subtract(amount)
+        except BalanceLimitError:
+            return JsonResponse({'result': 'limit_error'})
         account.save()
 
         # Create event
@@ -113,7 +116,10 @@ def buy_card(request, account_id):
         amount = body_data['amount']
 
         # Update the barter account
-        newBalance = account.subtract(amount)
+        try:
+            newBalance = account.subtract(amount)
+        except BalanceLimitError:
+            return JsonResponse({'result': 'limit_error'})
         account.save()
 
         # Create event
