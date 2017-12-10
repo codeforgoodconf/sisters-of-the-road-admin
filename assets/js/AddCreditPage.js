@@ -28,8 +28,11 @@ class AddCreditPage extends Component {
                 switchView('confirmationpage', account);
              } else if (response.data && response.data.result === 'limit_error'){
                 console.log('balance can\'t exceed $50')
-             } 
-             else {
+                document.getElementById('error-msg').innerHTML="Balance can't exceed $50";
+             } else if (response.data && response.data.result === 'input_error'){
+                console.log('balance can\'t be negative')
+                document.getElementById('error-msg').innerHTML="Credit amount cannot be negative";
+             } else {
                  // the account ID was not found - what to do?
                  console.log('no account!')
              }
@@ -54,7 +57,9 @@ class AddCreditPage extends Component {
                 </div>
                 <div id="calculate" class="jumbotron row center-block">
                     <div class="total">
-                        <h3>Current Barter Credits: ${(account.currentCredit / 100).toFixed(2)}</h3>
+                        <h3>Current Barter Credits: ${(account.currentCredit / 100).toFixed(2)}
+                        <span class="pull-right" id="error-msg" style="color: red"></span>
+                        </h3>
                         <h3 class="text-center">Amount to add:</h3>
                         <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
                     </div>

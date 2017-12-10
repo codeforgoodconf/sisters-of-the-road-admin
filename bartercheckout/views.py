@@ -7,7 +7,7 @@ import json
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 
-from .models import BarterAccount, BarterEvent, BalanceLimitError
+from .models import BarterAccount, BarterEvent, BalanceLimitError, AmountInputError
 
 def home(request):
     """
@@ -64,6 +64,8 @@ def credit(request, account_id):
             newBalance = account.add(amount)
         except BalanceLimitError:
             return JsonResponse({'result': 'limit_error'})
+        except AmountInputError:
+            return JsonResponse({'result': 'input_error'})
         account.save()
 
         # Create event
