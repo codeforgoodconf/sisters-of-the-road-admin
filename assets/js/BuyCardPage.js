@@ -25,11 +25,12 @@ class BuyCardPage extends Component {
             updateBalance(amount * -1);
             switchView('confirmationpage', account);
             } else if (response.data && response.data.result === 'limit_error'){
-            console.log('balance can\'t go below $0')
+            console.log('balance can\'t go below $0');
+            document.getElementById('error-msg').innerHTML="Balance can't go below $0";
             } 
             else {
                 // the account ID was not found - what to do?
-                console.log('no account!')
+                console.log('no account!');
             }
          });
     }
@@ -52,7 +53,10 @@ class BuyCardPage extends Component {
                 </div>
                 <div id="calculate" class="jumbotron row center-block">
                     <div class="total">
-                        <h3>Current Barter Credits: ${(account.currentCredit / 100).toFixed(2)}</h3>
+                        <h3>
+                            Current Barter Credits: ${(account.currentCredit / 100).toFixed(2)}
+                            <span class="pull-right" id="error-msg" style="color: red"></span>
+                        </h3>
                         <h3 class="text-center">Card Amount Total:</h3>
                         <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
                     </div>

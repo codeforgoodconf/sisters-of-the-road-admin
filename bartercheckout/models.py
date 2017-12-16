@@ -50,16 +50,15 @@ class BarterAccount(models.Model):
     def add(self, amount): 
         if amount < 0:
             raise AmountInputError("Credit amount cannot be negative")
-
         if self.balance + amount > 5000:
-            raise BalanceLimitError("Balance can't exceed $50")
+            raise BalanceLimitError("Balance can't go above $50")
         else:
             self.balance += amount
             self.last_add = date.today()
             return self.balance
 
     def subtract(self, amount):
-        if self.balance - amount <0:
+        if self.balance - amount < 0:
             raise BalanceLimitError("Balance can't go below $0")
         else:
             self.balance -= amount
