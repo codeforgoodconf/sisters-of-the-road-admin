@@ -94,6 +94,8 @@ def buy_meal(request, account_id):
             newBalance = account.subtract(amount)
         except BalanceLimitError:
             return JsonResponse({'result': 'limit_error'})
+        except AmountInputError:
+            return JsonResponse({'result': 'input_error'})
         account.save()
 
         # Create event
@@ -122,6 +124,8 @@ def buy_card(request, account_id):
             newBalance = account.subtract(amount)
         except BalanceLimitError:
             return JsonResponse({'result': 'limit_error'})
+        except AmountInputError:
+            return JsonResponse({'result': 'input_error'})
         account.save()
 
         # Create event

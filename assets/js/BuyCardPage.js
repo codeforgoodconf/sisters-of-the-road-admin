@@ -27,11 +27,14 @@ class BuyCardPage extends Component {
             } else if (response.data && response.data.result === 'limit_error'){
             console.log('balance can\'t go below $0');
             document.getElementById('error-msg').innerHTML="Balance can't go below $0";
-            } 
-            else {
+            } else if (response.data && response.data.result === 'input_error'){
+                console.log('amount can\'t be negative')
+                document.getElementById('error-msg').innerHTML="Amount cannot be negative";
+            } else {
                 // the account ID was not found - what to do?
                 console.log('no account!');
             }
+            
          });
     }
 
