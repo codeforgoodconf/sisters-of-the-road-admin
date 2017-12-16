@@ -7,7 +7,7 @@ DATABASES['default'].update(db_from_env)
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'sisters-demo.herokuapp.com',

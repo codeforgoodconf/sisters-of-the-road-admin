@@ -13,7 +13,7 @@ Each should import common settings from base.py
 Config secrets are stored in environmnet variables
 
 Required environment variables:
-
-Optional environment variables:
-
+DJANGO_SETTINGS_MODULE: sistersadmin.settings.[environment name]
+DJANGO_SECRET_KEY: # required for anything but dev
+DATABASE_URL: # required for heroku
 """
