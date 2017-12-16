@@ -16,6 +16,10 @@ header * {
     color: white;
 }
 
+#error-msg {
+    color: red;
+}
+
 #logo {
     margin-top: 5%;
 }
@@ -46,6 +50,7 @@ header h1 {
     margin: 0 auto;
     margin-top: 5%;
 }
+
 div#result.jumbotron.row {
     margin-top: 5px%;
     padding: 1%;;
@@ -100,5 +105,6 @@ input.numbers, input#total {
     font-size: 32px;
     font-weight: 700;
 }
+
 
 
