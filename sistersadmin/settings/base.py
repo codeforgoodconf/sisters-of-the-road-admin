@@ -32,7 +32,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
- 
+
 ROOT_URLCONF = 'sistersadmin.urls'
 
 TEMPLATES = [
@@ -52,13 +52,14 @@ TEMPLATES = [
 ]
 
 DATABASES = {
-     'default': {
+        'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-     }
- }
- 
+        'NAME': 'sisters'
+    }
+}
+
 WSGI_APPLICATION = 'sistersadmin.wsgi.application'
- 
+
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
@@ -96,7 +97,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
  
 WEBPACK_LOADER = {
-     'DEFAULT': {
+    'DEFAULT': {
         'BUNDLE_DIR_NAME': 'bundles/',
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
     }

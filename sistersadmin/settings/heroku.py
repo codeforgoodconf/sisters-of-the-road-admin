@@ -11,5 +11,4 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     'sisters-demo.herokuapp.com',
-    '0.0.0.0'
 ]
