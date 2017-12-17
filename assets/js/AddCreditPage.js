@@ -30,8 +30,9 @@ class AddCreditPage extends Component {
                 console.log('balance can\'t exceed $50')
                 document.getElementById('error-msg').innerHTML="Balance can't go above $50";
              } else if (response.data && response.data.result === 'input_error'){
-                console.log('amount can\'t be negative')
-                document.getElementById('error-msg').innerHTML="Amount cannot be negative";
+                console.log('invalid amount')
+                document.getElementById('error-msg').innerHTML=
+                    "Please enter an amount above $0 in increment of $.25";
              } else {
                  // the account ID was not found - what to do?
                  console.log('no account!')

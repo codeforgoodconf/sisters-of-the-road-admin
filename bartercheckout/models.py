@@ -48,8 +48,8 @@ class BarterAccount(models.Model):
     last_subtract = models.DateField(null=True)
 
     def add(self, amount): 
-        if amount < 0:
-            raise AmountInputError("Amount cannot be negative")
+        if amount < 0 or amount % 25 != 0:
+            raise AmountInputError("Invalid amount")
         if self.balance + amount > 5000:
             raise BalanceLimitError("Balance can't go above $50")
         else:
@@ -58,8 +58,8 @@ class BarterAccount(models.Model):
             return self.balance
 
     def subtract(self, amount):
-        if amount < 0:
-            raise AmountInputError("Amount cannot be negative")
+        if amount < 0 or amount % 25 != 0:
+            raise AmountInputError("Invalid amount")
         if self.balance - amount < 0:
             raise BalanceLimitError("Balance can't go below $0")
         else:

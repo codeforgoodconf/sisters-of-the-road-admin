@@ -29,7 +29,8 @@ class BuyCardPage extends Component {
             document.getElementById('error-msg').innerHTML="Balance can't go below $0";
             } else if (response.data && response.data.result === 'input_error'){
                 console.log('amount can\'t be negative')
-                document.getElementById('error-msg').innerHTML="Amount cannot be negative";
+                document.getElementById('error-msg').innerHTML=
+                    "Please enter an amount above $0 in increment of $.25";
             } else {
                 // the account ID was not found - what to do?
                 console.log('no account!');
