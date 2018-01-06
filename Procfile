@@ -1,1 +1,1 @@
-web: gunicorn sistersadmin.wsgi:application
+web: newrelic-admin run-program gunicorn sistersadmin.wsgi:application
