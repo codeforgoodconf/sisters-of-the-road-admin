@@ -1,7 +1,7 @@
 """
 Common Django settings for sistersadmin project.
 
-Specific environment override files should import form this file:
+Specific environment override files should import from this file:
     from sistersadmin.settings.base import *
 """
 
