@@ -21,13 +21,21 @@ class BuyCardPage extends Component {
          } = this.props;
          let amount = Number(this.state.amount) * 100;
          axios.post('/account/'+ account.id + '/buy_card', {amount: amount}).then(function(response) {
-             if (response.data && response.data.result === 'ok') {
-                updateBalance(amount * -1);
-                switchView('confirmationpage', account);
-             } else {
-                 // the account ID was not found - what to do?
-                 console.log('no account!')
-             }
+            if (response.data && response.data.result === 'ok') {
+            updateBalance(amount * -1);
+            switchView('confirmationpage', account);
+            } else if (response.data && response.data.result === 'limit_error'){
+            console.log('balance can\'t go below $0');
+            document.getElementById('error-msg').innerHTML="Balance can't go below $0";
+            } else if (response.data && response.data.result === 'input_error'){
+                console.log('amount can\'t be negative')
+                document.getElementById('error-msg').innerHTML=
+                    "Please enter an amount above $0 in increment of $.25";
+            } else {
+                // the account ID was not found - what to do?
+                console.log('no account!');
+            }
+            
          });
     }
 
@@ -49,7 +57,10 @@ class BuyCardPage extends Component {
                 </div>
                 <div id="calculate" class="jumbotron row center-block">
                     <div class="total">
-                        <h3>Current Barter Credits: ${(account.currentCredit / 100).toFixed(2)}</h3>
+                        <h3>
+                            Current Barter Credits: ${(account.currentCredit / 100).toFixed(2)}
+                            <span class="pull-right" id="error-msg" style="color: red"></span>
+                        </h3>
                         <h3 class="text-center">Card Amount Total:</h3>
                         <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
                     </div>

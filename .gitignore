@@ -108,7 +108,10 @@ assets/bundles/
 # npm
 node_modules/
 
-#misc
+# misc
 .vscode/
 *~
 .DS_Store
+
+# sqlite files
+sistersdb
