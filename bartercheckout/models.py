@@ -35,9 +35,13 @@ class BarterEvent(models.Model):
     #staff_id = models.ForeignKey()
     def __str__(self):
         if self.event_type == 'Add':
-            message = '{} added to account on {}'.format(self.barter_account.customer_name, self.event_time)
+            message = '{} added to account on {}'.format(
+                self.barter_account.customer_name, 
+                self.event_time.strftime("%Y-%m-%d %I:%M%p"))
         else:
-            message = '{} subtracted from account on {}'.format(self.barter_account.customer_name, self.event_time)
+            message = '{} subtracted from account on {}'.format(
+                self.barter_account.customer_name, 
+                self.event_time.strftime("%Y-%m-%d %I:%M%p"))
         return message
 
 
