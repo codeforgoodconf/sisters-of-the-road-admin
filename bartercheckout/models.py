@@ -69,3 +69,8 @@ class BarterAccount(models.Model):
 
     def __str__(self):
         return 'Account: {}'.format(self.customer_name)
+
+    @property
+    def account_balance(self):
+        assert type(self.balance) == int
+        return '${:,.2f}'.format(self.balance/100) if self.balance else ""
