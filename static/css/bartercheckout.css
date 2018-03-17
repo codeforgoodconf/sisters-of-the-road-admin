@@ -17,6 +17,31 @@ body {
     font-family: Arial, sans-sarif;
 }
 
+/******* FONTS *******/
+.oswald {font-family: Oswald, sans-sarif }
+
+.opensans {font-family: 'Open Sans', sans-sarif }
+
+
+/******* SITE COLORS *******/
+.purple { color: #A4A3CA }
+.bg-purple { background-color: #A4A3CA }
+.b--purple { border-color: #A4A3CA }
+
+.dk-purple { color: #63568B }
+.bg-dk-purple { background-color: #63568B }
+
+.green { color: #9AC1A0 }
+.bg-green { background-color: #9AC1A0 }
+
+.blue { color: #005876 }
+.bg-blue { background-color: #005876 }
+
+.gray { color: #232323 }
+.bg-gray { background-color: #232323 }
+
+.dk-gray { color: #333 }
+.bg-dk-gray { background-color: #333 }
 
 .btn-success{
     background-color: #9AC1A0;
@@ -63,23 +88,6 @@ input:focus, textarea:focus, select:focus {
     margin-bottom: 15px;
 }
 
-
-/************* SEARCH PAGE **************/
-
-#searchbar input {
-    margin: 5% auto;
-    border-width: 1px;
-    border-color: #A4A3C9;
-    border-radius: 10px;
-    text-transform: uppercase;
-    font-size: 20px;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-}
-
-#searchbar{
-    font-family: 'Oswald', sans-serif;
-}
 
 /************* OTHER **************/
 #credits {

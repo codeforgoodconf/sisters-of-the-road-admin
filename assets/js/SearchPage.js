@@ -37,34 +37,34 @@ class SearchPage extends Component {
             searchQuery
         } = this.state;
         return (
-            <div class="SearchPage">
-                <div class="form-group">
-                    <div id="searchbar" class="input-group">
-                        <input class="input-lg center-block form-control"
-                               type="text"
-                               placeholder="Search barter accounts"
-                               onChange={(event) => this.onSearchChange(event.target.value)}/>
-                        <span class="input-group-btn">
-                            <button class="btn btn-lg btn-default" type="button"
-                                    onClick={() => this.searchAccounts(searchQuery)}>
-                                Search
-                            </button>
-                        </span>
-                    </div>
+            <div class="SearchPage pa4">
+                <div id="searchbar" class="">
+                  <input class="h3 f3 pl2 w-70 b--purple ttu oswald"
+                         type="text"
+                         placeholder="search accounts"
+                         onChange={(event) => this.onSearchChange(event.target.value)}/>
+                  <input class="h3 f4 ph3 w-20 b--purple white bg-purple mb2 mr3 absolute oswald"
+                         type="submit"
+                         value="SEARCH"
+                         onClick={() => this.searchAccounts(searchQuery)}
+                         />
                 </div>
-                <div class="row">
-                    <ul class="list-group">
+
+                <div id='results'>
+                  <ul class="list">
                     {accounts.map((account) =>
-                        <li class="list-group-item row"
+                        <li class="stripe-dark pv2 pl4"
                             onClick={() => this.props.switchView('accountpage', account)}
                             key={account.id}>
-                            <p class="col-sm-4"> {account.name} </p>
-                            <p class="col-sm-4">Last credit: {account.lastCredit}</p>
-                            <p class="col-sm-4">Last purchase: {account.lastMeal}</p>
+                            <p> {account.name} </p>
+                            <p> {account.balance} </p>
+                            <p>Last credit: {account.lastCredit}</p>
+                            <p>Last purchase: {account.lastMeal}</p>
                         </li>
                     )}
-                    </ul>
+                  </ul>
                 </div>
+
             </div>
          );
     }

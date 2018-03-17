@@ -6,10 +6,15 @@
         {% include "universal-head.html" %} 
     </head>
     <body>
-        <nav class="navbar navbar-default">
-            <img class="img-responsive logo" src="{% static 'img/SOTR_logo.png' %}">
-            <h1 id="nav-title">Sisters of the Road Cafe - Barter Accounts</h1>
+        <nav class='oswald ph4 pb3 bg-light-gray'>
+            <div class="dib w-75">
+                <h1 class="mv0 f1"> Barter Accounts </h1>
+            </div>
+            <div class='dib w-20 pt4'>
+                <img class='' src="{% static 'img/sisters_logo.gif' %}">
+            </div>
         </nav>
+
         <div id="root"></div>
         {% render_bundle 'main' %}
     </body>
