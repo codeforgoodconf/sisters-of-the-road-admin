@@ -32,16 +32,20 @@ class BarterEvent(models.Model):
 
     event_time = models.DateTimeField(auto_now_add=True)
     amount = models.IntegerField(default=0)
+
+    @property
+    def customer_name(self):
+        return self.barter_account.customer_name
+
+    @property
+    def transaction_amount(self):
+        assert type(self.amount) == int
+        return '${:,.2f}'.format(self.amount/100)
+
     #staff_id = models.ForeignKey()
+    
     def __str__(self):
-        if self.event_type == 'Add':
-            action = 'added to' 
-        else:
-            action = 'subtracted from'
-        message = '{} {} account on {}'.format(
-                self.barter_account.customer_name, action,
-                self.event_time.strftime("%Y-%m-%d %I:%M%p"))
-        return message
+        return 'Barter event ID {} for {}'.format(self.id, self.customer_name)
 
 
 class BarterAccount(models.Model):
