@@ -51,22 +51,25 @@ class AddCreditPage extends Component {
 
         return (
             <div class="AddCreditPage">
-                <div class="header col-sm-12 centered">
-                    <h3>{account.name}</h3>
-                    <h5>Last worked: {account.lastCredit}</h5>
-                    <h5>Last purchase: {account.lastMeal}</h5>
+
+                <div id="account-summary" class="blue oswald pb4 fl w-50">
+                    <h1 class='f1'>{account.name}</h1>
+                    <span class='f2'> current balance:</span>
+                    <span class='gray f2'>${(account.currentCredit / 100).toFixed(2)}</span>
+
+                    <h3>Last worked: {account.lastCredit}</h3>
+                    <h3>Last purchase: {account.lastMeal}</h3>
                 </div>
-                <div id="calculate" class="jumbotron row center-block">
+
+                <div id="calculate" class="fr w-50">
                     <div class="total">
                         <h3>
                             Current Barter Credits: ${(account.currentCredit / 100).toFixed(2)}
                             <span class="pull-right" id="error-msg" style="color: red"></span>
                         </h3>
-                        <h3 class="text-center">Amount to add:</h3>
+                        <h3 class="tc">Amount to add:</h3>
                         <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
                     </div>
-                </div>
-                <div>
                     <button type="submit"
                             class="btn btn-success col-sm-offset-5 center-block"
                             onClick={() => this.addCredit(account)}>
@@ -74,7 +77,7 @@ class AddCreditPage extends Component {
                     </button>
                 </div>
                 <div>
-                    <button class="btn btn-info col-sm-2 col-sm-offset-5"
+                    <button class=""
                             onClick={() => this.props.switchView('accountpage', account)}>
                         Cancel
                     </button>
