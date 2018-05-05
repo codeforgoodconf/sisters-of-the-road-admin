@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import DollarInput from './DollarInput';
+import AccountSummary from './AccountSummary';
 
 
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
@@ -51,37 +52,23 @@ class AddCreditPage extends Component {
 
         return (
             <div class="AddCreditPage">
+                <AccountSummary account={account} switchView={this.props.switchView}/>
 
-                <div id="account-summary" class="blue oswald pb4 fl w-50">
-                    <h1 class='f1'>{account.name}</h1>
-                    <span class='f2'> current balance:</span>
-                    <span class='gray f2'>${(account.currentCredit / 100).toFixed(2)}</span>
-
-                    <h3>Last worked: {account.lastCredit}</h3>
-                    <h3>Last purchase: {account.lastMeal}</h3>
-                </div>
-
-                <div id="calculate" class="fr w-50">
+                <div id="calculate" class="fr w-50 mt5 ba bw2 pa2">
                     <div class="total">
-                        <h3>
-                            Current Barter Credits: ${(account.currentCredit / 100).toFixed(2)}
-                            <span class="pull-right" id="error-msg" style="color: red"></span>
-                        </h3>
-                        <h3 class="tc">Amount to add:</h3>
+                        <h3><span class="pull-right" id="error-msg" style="color: red"></span></h3>
+                        <h3 class="fl">Amount to add:</h3>
                         <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
                     </div>
-                    <button type="submit"
-                            class="btn btn-success col-sm-offset-5 center-block"
+                    <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 w-100 white bg-green"
                             onClick={() => this.addCredit(account)}>
                         Add amount
                     </button>
                 </div>
-                <div>
-                    <button class=""
-                            onClick={() => this.props.switchView('accountpage', account)}>
-                        Cancel
-                    </button>
-                </div>
+                <button class="bg-blue white"
+                        onClick={() => this.props.switchView('accountpage', account)}>
+                    Cancel
+                </button>
             </div>
          );
     }

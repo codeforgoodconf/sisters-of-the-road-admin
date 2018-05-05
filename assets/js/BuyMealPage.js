@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import DollarInput from './DollarInput'
+import AccountSummary from './AccountSummary';
 
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -50,28 +51,20 @@ class BuyMealPage extends Component {
 
         return (
             <div class="BuyMealPage">
-                <div class="header col-sm-12 centered">
-                    <h3>{account.name}</h3>
-                    <h5>Last worked: {account.lastCredit}</h5>
-                    <h5>Last purchase: {account.lastMeal}</h5>
-                </div>
-                <div id="calculate" class="jumbotron row center-block">
+                <AccountSummary account={account} switchView={this.props.switchView}/>
+
+                <div id="calculate" class="fr w-50 mt5 ba bw2 pa2">
                     <div class="total">
-                        <h3>
-                            Current Barter Credits: ${(account.currentCredit / 100).toFixed(2)}
-                            <span class="pull-right" id="error-msg" style="color: red"></span>
-                        </h3>
-                        <h3 class="text-center">Meal Total:</h3>
+                        <h3> <span class="pull-right" id="error-msg" style="color: red"></span> </h3>
+                        <h3 class="tc">Meal Total:</h3>
                         <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
                     </div>
-                </div>
-                <div>
-                    <button class="btn btn-success col-sm-offset-5 center-block"
+                    <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 w-100 white bg-purple"
                             onClick={() => this.buyMeal(account)}>
                         Spend amount
                     </button>
                 </div>
-                <button class="btn btn-info col-sm-offset-5 center-block"
+                <button class="bg-blue white"
                         onClick={() => this.props.switchView('accountpage', account)}>
                     Cancel
                 </button>

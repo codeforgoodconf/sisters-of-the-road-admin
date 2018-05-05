@@ -17,7 +17,8 @@ class DollarInput extends Component {
     render () {
         return (
             <input id="amount"
-                class="numbers col-sm-offset-3 input-lg center-block text-center"
+                // class="input-reset ba b--black-20 pa2 mb2 db w-100"
+                class="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                 type="number"
                 min="0"
                 step="0.25"
