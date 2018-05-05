@@ -4,7 +4,7 @@ How to get this project running on your machine.
 
 ## 1. Requirements
 
-1. [Install Git.](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+1. [Install Git.](https://git-scm.com/downloads)
     Check that it's installed:
 
       ```sh
@@ -31,7 +31,7 @@ How to get this project running on your machine.
 
 ## 2. Download the project
 
-1. [Fork this repository.](https://github.com/codeforgoodconf/sisters-of-the-road-admin#fork-destination-box)
+1. Fork this repository. [Help](https://help.github.com/articles/fork-a-repo/)
 
 2. Clone your fork.
 
@@ -93,18 +93,28 @@ Set the environment variable to the *dev* settings.
 
 6. Run database migrations. This will create the database tables.
 
-    ```
+    ```sh
     python manage.py migrate
     ```
 
 7. Create your admin account.
 
-    ```
+    ```sh
     python manage.py createsuperuser
     ```
 
     You'll be prompted for your username (lowercase, no spaces), email address and password. **You will not be able to see what you're typing.** Just type it in and hit enter to continue. Save the information. 
     You'll need to remember it to log in.
+
+8. Run Webpack to compile the JavaScript files.
+
+    ```sh
+    ./node_modules/webpack/bin/webpack.js --config webpack.config.js
+    ```
+
+    You will need to do this every time you make changes to the JavaScript files.
+    You can create another bash profile alias to make this easier.
+
 
 ## 4. Run the app
 
