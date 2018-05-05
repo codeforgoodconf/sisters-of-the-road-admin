@@ -120,17 +120,6 @@ btn.btn-info.col-sm-offset-5 {
     margin-left:5%;
 }
 
-button * {
-    font-weight: 700;
-    font-size: 36;
-}
-div#calculate.jumbotron.row {
-    margin-top: 2%;
-    padding-top: 2%;
-    width: 75%;
-    border: 2px solid lightslategray;
-    border-radius: 10px;
-}
 
 .header.col-sm-12.centered {
     text-align: center;
