@@ -55,20 +55,27 @@ class AddCreditPage extends Component {
                 <AccountSummary account={account} switchView={this.props.switchView}/>
 
                 <div id="calculate" class="fr w-50 mt5 ba bw2 pa2">
-                    <div class="total">
+                    <div class="total dib">
+                        <h1>Add Credit</h1>
                         <h3><span class="pull-right" id="error-msg" style="color: red"></span></h3>
-                        <h3 class="fl">Amount to add:</h3>
-                        <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
+                        <h3 class="fl w-50">Amount to add:</h3>
+
+                        <div class='fr w-50'>
+                            <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
+                        </div>
                     </div>
-                    <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 w-100 white bg-green"
-                            onClick={() => this.addCredit(account)}>
-                        Add amount
-                    </button>
+                    <div>
+                        <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 fl bg-light-gray blue w-40"
+                            onClick={() => this.props.switchView('accountpage', account)}>
+                            Cancel
+                        </button>
+                        <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 w-50 fr white bg-green"
+                                onClick={() => this.addCredit(account)}>
+                            Add amount
+                        </button>
+                    </div>
                 </div>
-                <button class="bg-blue white"
-                        onClick={() => this.props.switchView('accountpage', account)}>
-                    Cancel
-                </button>
+
             </div>
          );
     }
