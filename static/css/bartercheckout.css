@@ -11,7 +11,6 @@ Oswald, sans-sarif;
 Permanent Marker, Oswald, sans-serif;
 */
 
-
 body {
     background-color: white;
     font-family: Arial, sans-sarif;
@@ -19,9 +18,7 @@ body {
 
 /******* FONTS *******/
 .oswald {font-family: Oswald, sans-sarif }
-
 .opensans {font-family: 'Open Sans', sans-sarif }
-
 
 /******* SITE COLORS *******/
 .purple { color: #A4A3CA }
@@ -43,95 +40,4 @@ body {
 .dk-gray { color: #333 }
 .bg-dk-gray { background-color: #333 }
 
-.btn-success{
-    background-color: #9AC1A0;
-}
-
-.btn-default{
-    background-color: #A4A3C9;
-}
-
-input:focus, textarea:focus, select:focus {
-    outline: none;
-}
-
-#root{
-    margin: 0% 5%;
-}
-
-.centered{
-    float: none;
-    margin: 0 auto;
-    margin-top: 5%;
-}
-
-
-/************* HEADER **************/
-.navbar-default {
-    background-color: #A4A3CA;
-    font-family: Oswald, sans-sarif;
-    border-radius: 0;
-    padding: 0 25px;
-}
-
-.logo {
-    height: 80px;
-    float: right;
-    margin-top: 19px;
-}
-
-#nav-title {
-    font-weight: 700;
-    font-size: 5rem;
-    padding-top: 20px;
-    margin-top: 30px;
-    margin-bottom: 15px;
-}
-
-
 /************* OTHER **************/
-#credits {
-    text-align: center;
-    font-weight: 700;
-    font-size: 4rem;
-}
-
-div.buttons.row {
-    margin: 4% 0 4% 23%;
-}
-
-button.col-sm-offset-1 {
-    height:130px;
-    width: 175px;
-    margin-bottom: 5%;
-    color: white;
-    font-size: 3REM;
-}
-
-button.btn-success.col-sm-offset-5 {
-    height:150px;
-    width: 225px;
-    margin-bottom: 5%;
-    color: white;
-    font-size: 3REM;
-}
-
-btn.btn-info.col-sm-offset-5 {
-    margin-left:5%;
-}
-
-
-.header.col-sm-12.centered {
-    text-align: center;
-    border: 2px solid slateblue;
-    background: darkslateblue;
-    color: white;
-    padding-bottom: 2%;
-    margin-top: 10%;
-    width: 90%;
-}
-
-input.numbers, input#total {
-    font-size: 32px;
-    font-weight: 700;
-}
