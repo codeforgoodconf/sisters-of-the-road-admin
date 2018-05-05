@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 
-
 class SearchPage extends Component {
     constructor () {
         super();

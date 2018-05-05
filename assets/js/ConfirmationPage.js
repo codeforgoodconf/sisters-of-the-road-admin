@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AccountSummary from './AccountSummary';
 
+
 class ConfirmationPage extends Component {
     constructor () {
         super();
@@ -10,7 +11,7 @@ class ConfirmationPage extends Component {
         const {
             account
         } = this.props;
-       
+
         return (
             <div class="ConfirmationPage">
                 <AccountSummary account={account} switchView={this.props.switchView}/>
@@ -22,11 +23,10 @@ class ConfirmationPage extends Component {
                         {account.lastAdded < 0 &&
                             <h3 class="tl">Amount spent: ${((account.lastAdded * -1) / 100).toFixed(2)}</h3>
                         }
-                                                
+
                         <h3 class="tl">New balance: ${(account.currentCredit / 100).toFixed(2)}</h3>
                     </div>
                 </div>
-                
             </div>
          );
     }

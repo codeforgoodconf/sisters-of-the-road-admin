@@ -71,9 +71,7 @@ class BuyCardPage extends Component {
                             Spend amount
                         </button>
                     </div>
-
                 </div>
-
             </div>
          );
     }

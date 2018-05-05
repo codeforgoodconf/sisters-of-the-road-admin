@@ -52,7 +52,6 @@ class BuyMealPage extends Component {
         return (
             <div class="BuyMealPage">
                 <AccountSummary account={account} switchView={this.props.switchView}/>
-
                 <div id="calculate" class="fr w-50 mt5 ba bw2 pa2">
                     <div class="total dib">
                         <h1>Buy Meal</h1>
@@ -73,7 +72,6 @@ class BuyMealPage extends Component {
                         </button>
                     </div>
                 </div>
-
             </div>
          );
     }

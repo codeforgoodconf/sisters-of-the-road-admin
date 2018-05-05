@@ -6,6 +6,7 @@ import BuyCardPage from './BuyCardPage';
 import AddCreditPage from './AddCreditPage';
 import ConfirmationPage from './ConfirmationPage';
 
+
 class App extends Component {
     constructor () {
         super();
@@ -44,7 +45,7 @@ class App extends Component {
             );
          } else if (currentView === 'addcreditpage') {
             return (
-                <AddCreditPage switchView={(viewname, account) => this.switchView(viewname, account)} 
+                <AddCreditPage switchView={(viewname, account) => this.switchView(viewname, account)}
                                account={currentAccount}
                                updateBalance={(newCredit) => this.updateBalance(newCredit)} />
             )
@@ -64,7 +65,6 @@ class App extends Component {
              return (
                  <ConfirmationPage switchView={(viewname, account) => this.switchView(viewname, account)}
                              account={currentAccount}/>
-                              
              )
          }
     }

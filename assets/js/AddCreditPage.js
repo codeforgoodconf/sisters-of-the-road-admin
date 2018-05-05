@@ -3,10 +3,8 @@ import axios from 'axios';
 import DollarInput from './DollarInput';
 import AccountSummary from './AccountSummary';
 
-
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
-
 
 
 class AddCreditPage extends Component {
@@ -61,7 +59,7 @@ class AddCreditPage extends Component {
                         <h3 class="fl w-50">Amount to add:</h3>
 
                         <div class='fr w-50'>
-                            <DollarInput updateAmount={(amount) => this.updateAmount(amount)} /> 
+                            <DollarInput updateAmount={(amount) => this.updateAmount(amount)} />
                         </div>
                     </div>
                     <div>
@@ -75,7 +73,6 @@ class AddCreditPage extends Component {
                         </button>
                     </div>
                 </div>
-
             </div>
          );
     }
