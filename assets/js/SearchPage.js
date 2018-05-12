@@ -43,7 +43,7 @@ class SearchPage extends Component {
                          type="text"
                          placeholder="search accounts"
                          onChange={(event) => this.onSearchChange(event.target.value)}/>
-                  <input class="h3 f4 ph3 w-20 b--purple white bg-purple mb2 mr3 absolute oswald"
+                  <input class="h3 f4 ph0 w-25 b--purple white bg-purple mb2 mr3 absolute oswald"
                          type="submit"
                          value="SEARCH"
                          onClick={() => this.searchAccounts(searchQuery)}
@@ -51,9 +51,9 @@ class SearchPage extends Component {
                 </div>
 
                 <div id='results'>
-                  <ul class="list">
+                  <ul class="list pa0">
                     {accounts.map((account) =>
-                        <li class="stripe-dark pv2 pl4"
+                        <li class="stripe-dark pv2 pa3"
                             onClick={() => this.props.switchView('accountpage', account)}
                             key={account.id}>
                             <p> {account.name} </p>
