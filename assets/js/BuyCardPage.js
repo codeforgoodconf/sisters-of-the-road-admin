@@ -50,7 +50,7 @@ class BuyCardPage extends Component {
         } = this.props;
 
         return (
-            <div class="BuyCardPage">
+            <div class="BuyCardPage pa4">
                 <AccountSummary account={account} switchView={this.props.switchView}/>
                 <div id="calculate" class="fr w-50 mt5 ba bw2 pa2">
                     <div class="total dib">

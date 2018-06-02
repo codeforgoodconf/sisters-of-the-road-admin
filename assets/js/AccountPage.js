@@ -12,7 +12,7 @@ class AccountPage extends Component {
             account
         } = this.props;
         return (
-            <div class="AccountPage">
+            <div class="AccountPage pa4">
                 <AccountSummary account={account} switchView={this.props.switchView}/>
 
                 <div class="mv4 fr w-50">
