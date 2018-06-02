@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import AccountSummary from './AccountSummary';
+
 
 class ConfirmationPage extends Component {
     constructor () {
@@ -9,28 +11,22 @@ class ConfirmationPage extends Component {
         const {
             account
         } = this.props;
-       
+
         return (
             <div class="ConfirmationPage">
-                <div class="header col-sm-12 centered">
-                    <h3>{account.name}</h3>
-                </div>
-                <div id="calculate" class="jumbotron row center-block">
+                <AccountSummary account={account} switchView={this.props.switchView}/>
+                <div id="calculate" class="fr w-50 mt5 ba bw2 pa2">
                     <div class="total">
                         {account.lastAdded > 0 &&
-                            <h3 class="text-center">Amount added: ${(account.lastAdded / 100).toFixed(2)}</h3>
+                            <h3 class="tl">Amount added: ${(account.lastAdded / 100).toFixed(2)}</h3>
                         }
                         {account.lastAdded < 0 &&
-                            <h3 class="text-center">Amount spent: ${((account.lastAdded * -1) / 100).toFixed(2)}</h3>
+                            <h3 class="tl">Amount spent: ${((account.lastAdded * -1) / 100).toFixed(2)}</h3>
                         }
-                                                
-                        <h3 class="text-center">New balance: ${(account.currentCredit / 100).toFixed(2)}</h3>
+
+                        <h3 class="tl">New balance: ${(account.currentCredit / 100).toFixed(2)}</h3>
                     </div>
                 </div>
-                
-                <button class="btn btn-info col-sm-offset-5 center-block" onClick={() => this.props.switchView('searchpage')}>
-                    Back to Search
-                </button>
             </div>
          );
     }

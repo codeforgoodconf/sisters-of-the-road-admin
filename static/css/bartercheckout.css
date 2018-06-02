@@ -1,110 +1,43 @@
-/*website colors: 
-forestgreen
-darkslateblue*/
-/*fonts:
+/* website colors: 
+Dark purple: #63568B
+Light Purple: #A4A3CA
+Green: #9AC1A0;
+Gray: #232323;
+Blue: #005876;
+*/
+
+/* fonts:
 Oswald, sans-sarif;
-Permanent Marker, Oswald, sans-serif;*/
+Permanent Marker, Oswald, sans-serif;
+*/
 
 body {
     background-color: white;
-    font-family: Oswald, sans-sarif;
-}
-header * {
-    text-align: center;
-    margin-top: 5%;
-    background-color: darkslateblue;
-    color: white;
+    font-family: Arial, sans-sarif;
 }
 
-#error-msg {
-    color: red;
-}
+/******* FONTS *******/
+.oswald {font-family: Oswald, sans-sarif }
+.opensans {font-family: 'Open Sans', sans-sarif }
 
-#logo {
-    margin-top: 5%;
-}
-#searchbar input.input-lg {
-    width: 60%;
-    font-size: 32px;
-    margin: 5% auto;
-}
-.header.col-sm-12.centered {
-    text-align: center;
-    border: 2px solid slateblue;
-    background: darkslateblue;
-    color: white;
-    padding-bottom: 2%;
-    margin-top: 10%;
-    width: 90%;
-    border-radius: 10px;
-}
-header h1 {
-    font-weight: 700;
-    font-size: 4rem;
-    color: white;
-    padding:5% auto;
-}
+/******* SITE COLORS *******/
+.purple { color: #A4A3CA }
+.bg-purple { background-color: #A4A3CA }
+.b--purple { border-color: #A4A3CA }
 
-.centered{
-    float: none;
-    margin: 0 auto;
-    margin-top: 5%;
-}
+.dk-purple { color: #63568B }
+.bg-dk-purple { background-color: #63568B }
 
-div#result.jumbotron.row {
-    margin-top: 5px%;
-    padding: 1%;;
-    width: 95%;
-    border: 2px solid lightslategray;
-    border-radius: 10px;
-}
-.jumbotron p span{ 
-    margin-left: 5%;
-}
-#credits {
-    text-align: center;
-    font-weight: 700;
-    font-size: 4rem;
-}
-div.buttons.row {
-    margin: 4% 0 4% 23%;
-}
-button.col-sm-offset-1 {
-    height:130px;
-    width: 175px;
-    margin-bottom: 5%;
-    color: white;
-    font-size: 3REM;
-}
+.green { color: #9AC1A0 }
+.bg-green { background-color: #9AC1A0 }
 
-button.btn-success.col-sm-offset-5 {
-    height:150px;
-    width: 225px;
-    margin-bottom: 5%;
-    color: white;
-    font-size: 3REM;
-}
+.blue { color: #005876 }
+.bg-blue { background-color: #005876 }
 
-btn.btn-info.col-sm-offset-5 {
-    margin-left:5%;
-}
+.gray { color: #232323 }
+.bg-gray { background-color: #232323 }
 
-button * {
-    font-weight: 700;
-    font-size: 36;
-}
-div#calculate.jumbotron.row {
-    margin-top: 2%;
-    padding-top: 2%;
-    width: 75%;
-    border: 2px solid lightslategray;
-    border-radius: 10px;
-}
+.dk-gray { color: #333 }
+.bg-dk-gray { background-color: #333 }
 
-input.numbers, input#total {
-    font-size: 32px;
-    font-weight: 700;
-}
-
-
-
+/************* OTHER **************/
