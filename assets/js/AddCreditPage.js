@@ -49,7 +49,7 @@ class AddCreditPage extends Component {
         } = this.props;
 
         return (
-            <div class="AddCreditPage">
+            <div class="AddCreditPage pa4">
                 <AccountSummary account={account} switchView={this.props.switchView}/>
 
                 <div id="calculate" class="fr w-50 mt5 ba bw2 pa2">

@@ -38,11 +38,11 @@ class SearchPage extends Component {
         return (
             <div class="SearchPage pa4">
                 <div id="searchbar" class="">
-                  <input class="h3 f3 pl2 w-70 b--purple ttu oswald"
+                  <input class="h3 f3 pl2 w-70 b--purple ttu oswald br0"
                          type="text"
                          placeholder="search accounts"
                          onChange={(event) => this.onSearchChange(event.target.value)}/>
-                  <input class="h3 f4 ph3 w-20 b--purple white bg-purple mb2 mr3 absolute oswald"
+                  <input class="h3 f4 ph3 w-20 b--purple white bg-purple mb2 mr3 absolute oswald br0"
                          type="submit"
                          value="SEARCH"
                          onClick={() => this.searchAccounts(searchQuery)}
