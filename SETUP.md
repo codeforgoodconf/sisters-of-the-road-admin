@@ -1,11 +1,10 @@
 # Setup
 
-How to get this project running on your machine.
+How to get this project running on your machine. 
 
 ## 1. Requirements
 
-1. [Install Git.](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-
+1. [Install Git.](https://git-scm.com/downloads)
     Check that it's installed:
 
       ```sh
@@ -14,159 +13,125 @@ How to get this project running on your machine.
 
     That should return a path (e.g., `/usr/local/bin/git`).
 
-2. Install Python 3. You have a few options:
+2. [Install Python 3.](https://www.python.org/downloads/)
+    Check that it's installed:
 
-    - Using a downloadable installer for any operating system: https://www.python.org/downloads/
+    ```sh
+    which python3
+    ```
 
-    - With [Homebrew](https://brew.sh/) for macOS:
+    That should return a path (e.g., `/usr/local/bin/python3`).
 
-        ```sh
-        brew install python3
-        ```
+3. [Install Node.js.](https://nodejs.org/en/)
+    Check that it's installed:
 
-    - With [Scoop](http://scoop.sh/) for Windows:
+    ```sh
+    node -v
+    ```    
 
-        ```sh
-        scoop install python3
-        ```
+## 2. Download the project
 
-    - Once installed, check that it's installed:
+1. Fork this repository. [Help](https://help.github.com/articles/fork-a-repo/)
 
-        ```sh
-        which python3
-        ```
+2. Clone your fork.
 
-        That should return a path (e.g., `/usr/local/bin/python3`).
-
-3. Install PostgreSQL.
-
-    - With [Postgres.app](https://postgresapp.com/) for macOS.
-
-    - With [BigSQL](https://www.openscg.com/bigsql/postgresql/installers.jsp/) for Windows.
-
-    - Other [options are available](https://www.postgresql.org/download/).
-
-    - Once that's downloaded and installed, check that it's installed:
-
-      ```sh
-      which postgres
-      ```
-
-      That should return a path (e.g., `/usr/local/bin/postgres`).
-
-4. [Install Node.js.](https://nodejs.org/en/)
-
-## 2. Download the project.
-
-1. [Fork this repository.](https://github.com/codeforgoodconf/sisters-of-the-road-admin#fork-destination-box)
-
-2. Clone git repository and move into that.
-
-      ```sh
-      git clone git@github.com:YOUR_GITHUB_USERNAME/sisters-of-the-road-admin.git
-      ```
+    ```sh
+    git clone git@github.com:YOUR_GITHUB_USERNAME/sisters-of-the-road-admin.git
+    ```
 
 3. Move into that repository.
 
-      ```sh
-      cd sisters-of-the-road-admin
-      ```
+    ```sh
+    cd sisters-of-the-road-admin
+    ```
 
-## 3. Set up development environment:
+## 3. Set up the development environment
 
-1. Set up a [Python virtual environment](https://docs.python.org/3/library/venv.html):
+1. Set up a [Python virtual environment](https://docs.python.org/3/library/venv.html). 
+You can name it anything you like, but keep it short, lowercase, without any special characters.
+    
+    ```sh
+    python -m venv myvenv
+    ```
+
+2. Activate the virtual environment.
+
+    - On Mac/Linux:
+    ```sh
+    source myvenv/bin/activate
+    ```
+    
+    - On Windows:
+    ```sh
+    myvenv\Scripts\activate
+    ```
+
+3. Install the Python dependencies.
 
     ```sh
-    python3 -m venv venv
-    source venv/bin/activate
     pip install -r requirements.txt
     ```
 
-2. Install Node.js dependencies.
+4. Install the Node.js dependencies.
 
     ```sh
     npm install
     ```
 
-3. Setup PostgreSQL database.
+5. This project has different settings files for different environments.
+Set the environment variable to the *dev* settings.
 
-    - Create a user:
+    ```sh
+    export DJANGO_SETTINGS_MODULE=sistersadmin.settings.dev
+    ```
+    You will need to do this every time you open a new terminal window or tab.
 
-        ```sh
-        psql
-        ```
+    If you like you can [create an alias in your bash profile](https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions) 
+    to set it with a single keyword.
 
-        You will be asked for your password. If you used the password 'admin' for the default `postgres` user when installing PostgreSQL, then enter 'admin' here.
+    Check your environment variables by entering `env` in terminal.
 
-    - That will open up the PostgreSQL prompt. Create the database:
+6. Run database migrations. This will create the database tables.
 
-        ```sh
-        CREATE USER sisters;
-        CREATE DATABASE barter OWNER sisters;
-        ```
+    ```sh
+    python manage.py migrate
+    ```
 
-    - Exit the `psql` prompt:
+7. Create your admin account.
 
-        ```sh
-        \q
-        ```
+    ```sh
+    python manage.py createsuperuser
+    ```
 
-    - Verify that you can connect to the database:
+    You'll be prompted for your username (lowercase, no spaces), email address and password. **You will not be able to see what you're typing.** Just type it in and hit enter to continue. Save the information. 
+    You'll need to remember it to log in.
 
-        ```
-        psql barter sisters
-        ```
+8. Run Webpack to compile the JavaScript files.
 
-        That should enter you into the PostgreSQL prompt again.
+    ```sh
+    ./node_modules/webpack/bin/webpack.js --config webpack.config.js
+    ```
 
-        Exit the prompt by entering `\q` and hitting <kbd>Enter</kbd>.
+    You will need to do this every time you make changes to the JavaScript files.
+    You can create another bash profile alias to make this easier.
 
-    - Run database migrations.
 
-        ```
-        python3 manage.py migrate
-        python3 manage.py createsuperuser --username [YOUR USERNAME]
-        ```
+## 4. Run the app
 
-        Replace `[YOUR USERNAME]` with your desired username (e.g., `kjohnson`).
-
-        You'll be prompted to create a user with your email address and password. Do so, and save the information. You'll need to remember it to log in.
-
-## 4. Run the app.
-
-1. Run:
-
+- Start the server.
     ```sh
     python manage.py runserver
     ```
 
-    The app will now be running in your browser at [http://localhost:8000/].
+    The app will now be running in your browser at http://localhost:8000/.
 
-    The admin dashboard is available at [http://localhost:8000/admin].
+    The admin dashboard is available at http://localhost:8000/admin.
 
-
-## 5. Run the tests.
-
-1. First, stop the running app with <kbd>Ctrl</kbd>+<kbd>c</kbd>.
-
-2. Run tests:
-
-    ```sh
-    python manage.py behave
-    ```
-
-    That should output a lot of `NotImplementedError` messages.
-
-## 6. Develop the app.
-
-This project uses Webpack to compile source files.
-
-Run Webpack every time changes are made to the Javascript files:
-
-    ```sh
-    webpack --config webpack.config.js
-    ```
+    You should be able to log in to admin with the account you created in step 7 above.
 
 ---
 
-If you have trouble with any of these steps, please [open a new issue](/codeforgoodconf/sisters-of-the-road-admin/issues/new) describing what went wrong.
+Refer to the [Django Girls Tutorial](https://tutorial.djangogirls.org/en/installation/) if you need more details 
+for your particular machine.
+
+If you are still unable to get the app running, please [open a new issue](https://github.com/codeforgoodconf/sisters-of-the-road-admin/issues/new) describing what went wrong.
