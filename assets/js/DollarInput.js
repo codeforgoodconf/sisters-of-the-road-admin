@@ -16,14 +16,18 @@ class DollarInput extends Component {
 
     render () {
         return (
-            <input id="amount"
-                class="pa2 input-reset ba bg-transparent hover-bg-light-gray w-100"
-                type="number"
-                min="0"
-                step="0.25"
-                value={this.state.amount}
-                placeholder={0}
-                onChange={(event) => this.onAmountChange(event.target.value)} />
+            <form class="mb4 dib">    
+                <label class="f2">Amount $</label>
+                <input id="amount"
+                    class="ml2 pa2 f2 w-60 input-reset ba bg-transparent hover-bg-light-gray"
+                    type="number"
+                    min="0"
+                    step="0.25"
+                    value={this.state.amount}
+                    placeholder={0}
+                    onChange={(event) => this.onAmountChange(event.target.value)} />
+                <label class="fl f4 mt2 red" id="error-msg"></label>           
+            </form>
          );
     }
 }
