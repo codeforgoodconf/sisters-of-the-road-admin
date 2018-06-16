@@ -15,7 +15,7 @@ class AccountPage extends Component {
             <div class="AccountPage">
                 <AccountSummary account={account} switchView={this.props.switchView}/>
 
-                <div class="mt5 fr w-50 vh-25">
+                <div class="mt5 fr w-50 h-50">
                     <button class="f3 br0 ph3 pv0 mb4 db h-25 w-80 white bg-purple"
                             onClick={() => this.props.switchView('buycardpage', account)}>
                         <i class="far fa-credit-card pr2"></i>Buy Card 
