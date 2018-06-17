@@ -13,18 +13,18 @@ class ConfirmationPage extends Component {
         } = this.props;
 
         return (
-            <div class="ConfirmationPage pa4">
+            <div class="ConfirmationPage">
                 <AccountSummary account={account} switchView={this.props.switchView}/>
-                <div id="calculate" class="fr w-50 mt5 ba bw2 pa2">
+                <div id="calculate" class="fl w-50 mt5 ba bw1 pa2">
                     <div class="total">
                         {account.lastAdded > 0 &&
-                            <h3 class="tl">Amount added: ${(account.lastAdded / 100).toFixed(2)}</h3>
+                            <h2 class="tl">Amount added: ${(account.lastAdded / 100).toFixed(2)}</h2>
                         }
                         {account.lastAdded < 0 &&
-                            <h3 class="tl">Amount spent: ${((account.lastAdded * -1) / 100).toFixed(2)}</h3>
+                            <h2 class="tl">Amount spent: ${((account.lastAdded * -1) / 100).toFixed(2)}</h2>
                         }
 
-                        <h3 class="tl">New balance: ${(account.currentCredit / 100).toFixed(2)}</h3>
+                        <h2 class="tl">New balance: ${(account.currentCredit / 100).toFixed(2)}</h2>
                     </div>
                 </div>
             </div>
