@@ -1,6 +1,9 @@
+import json
 from django.test import TestCase
 from .models import BarterEvent, BarterAccount
 from django.test.client import RequestFactory
+from .views import credit
+
 
 # Create your tests here.
 class CreditTest(TestCase):
@@ -18,25 +21,30 @@ class CreditTest(TestCase):
         summer = BarterAccount.objects.get(customer_name="Summer Salt")
         self.assertTrue(summer)
         summers_id = summer.id
-        request = self.factory.get('/account/{}/credit'.format(summers_id))
-        print(request)
+        request = self.factory.post('/account/{}/credit'.format(summers_id), json.dumps({'amount': 250}), content_type='application/json')
+        response = credit(request, summers_id)
+        print(response)
         """
         If user exists test that the add() method is called.
         """
-        "call add method"
+        summer.refresh_from_db()
+        self.assertEquals(summer.balance, 450)
         """
         If exists, credit amount valid, no errors, credit event created.
         """
+        creditevent = BarterEvent.objects.get(event_type="Add", amount=250)
+        self.assertTrue(creditevent)
         """
         If exists, credit amount NOT valid, json returned describing error.
         """
         
-    def test_credit_methods(self):
+        
+    def test_invalid_BarterAccount(self):
         """
         If user does not exist, test proper error response returned.
         """
 
-    
+
         """
         response = self.credit()
         """
