@@ -1,8 +1,8 @@
-newrelic==2.98.0.81
+#newrelic==2.98.0.81
 behave==1.2.5
 behave-django==0.5.0
 Django==1.11.3
-psycopg2==2.7.3
+psycopg2==2.7.5
 pytz==2017.2
 selenium==3.0.0
 six>=1.10.0

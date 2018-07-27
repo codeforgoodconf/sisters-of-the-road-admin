@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-newrelic = "==2.98.0.81"
 behave = "==1.2.5"
 behave-django = "==0.5.0"
 psycopg2 = "==2.7.5"
@@ -23,4 +22,4 @@ mypy = '*'
 pytest = '*'
 
 [requires]
-python_version = "3.7"
+python_version = "3.6.5"
