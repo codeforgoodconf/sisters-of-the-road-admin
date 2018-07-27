@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "540bc179709cb7f95c336ebd124a134be5ba772e5d8750a5f198a52b7c4d337f"
+            "sha256": "1330a4f7fc2c16186c66458e96d4fb94ed75ff5f130c28935642fb7ef6eb0a60"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.7"
+            "python_version": "3.6.5"
         },
         "sources": [
             {
@@ -64,13 +64,6 @@
             ],
             "index": "pypi",
             "version": "==19.7.1"
-        },
-        "newrelic": {
-            "hashes": [
-                "sha256:965214625392d41b9620c6928a6b10036bf1e2a2b797cdb6682650e95e1f616e"
-            ],
-            "index": "pypi",
-            "version": "==2.98.0.81"
         },
         "parse": {
             "hashes": [
@@ -206,7 +199,6 @@
                 "sha256:d345c8fe681115900d6da8d048ba67c25df42973bda370783cd58826442dcd7c",
                 "sha256:e160a7fcf25762bb60efc7e171d4497ff1d8d2d75a3d0df7a21b76821ecbf5c5"
             ],
-            "markers": "python_version != '3.3.*' and python_version != '3.2.*' and python_version >= '2.7' and python_version != '3.0.*' and python_version != '3.1.*'",
             "version": "==0.6.0"
         },
         "py": {
@@ -214,7 +206,6 @@
                 "sha256:3fd59af7435864e1a243790d322d763925431213b6b8529c6ca71081ace3bbf7",
                 "sha256:e31fb2767eb657cbde86c454f02e99cb846d3cd9d61b318525140214fdc0e98e"
             ],
-            "markers": "python_version != '3.3.*' and python_version != '3.2.*' and python_version >= '2.7' and python_version != '3.0.*' and python_version != '3.1.*'",
             "version": "==1.5.4"
         },
         "pycodestyle": {
