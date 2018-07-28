@@ -44,6 +44,15 @@ class SearchPage extends Component {
                     currentCredit: Number(account.balance)
                 });
             });
+            // Sort the account objects by name
+            // https://stackoverflow.com/questions/6712034/sort-array-by-firstname-alphabetically-in-javascript
+            accounts.sort(function(a, b){
+                if (a.name.toLowerCase() < b.name.toLowerCase()) //sort string ascending
+                    return -1;
+                if (a.name.toLowerCase() > b.name.toLowerCase())
+                    return 1;
+                return 0; //default return value (no sorting)
+                });
             this.setState({accounts: accounts});
         });
     }
