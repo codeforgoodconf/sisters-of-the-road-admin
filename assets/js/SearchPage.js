@@ -2,20 +2,38 @@ import React, { Component } from 'react';
 
 
 class SearchPage extends Component {
-    constructor () {
-        super();
+    constructor (props) {
+        super(props);
         this.state = {
-            accounts: [],
-            searchQuery: ''
+            accounts:this.props.accounts,
+            searchQuery:this.props.searchQuery
         };
+        this.onSearchQueryValueChangeNotify = this.props.onSearchQueryValueChangeNotify.bind(this);
     }
 
     onSearchChange (value) {
         this.setState({searchQuery: value});
+        this.onSearchQueryValueChangeNotify(this.state.searchQuery);
+    }
+    UNSAFE_componentWillReceiveProps(nextProps){
+        if (this.props != nextProps){
+            this.setState({
+                searchQuery: this.props.searchQuery
+            });
+        }
     }
 
+    componentDidUpdate(prevProps) {
+      
+    ;}
+
     searchAccounts () {
+        var sk = $('#searchbar input[placeholder="search accounts"]').value;
+        if (sk == undefined) sk = $('#searchbar input[placeholder="search accounts"]').val();
+        if (typeof this.state.searchQuery == "undefined")
+            this.state.searchQuery = sk;
         axios.get('/account/search?q=' + this.state.searchQuery).then((response) => {
+            console.log("q=" + this.state.searchQuery)
             let accounts = [];
             response.data.forEach((account, index) => {
                 accounts.push({
@@ -40,14 +58,18 @@ class SearchPage extends Component {
     }
 
     render () {
-        const {
+        
+        var {
             accounts,
             searchQuery
         } = this.state;
+        
+       if (typeof accounts == "undefined") accounts =[];
+       if (typeof searchQuery == "undefined") searchQuery = '';
         return (
             <div class="SearchPage pa4">
                 <div id="searchbar" class="flex">
-                  <input class="h3 f3 pl2 mr2 w-75 b--purple ttu oswald br0"
+                <input class="h3 f3 pl2 mr2 w-75 b--purple ttu oswald br0"
                          type="text"
                          placeholder="search accounts"
                          onChange={(event) => this.onSearchChange(event.target.value)}/>

@@ -28,15 +28,20 @@ class App extends Component {
         this.state.currentAccount.lastAdded = amount;
     }
 
+    updateSearchQueryNotified(searchQuery){
+        this.setState({searchQuery:searchQuery});
+    }
     render () {
         const {
              currentView,
-             currentAccount
+             currentAccount,
+             searchQuery
          } = this.state;
 
          if (currentView === 'searchpage') {
             return (
-                <SearchPage switchView={(viewname, account) => this.switchView(viewname, account)} />
+                <SearchPage switchView={(viewname, account) => this.switchView(viewname, account)} 
+                 searchQuery={searchQuery} onSearchQueryValueChangeNotify = {this.updateSearchQueryNotified}/>
             )
          } else if (currentView === 'accountpage') {
             return (
