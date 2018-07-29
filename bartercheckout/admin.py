@@ -29,9 +29,8 @@ class BarterAccountAdmin(admin.ModelAdmin):
 	"""
 	list_display = ['customer_name', 'account_balance']
 	fields = ['customer_name','balance','last_add','last_subtract']
-	readonly_fields = ['last_add','last_subtract']
+	readonly_fields = ['account_balance', 'last_add','last_subtract']
 	
 admin.site.site_header = 'Sisters of the Road Cafe Admin'
 admin.site.index_title = 'Sisters of the Road Checkout Administration'
 admin.site.register(BarterAccount, BarterAccountAdmin)
-admin.site.register(BarterEvent, BarterEventAdmin)
