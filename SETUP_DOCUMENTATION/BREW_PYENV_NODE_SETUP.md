@@ -1,3 +1,4 @@
+
 #Mac: Homebrew Package Manager, Pyenv, Python, and Node Setup
 
 There is a package manager for Mac called [homebrew](https://brew.sh). This app makes installing applications relatively painless. This is good to use to install some basic requirements. If you're not using a Mac, you don't want to do this.
