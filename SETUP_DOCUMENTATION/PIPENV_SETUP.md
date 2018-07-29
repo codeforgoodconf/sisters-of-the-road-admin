@@ -10,7 +10,7 @@
 
 ## Installation
 
-Once you have installed python3 (if you have a Mac [using brew and pyenv](SETUP_DOCUMENTATAION/Mac_Linux/BREW_SETUP.md) on a Mac, maybe your Linux package manager, or by downloading it on Windows) you can install `pipenv` by doing this
+Once you have installed python3 (if you have a Mac [using brew and pyenv](BREW_PYENV_NODE_SETUP.md) on a Mac, maybe your Linux package manager, or by downloading it on Windows) you can install `pipenv` by doing this
 
 ```bash
 pip3 install -U pip setuptools pipenv

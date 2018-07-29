@@ -14,7 +14,7 @@ How to get this project running on your machine.
     That should return a path (e.g., `/usr/local/bin/git`).
 
 2. [Install Python 3.](https://www.python.org/downloads/)
-    Mac users follow [this guide](SETUP_DOCUMENTATION/BREW_PYENV_NODE_SETUP.md).
+    Mac users follow [this guide](BREW_PYENV_NODE_SETUP.md).
     Check that it's installed:
 
     ```bash
@@ -49,8 +49,8 @@ How to get this project running on your machine.
 ## 3. Set up the development environment
 
 1. Set up your python environment
-    1. Follow [these instructions](SETUP_DOCUMENTATION/PIPENV_SETUP.md) to use pipenv (recommended).
-    2. Follow [these instructions](SETUP_DOCUMENTATION/VENV_SETUP.md) to use venv
+    1. Follow [these instructions](PIPENV_SETUP.md) to use pipenv (recommended).
+    2. Follow [these instructions](VENV_SETUP.md) to use venv
 
 4. Install the Node.js dependencies.
 
