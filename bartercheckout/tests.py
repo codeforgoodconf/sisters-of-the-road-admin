@@ -18,7 +18,6 @@ class CreditTest(TestCase):
     def test_BarterAccount_exists_and_adds(self):
         # Test that user exists.
         summer = BarterAccount.objects.get(customer_name="Summer Salt")
-        self.assertTrue(summer)
         # Test that the add() method was called.
         summers_id = summer.id
         request = self.factory.post('/account/{}/credit'.format(summers_id), json.dumps({'amount': 250}), content_type='application/json')
