@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+behave = "==1.2.5"
+behave-django = "==0.5.0"
+psycopg2 = "==2.7.5"
+pytz = "==2017.2"
+selenium = "==3.0.0"
+six = ">=1.10.0"
+django-webpack-loader = "==0.5.0"
+gunicorn = "==19.7.1"
+dj-database-url = "==0.4.2"
+whitenoise = "==3.3.1"
+Django = "==1.11.3"
+
+[dev-packages]
+flake8 = '*'
+mypy = '*'
+pytest = '*'
+
+[requires]
+python_version = "3.6"
