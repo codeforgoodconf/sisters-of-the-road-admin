@@ -20,7 +20,7 @@ This tool is a Django app with Preact frontend and Postgres for the database.
 
 ## Setup/Installation Instructions
 
-**See the [Setup](SETUP.md) document** for instructions on how to run this app on your machine
+**See the [Setup](https://github.com/codeforgoodconf/sisters-of-the-road-admin/tree/master/SETUP_DOCUMENTATION) documentation** for instructions on how to run this app on your machine
 and contribute to its development.
 
 ## Event MVP Functionality Overview
