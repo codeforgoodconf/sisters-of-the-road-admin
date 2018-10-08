@@ -83,13 +83,16 @@ class SearchPage extends Component {
                 <div id='results'>
                   <ul class="list pa0">
                     {accounts.map((account) =>
-                        <li class="bg-light-gray pv2 pa3 mb3 b--solid br1 b--moon-gray"
+                        <li class="bg-light-gray pv2 pa3 mb3 b--solid br1 b--moon-gray flex items-center"
                             onClick={() => this.props.switchView('accountpage', account)}
                             key={account.id}>
-                            <p> {account.name} </p>
-                            <p> {account.balance} </p>
-                            <p>Last credit: {account.lastCredit}</p>
-                            <p>Last purchase: {account.lastMeal}</p>
+                            <span class="flex-auto">
+                                <p> {account.name} </p>
+                                <p> {account.balance} </p>
+                                <p>Last credit: {account.lastCredit}</p>
+                                <p>Last purchase: {account.lastMeal}</p>
+                            </span>
+                            <span class="f1 silver">&rsaquo;</span>
                         </li>
                     )}
                   </ul>
