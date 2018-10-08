@@ -71,7 +71,12 @@ class App extends Component {
                  <ConfirmationPage switchView={(viewname, account) => this.switchView(viewname, account)}
                              account={currentAccount}/>
              )
-         }
+        } else if (currentView == "reviewpage") {
+            return (
+                <ReviewPage switchView={(viewname, account) => this.switchView(viewname, account)}
+                            account={currentAccount}/>
+            )
+        }
     }
 }
 

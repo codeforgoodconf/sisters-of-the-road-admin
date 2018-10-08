@@ -59,8 +59,8 @@ class AddCreditPage extends Component {
                         <i class="fas fa-times pr2"></i>Cancel
                     </button>
                     <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 w-50 fr white bg-green"
-                            onClick={() => this.addCredit(account)}>
-                        <i class="fas fa-plus pr2"></i>Add amount
+                            onClick={() => this.props.switchView('reviewpage', account)}>
+                        <i class="fas fa-plus pr2"></i>Continue
                     </button>
                 </div>
             </div>
