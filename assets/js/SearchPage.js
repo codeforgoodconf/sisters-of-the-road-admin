@@ -24,7 +24,7 @@ class SearchPage extends Component {
     }
 
     componentDidUpdate(prevProps) {
-      
+
     ;}
 
     searchAccounts () {
@@ -58,12 +58,12 @@ class SearchPage extends Component {
     }
 
     render () {
-        
+
         var {
             accounts,
             searchQuery
         } = this.state;
-        
+
        if (typeof accounts == "undefined") accounts =[];
        if (typeof searchQuery == "undefined") searchQuery = '';
         return (
@@ -83,7 +83,7 @@ class SearchPage extends Component {
                 <div id='results'>
                   <ul class="list pa0">
                     {accounts.map((account) =>
-                        <li class="stripe-dark pv2 pa3"
+                        <li class="bg-light-gray pv2 pa3 mb3 b--solid br1 b--moon-gray"
                             onClick={() => this.props.switchView('accountpage', account)}
                             key={account.id}>
                             <p> {account.name} </p>
