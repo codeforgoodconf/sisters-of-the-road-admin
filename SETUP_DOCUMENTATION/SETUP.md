@@ -7,16 +7,17 @@ How to get this project running on your machine.
 1. [Install Git.](https://git-scm.com/downloads)
     Check that it's installed:
 
-      ```sh
+      ```bash
       which git
       ```
 
     That should return a path (e.g., `/usr/local/bin/git`).
 
 2. [Install Python 3.](https://www.python.org/downloads/)
+    Mac users follow [this guide](BREW_PYENV_NODE_SETUP.md).
     Check that it's installed:
 
-    ```sh
+    ```bash
     which python3
     ```
 
@@ -25,7 +26,7 @@ How to get this project running on your machine.
 3. [Install Node.js.](https://nodejs.org/en/)
     Check that it's installed:
 
-    ```sh
+    ```bash
     node -v
     ```    
 
@@ -35,86 +36,62 @@ How to get this project running on your machine.
 
 2. Clone your fork.
 
-    ```sh
-    git clone git@github.com:YOUR_GITHUB_USERNAME/sisters-of-the-road-admin.git
+    ```bash
+    git clone https://github.com/YOUR_GITHUB_USERNAME/sisters-of-the-road-admin.git
     ```
 
 3. Move into that repository.
 
-    ```sh
+    ```bash
     cd sisters-of-the-road-admin
     ```
 
 ## 3. Set up the development environment
 
-1. Set up a [Python virtual environment](https://docs.python.org/3/library/venv.html). 
-You can name it anything you like, but keep it short, lowercase, without any special characters.
-    
-    ```sh
-    python -m venv myvenv
-    ```
-
-2. Activate the virtual environment.
-
-    - On Mac/Linux:
-    ```sh
-    source myvenv/bin/activate
-    ```
-    
-    - On Windows:
-    ```sh
-    myvenv\Scripts\activate
-    ```
-
-3. Install the Python dependencies.
-
-    ```sh
-    pip install -r requirements.txt
-    ```
+1. Set up your python environment
+    1. Follow [these instructions](PIPENV_SETUP.md) to use pipenv (recommended).
+    2. Follow [these instructions](VENV_SETUP.md) to use venv
 
 4. Install the Node.js dependencies.
 
-    ```sh
+    ```bash
     npm install
     ```
 
-5. This project has different settings files for different environments.
+5. If you are **not** using Pipenv: This project has different settings files for different environments.
 Set the environment variable to the *dev* settings.
 
-    ```sh
+    ```bash
     export DJANGO_SETTINGS_MODULE=sistersadmin.settings.dev
     ```
-    You will need to do this every time you open a new terminal window or tab.
+    
+    Unless you are using pipenv, you will need to do this every time you open a new terminal window or tab.
 
-    If you like you can [create an alias in your bash profile](https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions) 
-    to set it with a single keyword.
+    If you like you can [create an alias in your bash profile](https://www.digitalocean.com/community/tutorials/an-introduction-to-useful-bash-aliases-and-functions) to set it with a single keyword.
 
     Check your environment variables by entering `env` in terminal.
 
 6. Run database migrations. This will create the database tables.
 
-    ```sh
+    ```bash
     python manage.py migrate
     ```
 
 7. Create your admin account.
 
-    ```sh
+    ```bash
     python manage.py createsuperuser
     ```
 
-    You'll be prompted for your username (lowercase, no spaces), email address and password. **You will not be able to see what you're typing.** Just type it in and hit enter to continue. Save the information. 
-    You'll need to remember it to log in.
+    You'll be prompted for your username (lowercase, no spaces), email address and password. **You will not be able to see what you're typing.** Just type it in and hit enter to continue. Save the information. You'll need to remember it to log in.
 
 8. Run Webpack to compile the JavaScript files.
 
-    ```sh
+    ```bash
     ./node_modules/webpack/bin/webpack.js --config webpack.config.js
     ```
 
-    You will need to do this every time you make changes to the JavaScript files.
-    You can create another bash profile alias to make this easier.
-
+    You will need to do this every time you make changes to the JavaScript files. You can create another bash profile alias to make this easier.
 
 ## 4. Run the app
 

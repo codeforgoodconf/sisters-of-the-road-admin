@@ -49,29 +49,19 @@ class AddCreditPage extends Component {
         } = this.props;
 
         return (
-            <div class="AddCreditPage pa4">
+            <div class="AddCreditPage">
                 <AccountSummary account={account} switchView={this.props.switchView}/>
-
-                <div id="calculate" class="fr w-50 mt5 ba bw2 pa2">
-                    <div class="total dib">
-                        <h1>Add Credit</h1>
-                        <h3><span class="pull-right" id="error-msg" style="color: red"></span></h3>
-                        <h3 class="fl w-50">Amount to add:</h3>
-
-                        <div class='fr w-50'>
-                            <DollarInput updateAmount={(amount) => this.updateAmount(amount)} />
-                        </div>
-                    </div>
-                    <div>
-                        <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 fl bg-light-gray blue w-40"
-                            onClick={() => this.props.switchView('accountpage', account)}>
-                            Cancel
-                        </button>
-                        <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 w-50 fr white bg-green"
-                                onClick={() => this.addCredit(account)}>
-                            Add amount
-                        </button>
-                    </div>
+                <div id="calculate" class="fl w-50 mt5 ba bw1 pa2">
+                    <h1>Add Credit</h1>
+                    <DollarInput updateAmount={(amount) => this.updateAmount(amount)} />
+                    <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 fl bg-light-gray blue w-40"
+                        onClick={() => this.props.switchView('accountpage', account)}>
+                        <i class="fas fa-times pr2"></i>Cancel
+                    </button>
+                    <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 w-50 fr white bg-green"
+                            onClick={() => this.addCredit(account)}>
+                        <i class="fas fa-plus pr2"></i>Add amount
+                    </button>
                 </div>
             </div>
          );
