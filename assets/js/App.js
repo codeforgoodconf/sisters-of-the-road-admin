@@ -5,6 +5,7 @@ import BuyMealPage from './BuyMealPage';
 import BuyCardPage from './BuyCardPage';
 import AddCreditPage from './AddCreditPage';
 import ConfirmationPage from './ConfirmationPage';
+import ReviewPage from './ReviewPage';
 
 
 class App extends Component {
@@ -12,7 +13,8 @@ class App extends Component {
         super();
         this.state = {
             currentView: 'searchpage',
-            currentAccount: null
+            currentAccount: null,
+            pendingTransaction: 0
         };
     }
 
@@ -26,6 +28,10 @@ class App extends Component {
     updateBalance (amount) {
         this.state.currentAccount.currentCredit += amount;
         this.state.currentAccount.lastAdded = amount;
+    }
+
+    updateTransactionAmount (amount) {
+        this.state.pendingTransaction = amount;
     }
 
     updateSearchQueryNotified(searchQuery){
@@ -52,7 +58,9 @@ class App extends Component {
             return (
                 <AddCreditPage switchView={(viewname, account) => this.switchView(viewname, account)}
                                account={currentAccount}
-                               updateBalance={(newCredit) => this.updateBalance(newCredit)} />
+                               updateBalance={(newCredit) => this.updateBalance(newCredit)} 
+                               updateTransactionAmount={(amount) => this.updateTransactionAmount(amount)}
+                               />
             )
          } else if (currentView === 'buymealpage') {
             return (
@@ -74,7 +82,9 @@ class App extends Component {
         } else if (currentView == "reviewpage") {
             return (
                 <ReviewPage switchView={(viewname, account) => this.switchView(viewname, account)}
-                            account={currentAccount}/>
+                            account={currentAccount} 
+                            pendingTransaction={this.state.pendingTransaction} />
+                            
             )
         }
     }
