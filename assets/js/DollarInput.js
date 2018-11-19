@@ -25,8 +25,7 @@ class DollarInput extends Component {
                     step="0.25"
                     value={this.state.amount}
                     placeholder={0}
-                    onChange={(event) => this.onAmountChange(event.target.value)} />
-                <label class="fl f4 mt2 red" id="error-msg"></label>           
+                    onChange={(event) => this.onAmountChange(event.target.value)} />          
             </form>
          );
     }

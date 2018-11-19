@@ -13,20 +13,7 @@ class ReviewPage extends Component {
          } = this.props;
          let amount = Number(this.state.amount) * 100;
          axios.post('/account/' + account.id + '/credit', {amount: amount}).then(function(response) {
-             if (response.data && response.data.result === 'ok') {
-                updateBalance(amount);
-                switchView('reviewpage', account);
-             } else if (response.data && response.data.result === 'limit_error'){
-                console.log('balance can\'t exceed $50')
-                document.getElementById('error-msg').innerHTML="Balance can't go above $50";
-             } else if (response.data && response.data.result === 'input_error'){
-                console.log('invalid amount')
-                document.getElementById('error-msg').innerHTML=
-                    "Please enter an amount above $0 in increment of $.25";
-             } else {
-                 // the account ID was not found - what to do?
-                 console.log('no account!')
-             }
+             
          });
     }
     render () {
@@ -34,7 +21,7 @@ class ReviewPage extends Component {
             account,
             pendingTransaction
         } = this.props;
-       console.log(pendingTransaction, typeof(pendingTransaction))
+
         return (
             <div class="ReviewPage">
                 <AccountSummary account={account} switchView={this.props.switchView} />

@@ -16,7 +16,7 @@ class BarterEventAdmin(admin.ModelAdmin):
 		'event_time',
 		'transaction_amount',
 		]
-	
+	readonly_fields = ['transaction_amount']
 	list_filter = ['event_type', 'event_time']
 
 	def event_id(self, obj):
@@ -34,3 +34,4 @@ class BarterAccountAdmin(admin.ModelAdmin):
 admin.site.site_header = 'Sisters of the Road Cafe Admin'
 admin.site.index_title = 'Sisters of the Road Checkout Administration'
 admin.site.register(BarterAccount, BarterAccountAdmin)
+admin.site.register(BarterEvent, BarterEventAdmin)
