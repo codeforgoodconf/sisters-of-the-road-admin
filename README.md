@@ -20,7 +20,11 @@ This tool is a Django app with Preact frontend and Postgres for the database.
 
 ## Setup/Installation Instructions
 
-**See the [Setup](SETUP_DOCUMENTATION/) documentation** for instructions on how to run this app on your machine and contribute to its development.
+**See the [Setup](SETUP.md) document** for instructions on how to run this app on your machine.
+
+## Contributing
+**Please read our [guidelines for contributing](CONTRIBUTING.md)** if you'd like to 
+contribute to the project!
 
 ## Event MVP Functionality Overview
 
