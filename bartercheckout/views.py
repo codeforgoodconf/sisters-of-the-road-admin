@@ -83,6 +83,9 @@ def buy_meal(request, account_id):
     create a BarterEvent as a record of the transaction.
     """
     accounts = BarterAccount.objects.filter(id=account_id)
+    #getobjector404()
+
+
     if accounts:
         account = accounts[0]
         body_unicode = request.body.decode('utf-8')
@@ -93,9 +96,9 @@ def buy_meal(request, account_id):
         try:
             newBalance = account.subtract(amount)
         except BalanceLimitError:
-            return JsonResponse({'result': 'limit_error'})
+            return JsonResponse({'result': 'limit_error'}, status=402)
         except AmountInputError:
-            return JsonResponse({'result': 'input_error'})
+            return JsonResponse({'result': 'input_error'}, status=401)
         account.save()
 
         # Create event
