@@ -1,5 +1,6 @@
 import json
 
+from djmoney.money import Money
 from django.test import TestCase
 from django.test.client import RequestFactory
 from djmoney.money import Money
