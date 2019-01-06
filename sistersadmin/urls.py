@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('bartercheckout.urls')),
+    url(r'', include('frontend.urls'))
 ]

@@ -12,12 +12,6 @@ from bartercheckout.models.barter_account import BarterAccount
 from bartercheckout.models.barter_event import BarterEvent
 
 
-def home(request):
-    """The home page
-    """
-    return render(request, 'index.html', {})
-
-
 def list_accounts(request):
     query_result = BarterAccount.objects.all()
     account_list = []
