@@ -2,8 +2,12 @@ import decimal
 from datetime import date
 
 from django.db import models
+from djmoney.models.fields import MoneyField
+from djmoney.money import Money
 
-decimal.getcontext().prec = 2
+decimal.getcontext().prec = 4
+
+BALANCE_LIMIT = Money(50, 'USD')
 
 
 class BalanceLimitError(Exception):
@@ -37,7 +41,7 @@ class BarterEvent(models.Model):
     )
 
     event_time = models.DateTimeField(auto_now_add=True)
-    amount = models.IntegerField(default=0)
+    amount = MoneyField(max_digits=6, decimal_places=2, default_currency='USD', default=0.0)
 
     @property
     def customer_name(self):
@@ -45,10 +49,12 @@ class BarterEvent(models.Model):
 
     @property
     def transaction_amount(self):
-        assert type(self.amount) == int
         return f'${self.amount:,.2f}'
 
     # staff_id = models.ForeignKey()
+
+    def __repr__(self):
+        return f'BarterEvent(event_time={self.event_time!r}, amount={self.amount!r}'
 
     def __str__(self):
         return f'Barter event ID {self.id} for {self.customer_name}'
@@ -56,7 +62,7 @@ class BarterEvent(models.Model):
 
 class BarterAccount(models.Model):
     customer_name = models.CharField(max_length=100)
-    balance = models.DecimalField(max_digits=4, decimal_places=2, default=0.0)
+    balance = MoneyField(max_digits=6, decimal_places=2, default_currency='USD', default=0.0)
     last_add = models.DateField(null=True)
     last_subtract = models.DateField(null=True)
 
@@ -64,34 +70,35 @@ class BarterAccount(models.Model):
         if amount < 0 or (amount * 100) % 25 != 0:
             raise AmountInputError("Invalid amount")
 
-        dec_amount = decimal.Decimal(amount)
-        if self.balance + dec_amount > 50:
+        amount = Money(amount, 'USD')
+
+        if self.balance + amount > BALANCE_LIMIT:
             raise BalanceLimitError(f"Balance can't go above $50. Current balance ${self.balance}. You can add up to "
-                                    f"${decimal.Decimal(50.0) - self.balance}")
+                                    f"${BALANCE_LIMIT - self.balance}")
         else:
-            self.balance += dec_amount
+            self.balance += amount
             self.last_add = date.today()
             return self.balance
 
     def subtract(self, amount):
-        if amount < 0 or amount % 25 != 0:
+        if amount < 0 or (amount * 100) % 25 != 0:
             raise AmountInputError("Invalid amount")
 
-        dec_amount = decimal.Decimal(amount)
-        if self.balance - dec_amount < 0:
-            raise BalanceLimitError("Balance can't go below $0")
+        amount = Money(amount, 'USD')
+
+        if self.balance - amount < Money(0, 'USD'):
+            raise BalanceLimitError(f'Balance can\'t go below {Money(0, "USD")}')
         else:
-            self.balance -= dec_amount
+            self.balance -= amount
             self.last_subtract = date.today()
             return self.balance
-
 
     def __repr__(self):
         return (
             f'BarterAccount(customer_name="{self.customer_name}", '
-            f'balance={self.balance}, '
-            f'last_add={self.last_add}, '
-            f'last_subtract={self.last_subtract})'
+            f'balance={self.balance!r}, '
+            f'last_add={self.last_add!r}, '
+            f'last_subtract={self.last_subtract!r})'
         )
 
     def __str__(self):
@@ -99,5 +106,4 @@ class BarterAccount(models.Model):
 
     @property
     def account_balance(self):
-        assert type(self.balance) == int
-        return f'${self.balance:,.2f}' if self.balance else ''
+        return f'{self.balance}' if self.balance else ''

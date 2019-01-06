@@ -1,5 +1,6 @@
 import json
 
+from djmoney.money import Money
 from django.test import TestCase
 from django.test.client import RequestFactory
 
@@ -12,7 +13,7 @@ class CreditTest(TestCase):
 
     def setUp(self):
         # Add account to db
-        summer = BarterAccount.objects.create(customer_name='Summer Salt', balance=2.00)
+        summer = BarterAccount.objects.create(customer_name='Summer Salt', balance=Money(2.00, 'USD'))
         summer.save()
 
         self.factory = RequestFactory()
@@ -27,7 +28,7 @@ class CreditTest(TestCase):
                                     content_type='application/json')
         response = credit(request, summers_id)
         summer.refresh_from_db()
-        self.assertEquals(summer.balance, 4.50)
+        self.assertEquals(summer.balance, Money(4.50, 'USD'))
         # Test that a credit event was created.
         creditevent = BarterEvent.objects.get(event_type='Add', amount=2.50)
         self.assertTrue(creditevent)
@@ -38,7 +39,7 @@ class CreditTest(TestCase):
         response = credit(request, summers_id)
         self.assertJSONEqual(response.content, {'result': 'input_error'})
         summer.refresh_from_db()
-        self.assertEquals(summer.balance, 4.50)
+        self.assertEquals(summer.balance, Money(4.50, 'USD'))
 
     def test_error_invalid_BarterAccount(self):
         # If user does not exist, test proper error response returned.

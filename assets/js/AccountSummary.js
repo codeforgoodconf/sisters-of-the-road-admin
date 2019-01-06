@@ -14,7 +14,7 @@ class AccountSummary extends Component {
                 <h1 class='f1'>{this.props.account.name}</h1>
                 <p class="f2">
                     Current Balance:
-                    <span class="gray"> ${(this.props.account.currentCredit / 100).toFixed(2)}</span>
+                    <span class="gray"> ${this.props.account.currentCredit.toFixed(2)}</span>
                 </p>
 
                 <p class="f3">Last Worked: {this.props.account.lastCredit}</p>

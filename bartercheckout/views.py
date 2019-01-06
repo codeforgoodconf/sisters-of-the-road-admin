@@ -21,7 +21,7 @@ def list_accounts(request):
     for account in query_result:
             account_dict = {'account_id': account.id,
                             'name': account.customer_name,
-                            'balance': account.balance,
+                            'balance': account.balance.amount,
                             'last_add': account.last_add or 'Nothing yet!',
                             'last_subtract': account.last_subtract or 'Nothing yet!'}
             account_list.append(account_dict)
@@ -34,7 +34,7 @@ def search_accounts(request):
     for account in query_result:
             account_dict = {'account_id': account.id,
                             'name': account.customer_name,
-                            'balance': account.balance,
+                            'balance': account.balance.amount,
                             'last_add': account.last_add or 'Nothing yet!',
                             'last_subtract': account.last_subtract or 'Nothing yet!'}
             account_list.append(account_dict)
