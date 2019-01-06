@@ -1,65 +1,13 @@
-import decimal
 from datetime import date
 
+from django.conf import settings
 from django.db import models
-from django.db.models import CASCADE
 from djmoney.models.fields import MoneyField
 from djmoney.money import Money
 
-decimal.getcontext().prec = 4
+from bartercheckout.custom_errors import AmountInputError, BalanceLimitError
 
-BALANCE_LIMIT = Money(50, 'USD')
-
-
-class BalanceLimitError(Exception):
-    """Raise when account balance exceeds limits"""
-
-
-class AmountInputError(Exception):
-    """Raise when amount entered is invalid"""
-
-
-# Create your models here.
-class BarterEvent(models.Model):
-    barter_account = models.ForeignKey('BarterAccount', on_delete=CASCADE)
-
-    ADD = 'Add'
-    BUY_MEAL = 'Buy_meal'
-    BUY_CARD = 'Buy_card'
-    NOTE = 'Note'
-
-    EVENT_TYPE_CHOICES = (
-        (ADD, 'Add'),
-        (BUY_MEAL, 'Buy_meal'),
-        (BUY_CARD, 'Buy_card'),
-        (NOTE, 'Note'),
-    )
-
-    event_type = models.CharField(
-        max_length=20,
-        choices=EVENT_TYPE_CHOICES,
-        default=BUY_MEAL,
-    )
-
-    event_time = models.DateTimeField(auto_now_add=True)
-    amount = MoneyField(max_digits=6, decimal_places=2, default_currency='USD', default=0.0)
-
-    @property
-    def customer_name(self):
-        return self.barter_account.customer_name
-
-    @property
-    def transaction_amount(self):
-        return f'${self.amount:,.2f}'
-
-    # staff_id = models.ForeignKey()
-
-    def __repr__(self):
-        return f'BarterEvent(event_time={self.event_time!r}, amount={self.amount!r}'
-
-    def __str__(self):
-        return f'Barter event ID {self.id} for {self.customer_name}'
-
+balance_limit = Money(settings.BALANCE_LIMIT, 'USD')
 
 class BarterAccount(models.Model):
     customer_name = models.CharField(max_length=100)
@@ -73,9 +21,9 @@ class BarterAccount(models.Model):
 
         amount = Money(amount, 'USD')
 
-        if self.balance + amount > BALANCE_LIMIT:
+        if self.balance + amount > balance_limit:
             raise BalanceLimitError(f"Balance can't go above $50. Current balance ${self.balance}. You can add up to "
-                                    f"${BALANCE_LIMIT - self.balance}")
+                                    f"${balance_limit - self.balance}")
         else:
             self.balance += amount
             self.last_add = date.today()

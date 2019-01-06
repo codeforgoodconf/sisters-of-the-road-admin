@@ -7,12 +7,13 @@ import json
 from django.http import JsonResponse
 from django.shortcuts import render
 
-from .models import AmountInputError, BalanceLimitError, BarterAccount, BarterEvent
+from bartercheckout.custom_errors import BalanceLimitError, AmountInputError
+from bartercheckout.models.barter_account import BarterAccount
+from bartercheckout.models.barter_event import BarterEvent
 
 
 def home(request):
-    """
-    The home page
+    """The home page
     """
     return render(request, 'index.html', {})
 

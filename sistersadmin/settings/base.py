@@ -11,6 +11,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 INSTALLED_APPS = [
+    'bartercheckout.apps.BartercheckoutConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -19,7 +20,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'behave_django',
     'webpack_loader',
-    'bartercheckout',
     'djmoney',
     'django_extensions',
 ]
@@ -106,3 +106,6 @@ WEBPACK_LOADER = {
 }
 
 CSRF_COOKIE_NAME = "csrftoken"
+
+BALANCE_LIMIT = 50
+

@@ -6,23 +6,24 @@ name = "pypi"
 [packages]
 behave = "~=1.2.5"
 behave-django = "~=1.1.0"
-Django = "~=2.1.5"
-django-webpack-loader = "~=0.6.0"
 dj-database-url = "~=0.5.0"
+Django = "~=2.1.5"
+django-money = "~=0.14.3"
+django-extensions = "~=2.1.4"
+django-webpack-loader = "~=0.6.0"
+djangorestframework = "~=3.9.0"
 gunicorn = "~=19.9.0"
-psycopg2 = "~=2.7.5"
+psycopg2-binary = "~=2.7.6"
 pytz = "~=2018.7"
 selenium = "~=3.141.0"
 six = ">=1.10.0"
 whitenoise = "~=3.3.1"
-django-money = "~=0.14.3"
-django-extensions = "~=2.1.4"
 
 [dev-packages]
 flake8 = '*'
+ipython = "*"
 mypy = '*'
 pytest = '*'
-ipython = "*"
 
 [requires]
 python_version = "3.6"

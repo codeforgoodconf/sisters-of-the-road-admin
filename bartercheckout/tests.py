@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 from djmoney.money import Money
 
-from .models import BarterAccount, BarterEvent
+from bartercheckout.models import BarterAccount, BarterEvent
 from .views import credit
 
 
