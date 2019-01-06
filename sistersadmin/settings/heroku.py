@@ -1,6 +1,6 @@
-from sistersadmin.settings.base import *
-
 import dj_database_url
+
+from sistersadmin.settings.base import *
 
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)

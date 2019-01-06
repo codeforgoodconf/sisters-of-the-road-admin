@@ -54,7 +54,7 @@ TEMPLATES = [
 ]
 
 DATABASES = {
-        'default': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'sistersdb'
     }
@@ -92,12 +92,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),  # Let django collectstatic store webpack bundles
-    os.path.join(BASE_DIR, 'static'), 
+    os.path.join(BASE_DIR, 'static'),
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
- 
+
 WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': 'bundles/',
