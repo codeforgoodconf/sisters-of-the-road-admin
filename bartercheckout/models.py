@@ -52,12 +52,11 @@ class BarterEvent(models.Model):
         return f'${self.amount:,.2f}'
 
     # staff_id = models.ForeignKey()
-
-    def __repr__(self):
+def __repr__(self):
         return f'BarterEvent(event_time={self.event_time!r}, amount={self.amount!r}'
 
-    def __str__(self):
-        return f'Barter event ID {self.id} for {self.customer_name}'
+def __str__(self):
+    return f'Barter event ID {self.id} for {self.customer_name}'
 
 
 class BarterAccount(models.Model):
