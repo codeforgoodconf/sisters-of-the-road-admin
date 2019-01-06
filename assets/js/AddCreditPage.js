@@ -16,11 +16,8 @@ class AddCreditPage extends Component {
     }
 
     validateAmount(amount) {
-        //  currentCredit + transaction amount
-        const currentCredit = this.props.account.currentCredit;
-        console.log(typeof(amount.value), amount.value)
-        amount = parseInt(amount.value) * 100;
-        console.log(amount, typeof(amount))
+        const currentCredit = this.props.account.currentCredit; // amount in cents, $8 = 800
+        amount = Number(amount.value) * 100; // amount in cents
         if ((currentCredit + amount) > 5000) {
             console.log('balance can\'t exceed $50')
             document.getElementById('error-msg').innerHTML="Balance can't go above $50";
@@ -29,8 +26,8 @@ class AddCreditPage extends Component {
             document.getElementById('error-msg').innerHTML=
                 "Please enter an amount in increment of $.25";
          } else {
-            this.props.updateTransactionAmount(amount);
-            this.props.switchView('reviewpage', account);
+            this.props.updateTransactionAmount(amount/100);
+            this.props.switchView('reviewpage', this.props.account);         
          }
     }
 
@@ -55,11 +52,7 @@ class AddCreditPage extends Component {
                         <i class="fas fa-times pr2"></i>Cancel
                     </button>
                     <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 w-50 fr white bg-green"
-                            onClick={() => {
-                                this.validateAmount(amount);
-                                
-                                }
-                                }>
+                            onClick={() => this.validateAmount(amount)}>
                         <i class="fas fa-plus pr2"></i>Continue
                     </button>
                 </div>

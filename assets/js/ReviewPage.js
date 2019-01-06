@@ -21,7 +21,7 @@ class ReviewPage extends Component {
             account,
             pendingTransaction
         } = this.props;
-
+        console.log('pendingTransaction', pendingTransaction);
         return (
             <div class="ReviewPage">
                 <AccountSummary account={account} switchView={this.props.switchView} />
@@ -36,10 +36,21 @@ class ReviewPage extends Component {
                         {pendingTransaction < 0 &&
                             <h2 class="tl">Amount to spend: ${(pendingTransaction * -1).toFixed(2)}</h2>
                         }
-
                         <h2 class="tl">New balance: ${((account.currentCredit / 100) + pendingTransaction).toFixed(2)}</h2>
                     </div>
+                    <form>
+                        <label class="f3 b dib tr">Customer Initials:</label>
+                        <input id="initials"
+                        class="ml2 pa2 f4 w-60 input-reset ba bg-transparent hover-bg-light-gray"
+                        type="string"
+                        // value={this.state.amount}
+                        placeholder={"Enter your initials"}
+                        // onChange={(event) => this.onAmountChange(event.target.value)} 
+                        />
+                    </form>
+                    
                 </div>
+    
                 <div class="mt5 fr w-50 h-50">
                     <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 fl bg-light-gray blue w-40"
                         onClick={() => this.props.switchView('accountpage', account)}>
