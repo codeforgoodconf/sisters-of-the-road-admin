@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import SearchPage from './SearchPage';
 import AccountPage from './AccountPage';
 import BuyMealPage from './BuyMealPage';
@@ -8,7 +8,7 @@ import ConfirmationPage from './ConfirmationPage';
 
 
 class App extends Component {
-    constructor () {
+    constructor() {
         super();
         this.state = {
             currentView: 'searchpage',
@@ -16,62 +16,63 @@ class App extends Component {
         };
     }
 
-    switchView (viewname, account) {
+    switchView(viewname, account) {
         this.setState({
             currentView: viewname,
             currentAccount: account
         });
     }
 
-    updateBalance (amount) {
+    updateBalance(amount) {
         this.state.currentAccount.currentCredit += amount;
         this.state.currentAccount.lastAdded = amount;
     }
 
-    updateSearchQueryNotified(searchQuery){
-        this.setState({searchQuery:searchQuery});
+    updateSearchQueryNotified(searchQuery) {
+        this.setState({searchQuery: searchQuery});
     }
-    render () {
-        const {
-             currentView,
-             currentAccount,
-             searchQuery
-         } = this.state;
 
-         if (currentView === 'searchpage') {
+    render() {
+        const {
+            currentView,
+            currentAccount,
+            searchQuery
+        } = this.state;
+
+        if (currentView === 'searchpage') {
             return (
-                <SearchPage switchView={(viewname, account) => this.switchView(viewname, account)} 
-                 searchQuery={searchQuery} onSearchQueryValueChangeNotify = {this.updateSearchQueryNotified}/>
+                <SearchPage switchView={(viewname, account) => this.switchView(viewname, account)}
+                            searchQuery={searchQuery} onSearchQueryValueChangeNotify={this.updateSearchQueryNotified}/>
             )
-         } else if (currentView === 'accountpage') {
+        } else if (currentView === 'accountpage') {
             return (
                 <AccountPage switchView={(viewname, account) => this.switchView(viewname, account)}
-                             account={currentAccount} />
+                             account={currentAccount}/>
             );
-         } else if (currentView === 'addcreditpage') {
+        } else if (currentView === 'addcreditpage') {
             return (
                 <AddCreditPage switchView={(viewname, account) => this.switchView(viewname, account)}
                                account={currentAccount}
-                               updateBalance={(newCredit) => this.updateBalance(newCredit)} />
+                               updateBalance={(newCredit) => this.updateBalance(newCredit)}/>
             )
-         } else if (currentView === 'buymealpage') {
+        } else if (currentView === 'buymealpage') {
             return (
                 <BuyMealPage switchView={(viewname, account) => this.switchView(viewname, account)}
                              account={currentAccount}
-                             updateBalance={(newCredit) => this.updateBalance(newCredit)} />
+                             updateBalance={(newCredit) => this.updateBalance(newCredit)}/>
             )
-         } else if (currentView === 'buycardpage') {
+        } else if (currentView === 'buycardpage') {
             return (
                 <BuyCardPage switchView={(viewname, account) => this.switchView(viewname, account)}
                              account={currentAccount}
-                             updateBalance={(newCredit) => this.updateBalance(newCredit)} />
+                             updateBalance={(newCredit) => this.updateBalance(newCredit)}/>
             )
-         } else if (currentView == "confirmationpage") {
-             return (
-                 <ConfirmationPage switchView={(viewname, account) => this.switchView(viewname, account)}
-                             account={currentAccount}/>
-             )
-         }
+        } else if (currentView == "confirmationpage") {
+            return (
+                <ConfirmationPage switchView={(viewname, account) => this.switchView(viewname, account)}
+                                  account={currentAccount}/>
+            )
+        }
     }
 }
 

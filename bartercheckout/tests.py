@@ -5,7 +5,7 @@ from django.test.client import RequestFactory
 from djmoney.money import Money
 
 from bartercheckout.models import BarterAccount, BarterEvent
-from .views import credit
+from bartercheckout.views.barter_account import credit
 
 
 # Create your tests here.

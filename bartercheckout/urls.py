@@ -1,11 +1,14 @@
 from django.conf.urls import url
+from django.urls import include
+from rest_framework.routers import DefaultRouter
 
-from . import views
+from bartercheckout.views import barter_account, barter_event
+
+router = DefaultRouter(trailing_slash=False)
+
+router.register(r'accounts', viewset=barter_account.BarterAccountViewSet, base_name='accounts')
+router.register(r'accounts/(?P<account_id>\d+)/events', viewset=barter_event.BarterEventViewSet, base_name='events')
 
 urlpatterns = [
-    url(r'^account/list$', views.list_accounts, name='list_accounts'),
-    url(r'^account/search$', views.search_accounts, name='search_accounts'),
-    url(r'^account/(?P<account_id>[0-9]+)/credit$', views.credit, name='credit'),
-    url(r'^account/(?P<account_id>[0-9]+)/buy_meal$', views.buy_meal, name='buy_meal'),
-    url(r'^account/(?P<account_id>[0-9]+)/buy_card$', views.buy_card, name='buy_card'),
+    url(r'^', include(router.urls)),
 ]

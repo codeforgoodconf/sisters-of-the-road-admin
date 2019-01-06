@@ -18,6 +18,8 @@ pytz = "~=2018.7"
 selenium = "~=3.141.0"
 six = ">=1.10.0"
 whitenoise = "~=3.3.1"
+django-filter = "~=2.0"
+djangorestframework-filters = "~=1.0.0.dev0"
 
 [dev-packages]
 flake8 = '*'
@@ -27,3 +29,6 @@ pytest = '*'
 
 [requires]
 python_version = "3.6"
+
+[pipenv]
+allow_prereleases = true

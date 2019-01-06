@@ -23,6 +23,9 @@ INSTALLED_APPS = [
     'webpack_loader',
     'djmoney',
     'django_extensions',
+    'rest_framework',
+    'django_filters',
+    'rest_framework_filters',
 ]
 
 MIDDLEWARE = [
@@ -35,6 +38,16 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+# REST Framework
+# http://www.django-rest-framework.org/
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework_filters.backends.RestFrameworkFilterBackend',
+        'rest_framework.filters.OrderingFilter',
+    ),
+}
 
 ROOT_URLCONF = 'sistersadmin.urls'
 
@@ -109,4 +122,3 @@ WEBPACK_LOADER = {
 CSRF_COOKIE_NAME = "csrftoken"
 
 BALANCE_LIMIT = 50
-

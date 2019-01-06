@@ -1,16 +1,12 @@
 import decimal
 
 from django.db import models
-from django.db.models import CASCADE
 from djmoney.models.fields import MoneyField
 
 decimal.getcontext().prec = 4
 
 
-# Create your models here.
 class BarterEvent(models.Model):
-    barter_account = models.ForeignKey('BarterAccount', on_delete=CASCADE)
-
     ADD = 'Add'
     BUY_MEAL = 'Buy_meal'
     BUY_CARD = 'Buy_card'
@@ -29,6 +25,7 @@ class BarterEvent(models.Model):
         default=BUY_MEAL,
     )
 
+    barter_account = models.ForeignKey('BarterAccount', related_name='barter_events', on_delete=models.CASCADE)
     event_time = models.DateTimeField(auto_now_add=True)
     amount = MoneyField(max_digits=6, decimal_places=2, default_currency='USD', default=0.0)
 
@@ -38,9 +35,7 @@ class BarterEvent(models.Model):
 
     @property
     def transaction_amount(self):
-        return f'${self.amount:,.2f}'
-
-    # staff_id = models.ForeignKey()
+        return f'{self.amount}'
 
     def __repr__(self):
         return f'BarterEvent(event_time={self.event_time!r}, amount={self.amount!r}'

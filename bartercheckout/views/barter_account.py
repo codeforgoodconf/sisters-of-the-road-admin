@@ -1,0 +1,80 @@
+import rest_framework_filters as filters
+from rest_framework import serializers, viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
+
+from bartercheckout.custom_errors import AmountInputError, BalanceLimitError
+from bartercheckout.models.barter_account import BarterAccount
+from bartercheckout.models.barter_event import BarterEvent
+
+
+class BarterAccountFilter(filters.FilterSet):
+    class Meta:
+        model = BarterAccount
+        fields = {
+            'customer_name': '__all__',
+            'balance': '__all__',
+            'last_add': '__all__',
+            'last_subtract': '__all__',
+        }
+
+    name = filters.CharFilter(field_name='customer_name', lookup_expr='icontains', label='Customer Name')
+
+    o = filters.OrderingFilter(
+        fields=['customer_name']
+    )
+
+
+class BarterAccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BarterAccount
+        fields = ['id', 'customer_name', 'balance', 'last_add', 'last_subtract']
+
+
+class BarterAccountViewSet(viewsets.ModelViewSet):
+    queryset = BarterAccount.objects.all()
+    serializer_class = BarterAccountSerializer
+    filter_class = BarterAccountFilter
+
+    def update_balance_and_add_event(self, request, pk, event_type):
+        """Utility method that updates the amount as required and creates a barter event row
+        """
+        account = self.get_object()
+        amount = request.data.get('amount', 0)
+
+        try:
+            if event_type == 'Add':
+                account.add(amount)
+            elif event_type in ['Buy_meal', 'Buy_card']:
+                account.subtract(amount)
+            else:
+                return
+        except BalanceLimitError as error:
+            return Response(status=HTTP_400_BAD_REQUEST, data={'result': 'limit_error', 'message': f'{error}'})
+        except AmountInputError as error:
+            return Response(status=HTTP_400_BAD_REQUEST, data={'result': 'input_error', 'message': f'{error}'})
+        finally:
+            account.save()
+
+        BarterEvent.objects.create(barter_account=account, event_type=event_type, amount=amount)
+
+        return Response(status=HTTP_200_OK)
+
+    # Adds /accounts/<id>/credit endpoint
+    @action(detail=True, methods=['post'], name='Add Credit')
+    def credit(self, request, pk):
+        response = self.update_balance_and_add_event(request, pk, 'Add')
+        return response
+
+    # Adds /accounts/<id>/buy_meal endpoint
+    @action(detail=True, methods=['post'], name='Buy Meal')
+    def buy_meal(self, request, pk):
+        response = self.update_balance_and_add_event(request, pk, 'Buy_meal')
+        return response
+
+    # Adds /accounts/<id>/buy_card endpoint
+    @action(detail=True, methods=['post'], name='Buy Card')
+    def buy_card(self, request, pk):
+        response = self.update_balance_and_add_event(request, pk, 'Buy_card')
+        return response

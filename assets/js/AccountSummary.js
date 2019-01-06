@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 
 class AccountSummary extends Component {
-    constructor () {
+    constructor() {
         super();
-        this.state = {
-        };
+        this.state = {};
     }
 
-    render () {
+    render() {
         return (
             <div id="account-summary" class="blue oswald ml4 pb4 fl w-40">
                 <h1 class='f1'>{this.props.account.name}</h1>
@@ -21,12 +20,12 @@ class AccountSummary extends Component {
                 <p class="f3">Last Purchase: {this.props.account.lastMeal}</p>
 
                 <button class="f4 ph3 pv2 mb2 mr3 dib h3 w-50 white bg-blue"
-                    onClick={() => this.props.switchView('searchpage')}>
-                        <i class="fas fa-angle-double-left pr2"></i>
-                        Back to Search
+                        onClick={() => this.props.switchView('searchpage')}>
+                    <i class="fas fa-angle-double-left pr2"></i>
+                    Back to Search
                 </button>
             </div>
-         );
+        );
     }
 }
 
