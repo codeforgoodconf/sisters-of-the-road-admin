@@ -2,6 +2,7 @@ import decimal
 from datetime import date
 
 from django.db import models
+from django.db.models import CASCADE
 from djmoney.models.fields import MoneyField
 from djmoney.money import Money
 
@@ -20,7 +21,7 @@ class AmountInputError(Exception):
 
 # Create your models here.
 class BarterEvent(models.Model):
-    barter_account = models.ForeignKey('BarterAccount')
+    barter_account = models.ForeignKey('BarterAccount', on_delete=CASCADE)
 
     ADD = 'Add'
     BUY_MEAL = 'Buy_meal'
