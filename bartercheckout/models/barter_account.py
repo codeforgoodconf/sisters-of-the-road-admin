@@ -57,7 +57,7 @@ class BarterAccount(models.Model):
         )
 
     def __str__(self):
-        return f'Account: {self.customer_name}'
+        return f'id: {self.id}, Name: {self.customer_name}, Current Balance: {self.balance}'
 
     @property
     def account_balance(self):

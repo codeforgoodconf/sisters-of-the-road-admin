@@ -2,7 +2,7 @@ import rest_framework_filters as filters
 from rest_framework import serializers, viewsets
 
 from bartercheckout.models import BarterAccount, BarterEvent
-from bartercheckout.views import BarterAccountFilter
+from bartercheckout.views import BarterAccountFilter, BarterAccountSerializer
 
 
 class BarterEventFilter(filters.FilterSet):
@@ -22,6 +22,8 @@ class BarterEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = BarterEvent
         fields = ['event_type', 'barter_account', 'event_time', 'amount']
+
+    barter_account = serializers.StringRelatedField()
 
 
 class BarterEventViewSet(viewsets.ModelViewSet):
