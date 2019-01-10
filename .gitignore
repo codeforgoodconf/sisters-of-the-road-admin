@@ -116,4 +116,6 @@ node_modules/
 
 # sqlite files
 sistersdb
+
 /.idea/
+.pytest_cache/

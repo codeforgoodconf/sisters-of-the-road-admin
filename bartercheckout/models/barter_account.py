@@ -4,10 +4,12 @@ from django.conf import settings
 from django.db import models
 from djmoney.models.fields import MoneyField
 from djmoney.money import Money
+from factory.django import get_model
 
 from bartercheckout.custom_errors import AmountInputError, BalanceLimitError
 
 balance_limit = Money(settings.BALANCE_LIMIT, 'USD')
+
 
 class BarterAccount(models.Model):
     class Meta:
@@ -33,7 +35,8 @@ class BarterAccount(models.Model):
         else:
             self.balance += amount
             self.last_add = date.today()
-            return self.balance
+            barter_event = get_model('bartercheckout', 'BarterEvent')  # Prevent circular import
+            barter_event.objects.create(barter_account=self, amount=amount)
 
     def subtract(self, amount):
         if amount <= 0 or (amount * 100) % 25 != 0:
@@ -46,7 +49,8 @@ class BarterAccount(models.Model):
         else:
             self.balance -= amount
             self.last_subtract = date.today()
-            return self.balance
+            barter_event = get_model('bartercheckout', 'BarterEvent')  # Prevent circular import
+            barter_event.objects.create(barter_account=self, amount=amount)
 
     def __repr__(self):
         return (
