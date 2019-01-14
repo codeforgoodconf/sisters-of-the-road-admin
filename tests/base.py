@@ -3,7 +3,7 @@ from typing import Callable, Type
 import pytest
 from rest_framework import status
 
-from tests.fixtures.utils import lambda_fixture
+from tests.fixtures.utils import lambda_fixture, static_fixture
 
 
 class CommonSubjectTestMixin:
@@ -257,25 +257,25 @@ class UsesDetailEndpoint:
 #
 # Declare which HTTP method used when performing the request
 
-# class UsesGetMethod:
-#     http_method = static_fixture('get')
-#
-#
-# class UsesPostMethod:
-#     http_method = static_fixture('post')
-#
-#
-# class UsesPutMethod:
-#     http_method = static_fixture('put')
-#
-#
-# class UsesPatchMethod:
-#     http_method = static_fixture('patch')
-#
-#
-# class UsesDeleteMethod:
-#     http_method = static_fixture('delete')
-#
+class UsesGetMethod:
+    http_method = static_fixture('get')
+
+
+class UsesPostMethod:
+    http_method = static_fixture('post')
+
+
+class UsesPutMethod:
+    http_method = static_fixture('put')
+
+
+class UsesPatchMethod:
+    http_method = static_fixture('patch')
+
+
+class UsesDeleteMethod:
+    http_method = static_fixture('delete')
+
 
 ########################
 # ENFORCE STATUS CODES #

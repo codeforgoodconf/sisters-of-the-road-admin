@@ -35,6 +35,7 @@ class BarterAccount(models.Model):
         else:
             self.balance += amount
             self.last_add = date.today()
+            self.save()
             barter_event = get_model('bartercheckout', 'BarterEvent')  # Prevent circular import
             barter_event.objects.create(barter_account=self, amount=amount)
 
@@ -49,6 +50,7 @@ class BarterAccount(models.Model):
         else:
             self.balance -= amount
             self.last_subtract = date.today()
+            self.save()
             barter_event = get_model('bartercheckout', 'BarterEvent')  # Prevent circular import
             barter_event.objects.create(barter_account=self, amount=amount)
 

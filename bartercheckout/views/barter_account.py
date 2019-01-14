@@ -1,3 +1,5 @@
+import decimal
+
 import rest_framework_filters as filters
 from rest_framework import serializers, viewsets
 from rest_framework.decorators import action
@@ -6,6 +8,8 @@ from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 
 from bartercheckout.custom_errors import AmountInputError, BalanceLimitError
 from bartercheckout.models.barter_account import BarterAccount
+
+decimal.getcontext().prec = 4
 
 
 class BarterAccountFilter(filters.FilterSet):
@@ -40,7 +44,7 @@ class BarterAccountViewSet(viewsets.ModelViewSet):
         """Utility method that updates the amount as required and creates a barter event row
         """
         account = self.get_object()
-        amount = request.data.get('amount', 0)
+        amount = float(request.data.get('amount', 0))
 
         try:
             if event_type == 'Add':
@@ -57,21 +61,21 @@ class BarterAccountViewSet(viewsets.ModelViewSet):
         except AmountInputError as error:
             return Response(status=HTTP_400_BAD_REQUEST, data={'result': 'input_error', 'message': f'{error}'})
 
-        return Response(status=HTTP_200_OK)
+        return Response(status=HTTP_200_OK, data={'balance': account.balance.amount})
 
-    # Adds /accounts/<id>/credit endpoint
+    # Adds /accounts/<pk>/credit endpoint
     @action(detail=True, methods=['post'], name='Add Credit')
     def credit(self, request, pk):
         response = self.update_balance_and_add_event(request, pk, 'Add')
         return response
 
-    # Adds /accounts/<id>/buy_meal endpoint
+    # Adds /accounts/<pk>/buy_meal endpoint
     @action(detail=True, methods=['post'], name='Buy Meal')
     def buy_meal(self, request, pk):
         response = self.update_balance_and_add_event(request, pk, 'Buy_meal')
         return response
 
-    # Adds /accounts/<id>/buy_card endpoint
+    # Adds /accounts/<pk>/buy_card endpoint
     @action(detail=True, methods=['post'], name='Buy Card')
     def buy_card(self, request, pk):
         response = self.update_balance_and_add_event(request, pk, 'Buy_card')
