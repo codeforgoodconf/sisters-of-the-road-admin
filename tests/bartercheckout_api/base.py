@@ -181,7 +181,7 @@ class ReturnsStatus(metaclass=_ReturnsSpecificStatusMeta):
             'Please define the expected_status_code fixture. Alternatively, '
             'subclass ReturnStatus(code) instead of the bare ReturnStatus.')
 
-    def it_should_return_expected_status_code(self, response, expected_status_code):
+    def it_returns_the_expected_status_code(self, response, expected_status_code):
         assert response.status_code == expected_status_code
 
     # this appeases code sense, which may not be able to understand how the
