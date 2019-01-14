@@ -6,6 +6,7 @@ class DisabledFixtureError(Exception):
 
     See tests.util.fixtures.disabled_fixture
     """
+    pass
 
 
 class NotImplementedFixtureError(NotImplementedError):
@@ -13,3 +14,4 @@ class NotImplementedFixtureError(NotImplementedError):
 
     See tests.util.fixtures.not_implemented_fixture
     """
+    pass

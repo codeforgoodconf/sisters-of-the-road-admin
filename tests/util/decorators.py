@@ -1,7 +1,7 @@
 import inspect
 from copy import copy
 from functools import partial
-from typing import TypeVar, Callable, Any, List
+from typing import Any, Callable, List, TypeVar
 from unittest.mock import Mock
 
 import factory
@@ -13,9 +13,7 @@ from pytest_factoryboy.fixture import (
     make_fixture,
 )
 
-
 __all__ = ['pluralized', 'register_factory']
-
 
 T = TypeVar('T')
 V = TypeVar('V')
@@ -32,9 +30,11 @@ def pluralized(fn: Callable[[T, Any], V]) -> Callable[..., List[V]]:
         [{'id': 1}, {'id': 2}]
 
     """
+
     def bulk_fn(*args: T, **kwargs) -> List[V]:
         mapped = map(lambda arg: fn(arg, **kwargs), args)
         return list(mapped)
+
     bulk_fn.__name__ = f'bulk_{fn.__name__}'
 
     return bulk_fn
@@ -99,6 +99,7 @@ def wrap_factory_class(request, factory_class):
     # Expose pytest request to simplify LazyFixture resolution
     class Params:
         pytest_request = request
+
     attrs['Params'] = Params
 
     return type(factory_class.__name__, (factory_class,), attrs)

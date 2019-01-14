@@ -52,6 +52,7 @@ class BarterAccountViewSet(viewsets.ModelViewSet):
             elif event_type in ['Buy_meal', 'Buy_card']:
                 account.subtract(amount)
             else:
+                """This SHOULD be unreachable. But just in case..."""
                 return Response(
                     status=HTTP_400_BAD_REQUEST,
                     data={'result': 'unknown_action', 'message': f'Event type {event_type} is unknown'}

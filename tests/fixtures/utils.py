@@ -4,6 +4,7 @@ from types import ModuleType
 from typing import Any, Callable, Iterable, Union
 
 import pytest
+
 from tests.exceptions import DisabledFixtureError, NotImplementedFixtureError
 
 __all__ = ['lambda_fixture', 'static_fixture', 'error_fixture',
@@ -11,7 +12,7 @@ __all__ = ['lambda_fixture', 'static_fixture', 'error_fixture',
            'precondition_fixture']
 
 
-def lambda_fixture(fixture_name_or_lambda: Union[str, Callable]=None,
+def lambda_fixture(fixture_name_or_lambda: Union[str, Callable] = None,
                    *other_fixture_names: Iterable[str],
                    bind=False,
                    scope="function", params=None, autouse=False, ids=None, name=None):
@@ -102,6 +103,7 @@ def disabled_fixture():
                     print('I should never be executed!')
 
     """
+
     def build_disabled_fixture_error(request):
         msg = (f'Usage of the {request.fixturename} fixture has been disabled '
                f'in the current context.')
@@ -125,6 +127,7 @@ def not_implemented_fixture():
             list_route = lambda_fixture(lambda: reverse(...))
 
     """
+
     def build_not_implemented_fixture_error(request):
         msg = (f'Please define/override the {request.fixturename} fixture in '
                f'the current context.')
