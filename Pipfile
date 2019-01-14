@@ -36,6 +36,8 @@ pytest-socket = "*"
 requests-mock = "*"
 werkzeug = "~=0.14.1"
 pytest-camel-collect = "*"
+pytest-cov = "*"
+pytest-sugar = "*"
 
 [requires]
 python_version = "3.7"

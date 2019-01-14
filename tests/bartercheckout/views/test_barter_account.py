@@ -88,15 +88,37 @@ class TestBarterAccountApi(ViewSetTest):
         class ContextInvalidInput(
             Returns400,
         ):
-            data = static_fixture({'amount': 50.00})
+            class ContextMaxBalanceExceeded:
+                data = static_fixture({'amount': 50.00})
 
-            def it_does_not_allow_invalid_input(self, my_barter_account, balance_before_call, json):
-                expected_message = (
-                    f"Balance can't go above $50. "
-                    f"Current balance {my_barter_account.balance}. "
-                    f"You can add up to {Money(settings.BALANCE_LIMIT, 'USD') - my_barter_account.balance}"
-                )
-                balance_after_call = BarterAccount.objects.get(id=my_barter_account.id).balance.amount
+                def it_does_not_allow_balance_to_go_above_50(self, my_barter_account, balance_before_call, json):
+                    expected_message = (
+                        f"Balance can't go above $50. "
+                        f"Current balance {my_barter_account.balance}. "
+                        f"You can add up to {Money(settings.BALANCE_LIMIT, 'USD') - my_barter_account.balance}"
+                    )
+                    balance_after_call = BarterAccount.objects.get(id=my_barter_account.id).balance.amount
 
-                assert json == {'result': 'limit_error', 'message': expected_message}
-                assert balance_before_call == balance_after_call
+                    assert json == {'result': 'limit_error', 'message': expected_message}
+                    assert balance_before_call == balance_after_call
+
+            class ContextInvalidAmount:
+                class ContextNegativeAmount:
+                    data = static_fixture({'amount': -3.00})
+
+                    def it_does_not_allow_negative_amounts(self, my_barter_account, balance_before_call, json):
+                        balance_after_call = BarterAccount.objects.get(id=my_barter_account.id).balance.amount
+
+                        assert json == {'result': 'input_error', 'message': 'Invalid amount'}
+                        assert balance_before_call == balance_after_call
+
+                class ContextAmountNotRoundedToNearestQuarter:
+                    data = static_fixture({'amount': 5.33})
+
+                    def it_does_not_allow_amounts_not_rounded_to_25c(
+                            self, my_barter_account, balance_before_call, json
+                    ):
+                        balance_after_call = BarterAccount.objects.get(id=my_barter_account.id).balance.amount
+
+                        assert json == {'result': 'input_error', 'message': 'Invalid amount'}
+                        assert balance_before_call == balance_after_call
