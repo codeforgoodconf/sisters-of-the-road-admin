@@ -83,7 +83,6 @@ def buy_meal(request, account_id):
     create a BarterEvent as a record of the transaction.
     """
     accounts = BarterAccount.objects.filter(id=account_id)
-    #getobjector404()
 
 
     if accounts:

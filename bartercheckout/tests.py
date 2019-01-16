@@ -54,3 +54,4 @@ class TestBuyMeal(TestCase):
         
         self.assertEqual(response.status_code, 401)
         self.assertEqual(response.content, b'{"result": "input_error"}')
+        

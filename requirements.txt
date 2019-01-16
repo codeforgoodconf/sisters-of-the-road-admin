@@ -10,3 +10,4 @@ django_webpack_loader==0.5.0
 gunicorn==19.7.1
 dj-database-url==0.4.2
 whitenoise==3.3.1
+mixer=6.1.3
