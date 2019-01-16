@@ -30,13 +30,12 @@ freezegun = "*"
 ipython = "*"
 mypy = '*'
 pytest = '*'
+pytest-cov = "*"
 pytest-factoryboy = "*"
 pytest-django = "*"
 pytest-socket = "*"
 requests-mock = "*"
 werkzeug = "~=0.14.1"
-pytest-camel-collect = "*"
-pytest-cov = "*"
 
 [requires]
 python_version = "3.7"
