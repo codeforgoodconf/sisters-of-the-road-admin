@@ -1,5 +1,6 @@
 import functools
 import inspect
+import wrapt
 from types import ModuleType
 from typing import Any, Callable, Iterable, Union
 
@@ -9,7 +10,7 @@ from tests.exceptions import DisabledFixtureError, NotImplementedFixtureError
 
 __all__ = ['lambda_fixture', 'static_fixture', 'error_fixture',
            'disabled_fixture', 'not_implemented_fixture',
-           'precondition_fixture']
+           'precondition_fixture', 'LambdaFixture']
 
 
 def lambda_fixture(fixture_name_or_lambda: Union[str, Callable] = None,
@@ -155,10 +156,16 @@ def precondition_fixture(*args, **kwargs):
     return PreconditionFixture(*args, **kwargs)
 
 
-class LambdaFixture:
+class LambdaFixture(wrapt.ObjectProxy):
     # NOTE: pytest won't apply marks unless the markee has a __call__ and a
     #       __name__ defined.
     __name__ = '<lambda-fixture>'
+
+    bind: bool
+    fixture_kwargs: dict
+    fixture_func: Callable
+    has_fixture_func: bool
+    parent: Union[type, ModuleType]
 
     def __init__(self, fixture_names_or_lambda, bind=False, **fixture_kwargs):
         self.bind = bind
@@ -177,15 +184,6 @@ class LambdaFixture:
             # Shortcut to allow `lambda_fixture(params=[1,2,3])`
             self.set_fixture_func(lambda request: request.param)
 
-    @property
-    def __wrapped__(self) -> Callable:
-        """The wrapped fixture function
-
-        To grab a fixture's dependencies, pytest uses inspect.signature, which
-        traverses the __wrapped__ attr (normally set by functools.wraps).
-        """
-        return self.fixture_func
-
     def __call__(self, *args, **kwargs):
         if self.bind:
             args = (self.parent,) + args
@@ -199,6 +197,9 @@ class LambdaFixture:
     def set_fixture_func(self, fixture_names_or_lambda):
         self.fixture_func = self.build_fixture_func(fixture_names_or_lambda)
         self.has_fixture_func = True
+
+        # NOTE: this initializes the ObjectProxy
+        super().__init__(self.fixture_func)
 
     def build_fixture_func(self, fixture_names_or_lambda):
         if callable(fixture_names_or_lambda):
@@ -235,7 +236,6 @@ class LambdaFixture:
 
     def contribute_to_parent(self, parent: Union[type, ModuleType], name: str, **kwargs):
         """Setup the LambdaFixture for the given class/module
-
         This method is called during collection, when a LambdaFixture is
         encountered in a module or class. This method is responsible for saving
         any names and setting any attributes on parent as necessary.
@@ -256,7 +256,59 @@ class LambdaFixture:
             self.set_fixture_func(name)
 
         self.__name__ = name
+        self.__module__ = parent.__module__ if is_in_class else parent.__name__
         self.parent = parent
+
+    # These properties are required in order to expose attributes stored on the
+    # LambdaFixture proxying instance without prefixing them with _self_
+
+    @property
+    def bind(self):
+        return self._self_bind
+
+    @bind.setter
+    def bind(self, value):
+        self._self_bind = value
+
+    @property
+    def fixture_kwargs(self):
+        return self._self_fixture_kwargs
+
+    @fixture_kwargs.setter
+    def fixture_kwargs(self, value):
+        self._self_fixture_kwargs = value
+
+    @property
+    def fixture_func(self):
+        return self._self_fixture_func
+
+    @fixture_func.setter
+    def fixture_func(self, value):
+        self._self_fixture_func = value
+
+    @property
+    def has_fixture_func(self):
+        return self._self_has_fixture_func
+
+    @has_fixture_func.setter
+    def has_fixture_func(self, value):
+        self._self_has_fixture_func = value
+
+    @property
+    def parent(self):
+        return self._self_parent
+
+    @parent.setter
+    def parent(self, value):
+        self._self_parent = value
+
+    @property
+    def _pytestfixturefunction(self):
+        return self._self__pytestfixturefunction
+
+    @_pytestfixturefunction.setter
+    def _pytestfixturefunction(self, value):
+        self._self__pytestfixturefunction = value
 
 
 class PreconditionFixture(LambdaFixture):
