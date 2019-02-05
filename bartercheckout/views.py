@@ -4,10 +4,11 @@ API endpoints
 
 import json
 
+from django.http import JsonResponse
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
 
-from .models import BarterAccount, BarterEvent, BalanceLimitError, AmountInputError
+from .models import AmountInputError, BalanceLimitError, BarterAccount, BarterEvent
+
 
 def home(request):
     """
@@ -15,30 +16,37 @@ def home(request):
     """
     return render(request, 'index.html', {})
 
+
 def list_accounts(request):
     query_result = BarterAccount.objects.all()
     account_list = []
     for account in query_result:
-            account_dict = {'account_id': account.id,
-                            'name': account.customer_name,
-                            'balance': account.balance,
-                            'last_add': account.last_add or 'Nothing yet!',
-                            'last_subtract': account.last_subtract or 'Nothing yet!'}
-            account_list.append(account_dict)
+        account_dict = {
+            'account_id': account.id,
+            'name': account.customer_name,
+            'balance': account.balance.amount,
+            'last_add': account.last_add or 'Nothing yet!',
+            'last_subtract': account.last_subtract or 'Nothing yet!'
+        }
+        account_list.append(account_dict)
     return JsonResponse(account_list, safe=False)
+
 
 def search_accounts(request):
     search_text = request.GET.get('q')
     query_result = BarterAccount.objects.filter(customer_name__icontains=search_text)
     account_list = []
     for account in query_result:
-            account_dict = {'account_id': account.id,
-                            'name': account.customer_name,
-                            'balance': account.balance,
-                            'last_add': account.last_add or 'Nothing yet!',
-                            'last_subtract': account.last_subtract or 'Nothing yet!'}
-            account_list.append(account_dict)
+        account_dict = {
+            'account_id': account.id,
+            'name': account.customer_name,
+            'balance': account.balance.amount,
+            'last_add': account.last_add or 'Nothing yet!',
+            'last_subtract': account.last_subtract or 'Nothing yet!'
+        }
+        account_list.append(account_dict)
     return JsonResponse(account_list, safe=False)
+
 
 def credit(request, account_id):
     """
@@ -77,6 +85,7 @@ def credit(request, account_id):
     else:
         return JsonResponse({'error': 'noSuchAccount'})
 
+
 def buy_meal(request, account_id):
     """
     Spend from a BarterAccount to purchase a meal and
@@ -106,6 +115,7 @@ def buy_meal(request, account_id):
         return JsonResponse({'result': 'ok'})
     else:
         return JsonResponse({'error': 'noSuchAccount'})
+
 
 def buy_card(request, account_id):
     """

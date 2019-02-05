@@ -20,16 +20,16 @@ class AddCreditPage extends Component {
             updateBalance,
             switchView
          } = this.props;
-         let amount = Number(this.state.amount) * 100;
+         let amount = Number(this.state.amount);
          axios.post('/account/' + account.id + '/credit', {amount: amount}).then(function(response) {
              if (response.data && response.data.result === 'ok') {
                 updateBalance(amount);
                 switchView('confirmationpage', account);
              } else if (response.data && response.data.result === 'limit_error'){
-                console.log('balance can\'t exceed $50')
+                console.log('balance can\'t exceed $50');
                 document.getElementById('error-msg').innerHTML="Balance can't go above $50";
              } else if (response.data && response.data.result === 'input_error'){
-                console.log('invalid amount')
+                console.log('invalid amount');
                 document.getElementById('error-msg').innerHTML=
                     "Please enter an amount above $0 in increment of $.25";
              } else {

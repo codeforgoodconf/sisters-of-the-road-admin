@@ -17,7 +17,8 @@ DATABASES = {
         'PASSWORD': 'sisters',
         'HOST': 'localhost',
         'PORT': '',
-    }}
+    }
+}
 
 ALLOWED_HOSTS = [
     'localhost',

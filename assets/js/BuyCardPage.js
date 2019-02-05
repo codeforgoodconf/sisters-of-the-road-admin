@@ -20,7 +20,7 @@ class BuyCardPage extends Component {
             updateBalance,
             switchView
          } = this.props;
-         let amount = Number(this.state.amount) * 100;
+         let amount = Number(this.state.amount);
          axios.post('/account/'+ account.id + '/buy_card', {amount: amount}).then(function(response) {
             if (response.data && response.data.result === 'ok') {
             updateBalance(amount * -1);

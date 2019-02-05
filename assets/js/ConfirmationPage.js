@@ -18,13 +18,13 @@ class ConfirmationPage extends Component {
                 <div id="calculate" class="fl w-50 mt5 ba bw1 pa2">
                     <div class="total"><p class='f1'>Changes Saved!</p>
                         {account.lastAdded > 0 &&
-                            <h2 class="tl">Amount added: ${(account.lastAdded / 100).toFixed(2)}</h2>
+                            <h2 class="tl">Amount added: ${account.lastAdded.toFixed(2)}</h2>
                         }
                         {account.lastAdded < 0 &&
-                            <h2 class="tl">Amount spent: ${((account.lastAdded * -1) / 100).toFixed(2)}</h2>
+                            <h2 class="tl">Amount spent: ${(account.lastAdded * -1).toFixed(2)}</h2>
                         }
 
-                        <h2 class="tl">New balance: ${(account.currentCredit / 100).toFixed(2)}</h2>
+                        <h2 class="tl">New balance: ${account.currentCredit.toFixed(2)}</h2>
                     </div>
                 </div>
                 <div class="mt5 fr w-50 h-50">
