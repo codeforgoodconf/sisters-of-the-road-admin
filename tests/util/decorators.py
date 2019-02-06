@@ -73,17 +73,19 @@ def register_factory(factory_class=None, _module=None, **kwargs):
             _module = get_caller_module()
 
         with MonkeyPatch() as mp:
-            mp.setattr('pytest_factoryboy.fixture.get_caller_module',
-                       Mock(return_value=_module))
+            mp.setattr('pytest_factoryboy.fixture.get_caller_module', Mock(return_value=_module))
             factory_class = pytest_factoryboy.register(factory_class, **kwargs)
 
         # We override the factory fixture, so it supports LazyFixtures
         factory_name = get_factory_name(factory_class)
         extra_fixtures = getattr(factory_class, '_pytest_fixtures', ())
-        make_fixture(factory_name, _module,
-                     _factory_class_lazy_fixture_evaluator,
-                     args=extra_fixtures,
-                     factory_class=factory_class)
+        make_fixture(
+            factory_name,
+            _module,
+            _factory_class_lazy_fixture_evaluator,
+            args=extra_fixtures,
+            factory_class=factory_class
+        )
 
         return factory_class
 
@@ -102,7 +104,7 @@ def wrap_factory_class(request, factory_class):
 
     attrs['Params'] = Params
 
-    return type(factory_class.__name__, (factory_class,), attrs)
+    return type(factory_class.__name__, (factory_class, ), attrs)
 
 
 def copy_decl_ordering(old_decl, new_decl):
@@ -115,7 +117,9 @@ def wrap_lazy_decl(request, name, decl):
     if isinstance(decl, (factory.RelatedFactory, factory.SubFactory)):
         # Ensure we pass the pytest request along to any sub factories
         decl = copy(decl)
-        make_get_factory = lambda get_factory: lambda: _factory_class_lazy_fixture_evaluator(request, get_factory())
+        make_get_factory = lambda get_factory: lambda: _factory_class_lazy_fixture_evaluator(
+            request, get_factory()
+        )
         decl.get_factory = make_get_factory(decl.get_factory)
         return decl
 

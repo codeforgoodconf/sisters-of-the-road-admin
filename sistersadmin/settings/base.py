@@ -67,12 +67,7 @@ TEMPLATES = [
     },
 ]
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'sistersdb'
-    }
-}
+DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': 'sistersdb'}}
 
 WSGI_APPLICATION = 'sistersadmin.wsgi.application'
 

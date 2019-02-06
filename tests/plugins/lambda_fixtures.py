@@ -33,7 +33,8 @@ def process_lambda_fixtures(parent):
     from tests.fixtures.utils import LambdaFixture
 
     lfix_attrs: List[Tuple[str, LambdaFixture]] = (
-        inspect.getmembers(parent, lambda o: isinstance(o, LambdaFixture)))
+        inspect.getmembers(parent, lambda o: isinstance(o, LambdaFixture))
+    )
 
     for name, attr in lfix_attrs:
         attr.contribute_to_parent(parent, name)

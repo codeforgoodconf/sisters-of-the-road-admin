@@ -85,7 +85,7 @@ class APIViewTest(CommonSubjectTestMixin):
 
     @pytest.fixture
     def args(self, url):
-        return (url,)
+        return (url, )
 
     @pytest.fixture
     def kwargs(self, data, headers):
@@ -112,6 +112,7 @@ class ViewSetTest(APIViewTest):
 #
 # Declare which ViewSet URL route to request
 
+
 class UsesListEndpoint:
     url = lambda_fixture('list_url')
 
@@ -125,6 +126,7 @@ class UsesDetailEndpoint:
 ###############
 #
 # Declare which HTTP method used when performing the request
+
 
 class UsesGetMethod:
     http_method = static_fixture('get')
@@ -151,6 +153,7 @@ class UsesDeleteMethod:
 ########################
 #
 # Declare which HTTP status code is returned from the endpoint
+
 
 class _ReturnsSpecificStatusMeta(type):
     # This metaclass allows ReturnStatus(xyz) to return a subclass of
@@ -179,14 +182,16 @@ class ReturnsStatus(metaclass=_ReturnsSpecificStatusMeta):
     def expected_status_code(self):
         raise NotImplementedError(
             'Please define the expected_status_code fixture. Alternatively, '
-            'subclass ReturnStatus(code) instead of the bare ReturnStatus.')
+            'subclass ReturnStatus(code) instead of the bare ReturnStatus.'
+        )
 
     def it_returns_the_expected_status_code(self, response, expected_status_code):
         assert response.status_code == expected_status_code
 
     # this appeases code sense, which may not be able to understand how the
     # metaclass allows using instantiation syntax without really instantiating.
-    def __init__(self, status_code: int): pass
+    def __init__(self, status_code: int):
+        pass
 
     del __init__
 

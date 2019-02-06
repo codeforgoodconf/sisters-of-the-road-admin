@@ -5,7 +5,6 @@ from tests.fixtures import BarterAccountFactory
 
 register(BarterAccountFactory)
 
-
 pytest_plugins = (
     # Place any modules here which contain assert statements for testing.
     # (pytest will only perform its bytecode-rewriting magic on test modules
@@ -16,6 +15,7 @@ pytest_plugins = (
     # Load in our fixtures
     'tests.plugins.lambda_fixtures',
 )
+
 
 @pytest.fixture(scope='session')
 def django_db_setup(request):
@@ -38,6 +38,7 @@ def django_db_setup(request):
         request.config.option.verbose = original_verbosity
 
     yield rval
+
 
 def _patch_lazy_fixture():
     """

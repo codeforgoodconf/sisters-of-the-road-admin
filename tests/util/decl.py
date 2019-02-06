@@ -123,17 +123,9 @@ def flatten_decl(v):
 
 
 def _flatten_decl_dict(d):
-    return {
-        key: flatten_decl(value)
-        for key, value in d.items()
-        if not ReadOnly.is_read_only(value)
-    }
+    return {key: flatten_decl(value) for key, value in d.items() if not ReadOnly.is_read_only(value)}
 
 
 def _flatten_decl_list(l):
     iterable_type = type(l)
-    return iterable_type(
-        flatten_decl(value)
-        for value in l
-        if not ReadOnly.is_read_only(value)
-    )
+    return iterable_type(flatten_decl(value) for value in l if not ReadOnly.is_read_only(value))

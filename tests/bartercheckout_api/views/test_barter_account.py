@@ -36,8 +36,12 @@ def express_barter_account(barter_account: BarterAccount) -> Dict[str, Any]:
 
 express_barter_accounts = pluralized(express_barter_account)
 
-my_barter_account = lambda_fixture(lambda barter_account_factory: barter_account_factory.create(), autouse=True)
-barter_accounts = lambda_fixture(lambda barter_account_factory: barter_account_factory.create_batch(5), autouse=True)
+my_barter_account = lambda_fixture(
+    lambda barter_account_factory: barter_account_factory.create(), autouse=True
+)
+barter_accounts = lambda_fixture(
+    lambda barter_account_factory: barter_account_factory.create_batch(5), autouse=True
+)
 
 
 @pytest.mark.django_db
@@ -50,7 +54,6 @@ class TestBarterAccountApi(ViewSetTest):
     class TestList(
         UsesGetMethod,
         UsesListEndpoint,
-
         Returns200,
     ):
         def it_lists_all_barter_accounts(self, my_barter_account, barter_accounts, json):
@@ -63,7 +66,6 @@ class TestBarterAccountApi(ViewSetTest):
     class TestRetrieve(
         UsesGetMethod,
         UsesDetailEndpoint,
-
         Returns200,
     ):
         def it_gets_a_single_barter_account(self, my_barter_account, json):
@@ -93,7 +95,9 @@ class TestBarterAccountApi(ViewSetTest):
             class ContextMaxBalanceExceeded:
                 data = static_fixture({'amount': 50.00})
 
-                def it_does_not_allow_balance_to_go_above_50(self, my_barter_account, balance_before_call, json):
+                def it_does_not_allow_balance_to_go_above_50(
+                    self, my_barter_account, balance_before_call, json
+                ):
                     expected_message = (
                         f"Balance can't go above $50. "
                         f"Current balance {my_barter_account.balance}. "
@@ -108,7 +112,9 @@ class TestBarterAccountApi(ViewSetTest):
                 class ContextNegativeAmount:
                     data = static_fixture({'amount': -3.00})
 
-                    def it_does_not_allow_negative_amounts(self, my_barter_account, balance_before_call, json):
+                    def it_does_not_allow_negative_amounts(
+                        self, my_barter_account, balance_before_call, json
+                    ):
                         balance_after_call = BarterAccount.objects.get(id=my_barter_account.id).balance.amount
 
                         assert json == {'result': 'input_error', 'message': 'Invalid amount'}
@@ -118,7 +124,7 @@ class TestBarterAccountApi(ViewSetTest):
                     data = static_fixture({'amount': 5.33})
 
                     def it_does_not_allow_amounts_not_rounded_to_25c(
-                            self, my_barter_account, balance_before_call, json
+                        self, my_barter_account, balance_before_call, json
                     ):
                         balance_after_call = BarterAccount.objects.get(id=my_barter_account.id).balance.amount
 
@@ -136,7 +142,9 @@ class TestBarterAccountApi(ViewSetTest):
         ):
             data = static_fixture({'amount': 1.50})
 
-            def it_subtracts_credit_from_my_barter_account(self, my_barter_account, balance_before_call, json):
+            def it_subtracts_credit_from_my_barter_account(
+                self, my_barter_account, balance_before_call, json
+            ):
                 assert json == {'balance': balance_before_call - Decimal(1.50)}
                 actual = BarterAccount.objects.get(id=my_barter_account.id)
                 assert actual.balance.amount == balance_before_call - Decimal(1.50)
@@ -147,7 +155,9 @@ class TestBarterAccountApi(ViewSetTest):
             class ContextMaxBalanceExceeded:
                 data = static_fixture({'amount': 50.00})
 
-                def it_does_not_allow_balance_to_go_negative(self, my_barter_account, balance_before_call, json):
+                def it_does_not_allow_balance_to_go_negative(
+                    self, my_barter_account, balance_before_call, json
+                ):
                     expected_message = f"Balance can't go below {Money(0, 'USD')}"
                     balance_after_call = BarterAccount.objects.get(id=my_barter_account.id).balance.amount
 
@@ -158,7 +168,9 @@ class TestBarterAccountApi(ViewSetTest):
                 class ContextNegativeAmount:
                     data = static_fixture({'amount': -3.00})
 
-                    def it_does_not_allow_negative_amounts(self, my_barter_account, balance_before_call, json):
+                    def it_does_not_allow_negative_amounts(
+                        self, my_barter_account, balance_before_call, json
+                    ):
                         balance_after_call = BarterAccount.objects.get(id=my_barter_account.id).balance.amount
 
                         assert json == {'result': 'input_error', 'message': 'Invalid amount'}
@@ -168,7 +180,7 @@ class TestBarterAccountApi(ViewSetTest):
                     data = static_fixture({'amount': 5.33})
 
                     def it_does_not_allow_amounts_not_rounded_to_25c(
-                            self, my_barter_account, balance_before_call, json
+                        self, my_barter_account, balance_before_call, json
                     ):
                         balance_after_call = BarterAccount.objects.get(id=my_barter_account.id).balance.amount
 
@@ -186,7 +198,9 @@ class TestBarterAccountApi(ViewSetTest):
         ):
             data = static_fixture({'amount': 1.50})
 
-            def it_subtracts_credit_from_my_barter_account(self, my_barter_account, balance_before_call, json):
+            def it_subtracts_credit_from_my_barter_account(
+                self, my_barter_account, balance_before_call, json
+            ):
                 assert json == {'balance': balance_before_call - Decimal(1.50)}
                 actual = BarterAccount.objects.get(id=my_barter_account.id)
                 assert actual.balance.amount == balance_before_call - Decimal(1.50)
@@ -197,7 +211,9 @@ class TestBarterAccountApi(ViewSetTest):
             class ContextMaxBalanceExceeded:
                 data = static_fixture({'amount': 50.00})
 
-                def it_does_not_allow_balance_to_go_negative(self, my_barter_account, balance_before_call, json):
+                def it_does_not_allow_balance_to_go_negative(
+                    self, my_barter_account, balance_before_call, json
+                ):
                     expected_message = f"Balance can't go below {Money(0, 'USD')}"
                     balance_after_call = BarterAccount.objects.get(id=my_barter_account.id).balance.amount
 
@@ -208,7 +224,9 @@ class TestBarterAccountApi(ViewSetTest):
                 class ContextNegativeAmount:
                     data = static_fixture({'amount': -3.00})
 
-                    def it_does_not_allow_negative_amounts(self, my_barter_account, balance_before_call, json):
+                    def it_does_not_allow_negative_amounts(
+                        self, my_barter_account, balance_before_call, json
+                    ):
                         balance_after_call = BarterAccount.objects.get(id=my_barter_account.id).balance.amount
 
                         assert json == {'result': 'input_error', 'message': 'Invalid amount'}
@@ -218,7 +236,7 @@ class TestBarterAccountApi(ViewSetTest):
                     data = static_fixture({'amount': 5.33})
 
                     def it_does_not_allow_amounts_not_rounded_to_25c(
-                            self, my_barter_account, balance_before_call, json
+                        self, my_barter_account, balance_before_call, json
                     ):
                         balance_after_call = BarterAccount.objects.get(id=my_barter_account.id).balance.amount
 

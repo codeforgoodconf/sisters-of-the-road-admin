@@ -8,15 +8,22 @@ import pytest
 
 from tests.exceptions import DisabledFixtureError, NotImplementedFixtureError
 
-__all__ = ['lambda_fixture', 'static_fixture', 'error_fixture',
-           'disabled_fixture', 'not_implemented_fixture',
-           'precondition_fixture', 'LambdaFixture']
+__all__ = [
+    'lambda_fixture', 'static_fixture', 'error_fixture', 'disabled_fixture', 'not_implemented_fixture',
+    'precondition_fixture', 'LambdaFixture'
+]
 
 
-def lambda_fixture(fixture_name_or_lambda: Union[str, Callable] = None,
-                   *other_fixture_names: Iterable[str],
-                   bind=False,
-                   scope="function", params=None, autouse=False, ids=None, name=None):
+def lambda_fixture(
+    fixture_name_or_lambda: Union[str, Callable] = None,
+    *other_fixture_names: Iterable[str],
+    bind=False,
+    scope="function",
+    params=None,
+    autouse=False,
+    ids=None,
+    name=None
+):
     """Use a fixture name or lambda function to compactly declare a fixture
 
     Usage:
@@ -36,12 +43,13 @@ def lambda_fixture(fixture_name_or_lambda: Union[str, Callable] = None,
 
     """
     if other_fixture_names:
-        fixture_names_or_lambda = (fixture_name_or_lambda,) + other_fixture_names
+        fixture_names_or_lambda = (fixture_name_or_lambda, ) + other_fixture_names
     else:
         fixture_names_or_lambda = fixture_name_or_lambda
 
-    return LambdaFixture(fixture_names_or_lambda, bind=bind, scope=scope,
-                         params=params, autouse=autouse, ids=ids, name=name)
+    return LambdaFixture(
+        fixture_names_or_lambda, bind=bind, scope=scope, params=params, autouse=autouse, ids=ids, name=name
+    )
 
 
 def static_fixture(value: Any, **kwargs):
@@ -106,8 +114,7 @@ def disabled_fixture():
     """
 
     def build_disabled_fixture_error(request):
-        msg = (f'Usage of the {request.fixturename} fixture has been disabled '
-               f'in the current context.')
+        msg = (f'Usage of the {request.fixturename} fixture has been disabled ' f'in the current context.')
         return DisabledFixtureError(msg)
 
     return error_fixture(build_disabled_fixture_error)
@@ -130,8 +137,7 @@ def not_implemented_fixture():
     """
 
     def build_not_implemented_fixture_error(request):
-        msg = (f'Please define/override the {request.fixturename} fixture in '
-               f'the current context.')
+        msg = (f'Please define/override the {request.fixturename} fixture in ' f'the current context.')
         return NotImplementedFixtureError(msg)
 
     return error_fixture(build_not_implemented_fixture_error)
@@ -186,13 +192,14 @@ class LambdaFixture(wrapt.ObjectProxy):
 
     def __call__(self, *args, **kwargs):
         if self.bind:
-            args = (self.parent,) + args
+            args = (self.parent, ) + args
         return self.fixture_func(*args, **kwargs)
 
     def _not_implemented(self):
         raise NotImplementedError(
             'The fixture_func for this LambdaFixture has not been defined. '
-            'This is a catastrophic error!')
+            'This is a catastrophic error!'
+        )
 
     def set_fixture_func(self, fixture_names_or_lambda):
         self.fixture_func = self.build_fixture_func(fixture_names_or_lambda)
@@ -219,12 +226,11 @@ class LambdaFixture(wrapt.ObjectProxy):
 
         else:
             if self.bind:
-                raise ValueError(
-                    'bind must be False if requesting a fixture by name')
+                raise ValueError('bind must be False if requesting a fixture by name')
 
             fixture_names = fixture_names_or_lambda
             if isinstance(fixture_names, str):
-                fixture_names = (fixture_names,)
+                fixture_names = (fixture_names, )
 
             # Create a new method with the requested parameter, so pytest can
             # determine its dependencies at parse time. If we instead use
@@ -245,8 +251,10 @@ class LambdaFixture(wrapt.ObjectProxy):
         assert is_in_class or is_in_module
 
         if is_in_module and self.bind:
-            raise ValueError(f'bind=True cannot be used at the module level. '
-                             f'Please remove this arg in the {name} fixture in {parent.__file__}')
+            raise ValueError(
+                f'bind=True cannot be used at the module level. '
+                f'Please remove this arg in the {name} fixture in {parent.__file__}'
+            )
 
         if not self.has_fixture_func:
             # If no fixture definition was passed to lambda_fixture, it's our

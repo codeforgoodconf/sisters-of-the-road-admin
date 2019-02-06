@@ -25,7 +25,9 @@ class BarterEvent(models.Model):
         default=BUY_MEAL,
     )
 
-    barter_account = models.ForeignKey('BarterAccount', related_name='barter_events', on_delete=models.CASCADE)
+    barter_account = models.ForeignKey(
+        'BarterAccount', related_name='barter_events', on_delete=models.CASCADE
+    )
     event_time = models.DateTimeField(auto_now_add=True)
     amount = MoneyField(max_digits=6, decimal_places=2, default_currency='USD', default=0.0)
 

@@ -36,6 +36,7 @@ pytest-django = "*"
 pytest-socket = "*"
 requests-mock = "*"
 werkzeug = "~=0.14.1"
+yapf = "*"
 
 [requires]
 python_version = "3.7"

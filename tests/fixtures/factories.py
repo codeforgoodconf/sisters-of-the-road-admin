@@ -20,12 +20,8 @@ class BaseDjangoModelFactory(DjangoModelFactory):
         """Allow auto_now_add fields to be set"""
         passed_fields = set(kwargs)
         auto_now_add_fields = [
-            field
-            for field in model_cls._meta.concrete_fields
-            if field.name in passed_fields and (
-                    getattr(field, 'auto_now_add', False) or
-                    getattr(field, 'auto_now', False)
-            )
+            field for field in model_cls._meta.concrete_fields if field.name in passed_fields and
+            (getattr(field, 'auto_now_add', False) or getattr(field, 'auto_now', False))
         ]
 
         # We temporarily disable auto_now and auto_now_add for any explicitly
@@ -61,16 +57,12 @@ def add_events(obj, create, extracted, **kwargs):
     for i in range(6):
         if i % 2:
             to_add = random.choice([
-                amount for amount
-                in amounts
-                if obj.balance.amount + Decimal(amount) <= 50
+                amount for amount in amounts if obj.balance.amount + Decimal(amount) <= 50
             ])
             obj.add(to_add)
         else:
             to_subtract = random.choice([
-                amount for amount
-                in amounts
-                if obj.balance.amount - Decimal(amount) >= 0
+                amount for amount in amounts if obj.balance.amount - Decimal(amount) >= 0
             ])
             obj.subtract(to_subtract)
 

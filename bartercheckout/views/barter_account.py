@@ -24,9 +24,7 @@ class BarterAccountFilter(filters.FilterSet):
 
     name = filters.CharFilter(field_name='customer_name', lookup_expr='icontains', label='Customer Name')
 
-    o = filters.OrderingFilter(
-        fields=['customer_name']
-    )
+    o = filters.OrderingFilter(fields=['customer_name'])
 
 
 class BarterAccountSerializer(serializers.ModelSerializer):
@@ -55,12 +53,25 @@ class BarterAccountViewSet(viewsets.ModelViewSet):
                 """This SHOULD be unreachable. But just in case..."""
                 return Response(
                     status=HTTP_400_BAD_REQUEST,
-                    data={'result': 'unknown_action', 'message': f'Event type {event_type} is unknown'}
+                    data={
+                        'result': 'unknown_action',
+                        'message': f'Event type {event_type} is unknown'
+                    }
                 )
         except BalanceLimitError as error:
-            return Response(status=HTTP_400_BAD_REQUEST, data={'result': 'limit_error', 'message': f'{error}'})
+            return Response(
+                status=HTTP_400_BAD_REQUEST, data={
+                    'result': 'limit_error',
+                    'message': f'{error}'
+                }
+            )
         except AmountInputError as error:
-            return Response(status=HTTP_400_BAD_REQUEST, data={'result': 'input_error', 'message': f'{error}'})
+            return Response(
+                status=HTTP_400_BAD_REQUEST, data={
+                    'result': 'input_error',
+                    'message': f'{error}'
+                }
+            )
 
         return Response(status=HTTP_200_OK, data={'balance': account.balance.amount})
 

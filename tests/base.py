@@ -34,8 +34,7 @@ class CommonSubjectTestMixin:
     @pytest.fixture
     def common_subject(self, *args) -> Callable:
         """The method being tested in this context"""
-        raise NotImplementedError('Please override the `common_subject` fixture '
-                                  'and provide a callable.')
+        raise NotImplementedError('Please override the `common_subject` fixture ' 'and provide a callable.')
 
     @pytest.mark.late  # this ensures the fixture is executed at end of setup
     @pytest.fixture(autouse=True)
