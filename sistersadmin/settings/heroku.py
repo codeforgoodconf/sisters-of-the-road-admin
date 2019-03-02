@@ -9,7 +9,4 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    'sisters-demo.herokuapp.com',
-    '0.0.0.0'
-]
+ALLOWED_HOSTS = ['sisters-demo.herokuapp.com', '0.0.0.0']

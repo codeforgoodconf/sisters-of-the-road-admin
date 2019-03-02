@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import AccountSummary from './AccountSummary';
 
 
 class AccountPage extends Component {
-    constructor () {
+    constructor() {
         super();
     }
 
-    render () {
+    render() {
         const {
             account
         } = this.props;
@@ -18,7 +18,7 @@ class AccountPage extends Component {
                 <div class="mt5 fr w-50 h-50">
                     <button class="f3 br0 ph3 pv0 mb4 db h-25 w-80 white bg-purple"
                             onClick={() => this.props.switchView('buycardpage', account)}>
-                        <i class="far fa-credit-card pr2"></i>Buy Card 
+                        <i class="far fa-credit-card pr2"></i>Buy Card
                     </button>
                     <button class="f3 br0 ph3 pv1 mb4 db h-25 w-80 white bg-purple"
                             onClick={() => this.props.switchView('buymealpage', account)}>
@@ -30,7 +30,7 @@ class AccountPage extends Component {
                     </button>
                 </div>
             </div>
-         );
+        );
     }
 }
 

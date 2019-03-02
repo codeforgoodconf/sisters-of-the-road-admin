@@ -1,0 +1,8 @@
+[style]
+based_on_style=pep8
+allow_multiline_lambdas=True
+coalesce_brackets=True
+column_limit=110
+dedent_closing_brackets=True
+split_before_expression_after_opening_paren=True
+split_complex_comprehension=True

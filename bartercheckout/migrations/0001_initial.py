@@ -10,14 +10,16 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
             name='BarterAccount',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
+                ),
                 ('patron_name', models.CharField(max_length=100)),
                 ('balance', models.IntegerField(max_length=30)),
             ],
@@ -25,10 +27,25 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='BarterEvent',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('event_type', models.CharField(choices=[('Add', 'Add'), ('Subtract', 'Subtract'), ('Note', 'Note')], default='Subtract', max_length=20)),
+                (
+                    'id',
+                    models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
+                ),
+                (
+                    'event_type',
+                    models.CharField(
+                        choices=[('Add', 'Add'), ('Subtract', 'Subtract'), ('Note', 'Note')],
+                        default='Subtract',
+                        max_length=20
+                    )
+                ),
                 ('event_time', models.DateTimeField(auto_now_add=True)),
-                ('barter_account', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='bartercheckout.BarterAccount')),
+                (
+                    'barter_account',
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to='bartercheckout.BarterAccount'
+                    )
+                ),
             ],
         ),
     ]
