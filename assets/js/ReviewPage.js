@@ -1,27 +1,40 @@
 import React, { Component } from 'react';
 import AccountSummary from './AccountSummary';
+import axios from 'axios'
 
+axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN'
+axios.defaults.xsrfCookieName = 'csrftoken'
 
 class ReviewPage extends Component {
-    constructor () {
-        super();
+    constructor (props) {
+        super(props);
+        this.state = {}
+        this.addCredit = this.addCredit.bind(this)
+        this.handleInput = this.handleInput.bind(this)
     }
-    addCredit (account) {
-        const {
-            updateBalance,
-            switchView
-         } = this.props;
-         let amount = Number(this.state.amount) * 100;
-         axios.post('/account/' + account.id + '/credit', {amount: amount}).then(function(response) {
-             
-         });
+    addCredit () {
+        let amount = Number(this.props.pendingTransaction) * 100;
+        debugger
+        console.log(this.state.initials)
+        let id = this.props.account.id
+        axios.post('/account/' + id + '/credit', {amount: amount, initials: this.state.initials})
+        .then((response) => {
+        this.props.switchView('confirmationpage', this.props.account)
+        }).catch((response) => {
+            
+        })
     }
+
+    handleInput(e) {
+        this.setState({initials: e.target.value})
+    }
+
     render () {
         const {
             account,
             pendingTransaction
         } = this.props;
-        console.log('pendingTransaction', pendingTransaction);
+        
         return (
             <div class="ReviewPage">
                 <AccountSummary account={account} switchView={this.props.switchView} />
@@ -45,7 +58,7 @@ class ReviewPage extends Component {
                         type="string"
                         // value={this.state.amount}
                         placeholder={"Enter your initials"}
-                        // onChange={(event) => this.onAmountChange(event.target.value)} 
+                        onChange={this.handleInput} 
                         />
                     </form>
                     
@@ -57,7 +70,7 @@ class ReviewPage extends Component {
                         <i class="fas fa-times pr2"></i>Cancel
                     </button>
                     <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 w-50 fr white bg-green"
-                            onClick={() => this.props.switchView('confirmationpage', account)}>
+                            onClick={ this.addCredit }>
                         <i class="fas fa-plus pr2"></i>Confirm
                     </button>
                 </div>
