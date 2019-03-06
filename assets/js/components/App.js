@@ -3,7 +3,7 @@ import { Switch, HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
 
 import SearchPage from './SearchPageContainer';
-import AccountPage from './AccountPage';
+import AccountPage from './AccountPageContainer';
 import BuyMealPage from './BuyMealPage';
 import BuyCardPage from './BuyCardPage';
 import AddCreditPage from './AddCreditPage';
@@ -16,6 +16,7 @@ const App = ({ store }) => (
     <Provider store={ store } >
         <HashRouter>
             <Switch>
+                <Route path='/account' component = {AccountPage} />
                 <Route path='/' component = {SearchPage} />
             </Switch>
 

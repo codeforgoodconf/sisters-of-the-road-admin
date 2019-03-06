@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import AccountListItem from './AccountItem'
+
 
 class SearchPage extends Component {
     constructor (props) {
@@ -8,60 +10,55 @@ class SearchPage extends Component {
             
         };
         this.onSearchChange = this.onSearchChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSelect = this.handleSelect.bind(this)
     }
 
     componentWillReceiveProps(oldProps) {
         if (this.props.searchQuery !== oldProps.searchQuery) {
             this.setState({loaded: true})
         }
+
+        if (this.props.account !== oldProps.account) {
+            this.props.history.push('/account')
+        }
     }
 
-    onSearchChange (value) {
-        this.setState({searchQuery: value});
+    onSearchChange (e) {
+        this.setState({searchQuery: e.target.value});
     }
     
     handleSubmit() {
         this.props.requestSearchQuery(this.state.searchQuery)
     }
 
+    handleSelect(account) {
+        return () => {
+            this.props.recieveAccount(account)
+        }
+    }
+
     render () {
+        
+        let accounts = (this.props.searchQuery).map(account => <AccountListItem account={account} action={this.handleSelect(account)} key={account.id}  />)
 
-        var {
-            accounts,
-            searchQuery
-        } = this.state;
-
-       if (typeof accounts == "undefined") accounts =[];
-       if (typeof searchQuery == "undefined") searchQuery = '';
         return (
-            <div class="SearchPage pa4">
-                <div id="searchbar" class="flex">
-                <input class="h3 f3 pl2 mr2 w-75 b--purple ttu oswald br0"
+            <div className="SearchPage pa4">
+                <div id="searchbar" className="flex">
+                <input className="h3 f3 pl2 mr2 w-75 b--purple ttu oswald br0"
                          type="text"
                          placeholder="search accounts"
-                         onChange={(event) => this.onSearchChange(event.target.value)}/>
-                  <input class="h3 f4 ph0 w-25 b--purple white bg-purple mb2 oswald"
+                         onChange={this.onSearchChange}/>
+                  <input className="h3 f4 ph0 w-25 b--purple white bg-purple mb2 oswald"
                          type="submit"
                          value="SEARCH"
-                         onClick={() => this.searchAccounts(searchQuery)}
+                         onClick={this.handleSubmit}
                          />
                 </div>
 
                 <div id='results'>
-                  <ul class="list pa0">
-                    {accounts.map((account) =>
-                        <li class="bg-light-gray pv2 pa3 mb3 b--solid br1 b--moon-gray flex items-center"
-                            onClick={() => this.props.switchView('accountpage', account)}
-                            key={account.id}>
-                            <span class="flex-auto">
-                                <p> {account.name} </p>
-                                <p> {account.balance} </p>
-                                <p>Last credit: {account.lastCredit}</p>
-                                <p>Last purchase: {account.lastMeal}</p>
-                            </span>
-                            <span class="f1 silver">&rsaquo;</span>
-                        </li>
-                    )}
+                  <ul className="list pa0">
+                    {accounts}
                   </ul>
                 </div>
 

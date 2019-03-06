@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 
 class AccountSummary extends Component {
-    constructor () {
-        super();
+    constructor (props) {
+        super(props);
         this.state = {
         };
     }

@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const store = configureStore()
   // for testing actions/reducers
-
   window.getState = store.getState
   window.dispach = store.dispatch
   window.requestSearchQuery = requestSearchQuery

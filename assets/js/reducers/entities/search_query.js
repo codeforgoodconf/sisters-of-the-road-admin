@@ -1,7 +1,7 @@
 import { RECIEVE_SEARCH_QUERY } from '../../actions/account_actions'
 
 
-const searchQueryReducer = (state={}, action) => {
+const searchQueryReducer = (state=[], action) => {
     Object.freeze(state);
 
     switch(action.type) {
