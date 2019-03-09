@@ -20,6 +20,7 @@ class SearchPage extends Component {
         }
 
         if (this.props.account !== oldProps.account) {
+            
             this.props.history.push('/account')
         }
     }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Switch, HashRouter } from 'react-router-dom';
+import { Switch, HashRouter, Route, withRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
+
+import { SelectedRoute } from '../utils/route_util'
 
 import SearchPage from './SearchPageContainer';
 import AccountPage from './AccountPageContainer';
@@ -8,7 +10,6 @@ import BuyMealPage from './BuyMealPage';
 import BuyCardPage from './BuyCardPage';
 import AddCreditPage from './AddCreditPage';
 import ConfirmationPage from './ConfirmationPage';
-import { Route, Redirect, withRouter } from 'react-router-dom';
 
 
 
@@ -16,7 +17,8 @@ const App = ({ store }) => (
     <Provider store={ store } >
         <HashRouter>
             <Switch>
-                <Route path='/account' component = {AccountPage} />
+                <SelectedRoute exact path='/account'  component = {AccountPage} />
+                <SelectedRoute exact path='/buycard' component = {BuyCardPage} />
                 <Route path='/' component = {SearchPage} />
             </Switch>
 

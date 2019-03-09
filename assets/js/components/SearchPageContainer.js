@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import SearchPage from './SearchPage'
-import { requestSearchQuery, recieveAccount } from '../actions/account_actions'
+import { requestSearchQuery, recieveAccount, clearSearchQuery } from '../actions/account_actions'
 
 
 const mapStateToProps = (state) => ({

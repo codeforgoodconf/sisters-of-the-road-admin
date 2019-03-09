@@ -1,33 +1,26 @@
 import React, { Component } from 'react';
 
 
-class AccountSummary extends Component {
-    constructor (props) {
-        super(props);
-        this.state = {
-        };
-    }
-
-    render () {
+const AccountSummary = ({account, action}) => {
         return (
-            <div id="account-summary" class="blue oswald ml4 pb4 fl w-40">
-                <h1 class='f1'>{this.props.account.name}</h1>
-                <p class="f2">
+            <div id="account-summary" className="blue oswald ml4 pb4 fl w-40">
+                <h1 className='f1'>{account.name}</h1>
+                <p className="f2">
                     Current Balance:
-                    <span class="gray"> ${this.props.account.currentCredit.toFixed(2)}</span>
+                    <span className="gray"> ${account.balance}</span>
                 </p>
 
-                <p class="f3">Last Worked: {this.props.account.lastCredit}</p>
-                <p class="f3">Last Purchase: {this.props.account.lastMeal}</p>
+                <p className="f3">Last Worked: {account.last_add}</p>
+                <p className="f3">Last Purchase: {account.last_subtract}</p>
 
-                <button class="f4 ph3 pv2 mb2 mr3 dib h3 w-50 white bg-blue"
-                    onClick={() => this.props.switchView('searchpage')}>
-                        <i class="fas fa-angle-double-left pr2"></i>
+                <button className="f4 ph3 pv2 mb2 mr3 dib h3 w-50 white bg-blue"
+                    onClick={action}>
+                        <i className="fas fa-angle-double-left pr2"></i>
                         Back to Search
                 </button>
             </div>
          );
-    }
+    
 }
 
 export default AccountSummary;
