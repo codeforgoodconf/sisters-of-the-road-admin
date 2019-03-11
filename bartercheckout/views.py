@@ -81,7 +81,15 @@ def credit(request, account_id):
         event = BarterEvent(**data)
         event.save()
 
-        return JsonResponse({'result': 'ok'})
+        account_dict = {
+            'account_id': account.id,
+            'name': account.customer_name,
+            'balance': account.balance.amount,
+            'last_add': account.last_add or 'Nothing yet!',
+            'last_subtract': account.last_subtract or 'Nothing yet!'
+        }
+
+        return JsonResponse(account_dict)
     else:
         return JsonResponse({'error': 'noSuchAccount'})
 
@@ -112,7 +120,15 @@ def buy_meal(request, account_id):
         event = BarterEvent(**data)
         event.save()
 
-        return JsonResponse({'result': 'ok'})
+        account_dict = {
+            'account_id': account.id,
+            'name': account.customer_name,
+            'balance': account.balance.amount,
+            'last_add': account.last_add or 'Nothing yet!',
+            'last_subtract': account.last_subtract or 'Nothing yet!'
+        }
+
+        return JsonResponse(account_dict)
     else:
         return JsonResponse({'error': 'noSuchAccount'})
 
@@ -133,9 +149,9 @@ def buy_card(request, account_id):
         try:
             newBalance = account.subtract(amount)
         except BalanceLimitError:
-            return JsonResponse({'result': 'limit_error'})
+            return JsonResponse({'error': 'limit_error'})
         except AmountInputError:
-            return JsonResponse({'result': 'input_error'})
+            return JsonResponse({'error': 'input_error'})
         account.save()
 
         # Create event
@@ -143,6 +159,14 @@ def buy_card(request, account_id):
         event = BarterEvent(**data)
         event.save()
 
-        return JsonResponse({'result': 'ok'})
+        account_dict = {
+            'account_id': account.id,
+            'name': account.customer_name,
+            'balance': account.balance.amount,
+            'last_add': account.last_add or 'Nothing yet!',
+            'last_subtract': account.last_subtract or 'Nothing yet!'
+        }
+
+        return JsonResponse(account_dict)
     else:
         return JsonResponse({'error': 'noSuchAccount'})

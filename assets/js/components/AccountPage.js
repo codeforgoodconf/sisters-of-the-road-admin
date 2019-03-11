@@ -24,11 +24,11 @@ class AccountPage extends Component {
 
                 <div className="mt5 fr w-50 h-50">
                     <button className="f3 br0 ph3 pv0 mb4 db h-25 w-80 white bg-purple"
-                            onClick={this.navigate('/d')}>
+                            onClick={this.navigate('/buycard')}>
                         <i className="far fa-credit-card pr2"></i>Buy Card 
                     </button>
                     <button className="f3 br0 ph3 pv1 mb4 db h-25 w-80 white bg-purple"
-                            onClick={() => this.props.switchView('buymealpage', account)}>
+                            onClick={this.navigate('/buymeal')}>
                         <i className="fas fa-utensils pr2"></i>Buy Meal
                     </button>
                     <button className="f3 br0 ph3 pv1 mb0 db h-25 w-80 white bg-green"

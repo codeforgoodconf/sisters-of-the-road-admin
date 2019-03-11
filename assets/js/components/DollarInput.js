@@ -1,35 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
+const DollarInput = ({amount, updateAmount, error}) => {
 
-
-class DollarInput extends Component {
-    constructor () {
-        super();
-        this.state = {
-            amount: ''
-        };
+    
+    if (error === 'limit_error') {
+        error = "Balance can't go below $0"
+    } else if  (error === "input_error") {
+        error = "Please enter an amount above $0 in increment of $.25";
     }
 
-    onAmountChange (amount) {
-        this.setState({amount: amount});
-        this.props.updateAmount(amount);
-    }
-
-    render () {
-        return (
-            <form class="mb4 dib">    
-                <label class="f2">Amount $</label>
-                <input id="amount"
-                    class="ml2 pa2 f2 w-60 input-reset ba bg-transparent hover-bg-light-gray"
-                    type="number"
-                    min="0"
-                    step="0.25"
-                    value={this.state.amount}
-                    placeholder={0}
-                    onChange={(event) => this.onAmountChange(event.target.value)} />
-                <label class="fl f4 mt2 red" id="error-msg"></label>           
-            </form>
-         );
-    }
+    return (
+        <form className="mb4 dib">    
+            <label className="f2">Amount $</label>
+            <input id="amount"
+                className="ml2 pa2 f2 w-60 input-reset ba bg-transparent hover-bg-light-gray"
+                type="number"
+                min="0"
+                step="0.25"
+                value={amount}
+                placeholder={0}
+                onChange={updateAmount} />
+            <label className="fl f4 mt2 red" id="error-msg">{error}</label>           
+        </form>
+    );
+    
 }
-
 export default DollarInput;

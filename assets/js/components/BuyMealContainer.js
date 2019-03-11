@@ -6,12 +6,12 @@ import { buyMeal } from '../actions/account_actions'
 
 const mapStateToProps = (state) => ({
     account: state.entities.account,
-    error: state.errors.buyError,
-    title: "Buy Card"
+    limitError: state.errors.limitError,
+    title: "Buy Meal"
 });
 
 const mapDispatchToProps = dispatch => ({
-    action: (account, amount) => dispatch(buyCard(account, amount))
+    action: (account, amount) => dispatch(buyMeal(account, amount))
 })
 
 

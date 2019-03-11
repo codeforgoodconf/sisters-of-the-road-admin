@@ -6,8 +6,8 @@ import { SelectedRoute } from '../utils/route_util'
 
 import SearchPage from './SearchPageContainer';
 import AccountPage from './AccountPageContainer';
-import BuyMealPage from './BuyMealPage';
-import BuyCardPage from './BuyCardPage';
+import BuyMealPage from './BuyMealContainer';
+import BuyCardPage from './BuyCardContainer';
 import AddCreditPage from './AddCreditPage';
 import ConfirmationPage from './ConfirmationPage';
 
@@ -17,8 +17,9 @@ const App = ({ store }) => (
     <Provider store={ store } >
         <HashRouter>
             <Switch>
-                <SelectedRoute exact path='/account'  component = {AccountPage} />
+                <SelectedRoute exact path='/account' component = {AccountPage} />
                 <SelectedRoute exact path='/buycard' component = {BuyCardPage} />
+                <SelectedRoute exact path='/buymeal' component = {BuyMealPage} />
                 <Route path='/' component = {SearchPage} />
             </Switch>
 

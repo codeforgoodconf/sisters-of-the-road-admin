@@ -39,8 +39,8 @@ class AddCreditPage extends Component {
          });
     }
 
-    updateAmount (amount) {
-        this.setState({amount: amount});
+    updateAmount (e) {
+        this.setState({amount: e.target.value});
     }
 
     render () {
@@ -53,7 +53,7 @@ class AddCreditPage extends Component {
                 <AccountSummary account={account} switchView={this.props.switchView}/>
                 <div id="calculate" class="fl w-50 mt5 ba bw1 pa2">
                     <h1>Add Credit</h1>
-                    <DollarInput updateAmount={(amount) => this.updateAmount(amount)} />
+                    <DollarInput updateAmount={this.updateAmount} error={error} />
                     <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 fl bg-light-gray blue w-40"
                         onClick={() => this.props.switchView('accountpage', account)}>
                         <i class="fas fa-times pr2"></i>Cancel

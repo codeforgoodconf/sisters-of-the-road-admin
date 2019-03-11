@@ -10,3 +10,12 @@ export const fetchSearchQuery = (searchQuery) => (
 export const buyCard = (account, amount) => (
     axios.post('/account/' + account.account_id + '/buy_card', { amount })
 );
+
+
+export const buyMeal = (account, amount) => (
+    axios.post('/account/' + account.account_id + '/buy_meal', { amount })
+);
+
+export const credit = (account, amount) => (
+    axios.post('/account' + account.id + '/credit', {amount: amount})
+)

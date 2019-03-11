@@ -23,6 +23,7 @@ flake8 = '*'
 mypy = '*'
 pytest = '*'
 ipython = "*"
+pylint = "*"
 
 [requires]
 python_version = "3.6"
