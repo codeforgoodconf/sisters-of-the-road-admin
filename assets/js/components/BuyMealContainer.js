@@ -6,7 +6,7 @@ import { buyMeal } from '../actions/account_actions'
 
 const mapStateToProps = (state) => ({
     account: state.entities.account,
-    limitError: state.errors.limitError,
+    error: state.errors.buyError,
     title: "Buy Meal"
 });
 

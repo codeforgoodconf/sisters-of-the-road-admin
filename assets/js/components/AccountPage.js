@@ -6,8 +6,13 @@ class AccountPage extends Component {
     constructor (props) {
         super(props);
         this.navigate = this.navigate.bind(this)
-        this.props.clearSearchQuery()
+        
 
+    }
+
+    componentDidMount() {
+        this.props.clearSearchQuery()
+        this.props.clearErrors()
     }
 
     navigate(url) {
@@ -16,8 +21,6 @@ class AccountPage extends Component {
 
 
     render () {
-        
-        
         return (
             <div className="AccountPage">
                 <AccountSummary account={this.props.account} action={this.navigate('/')}/>
@@ -32,7 +35,7 @@ class AccountPage extends Component {
                         <i className="fas fa-utensils pr2"></i>Buy Meal
                     </button>
                     <button className="f3 br0 ph3 pv1 mb0 db h-25 w-80 white bg-green"
-                            onClick={() => this.props.switchView('addcreditpage', account)}>
+                            onClick={this.navigate('credit')}>
                         <i className="fas fa-plus pr2"></i>Add Credit
                     </button>
                 </div>

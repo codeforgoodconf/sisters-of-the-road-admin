@@ -4,6 +4,7 @@ export const RECIEVE_SEARCH_QUERY = 'RECIEVE_SEARCH_QUERY';
 export const RECIEVE_ACCOUNT = 'RECIEVE_ACCOUNT';
 export const CLEAR_SEARCH_QUERY = 'CLEAR_SEARCH_QUERY';
 export const RECIEVE_BUY_ERROR = 'RECIEVE_BUY_ERROR';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 
 export const recieveSearchQuery = (accounts) => ({
     type: RECIEVE_SEARCH_QUERY,
@@ -24,6 +25,10 @@ export const recieveBuyError = (error) => ({
     error
 });
 
+export const clearErrors = () => ({
+    type: CLEAR_ERRORS
+})
+
 
 
 export const requestSearchQuery = (searchQuery) => dispatch => (
@@ -43,11 +48,21 @@ export const buyCard = (account, amount) => dispatch => (
     )
 );
 
-
 export const buyMeal = (account, amount) => dispatch => (
     ApiUtils.buyMeal(account, amount)
     .then((response) => {
-        if (response.data.error) return dispatch(recieveBalanceError(response.data.error))
+        if (response.data.error) return dispatch(recieveBuyError(response.data.error))
+            
+        return dispatch(recieveAccount(response.data))
+        }
+    )
+);
+
+
+export const credit = (account, amount) => dispatch => (
+    ApiUtils.credit(account, amount)
+    .then((response) => {
+        if (response.data.error) return dispatch(recieveBuyError(response.data.error))
             
         return dispatch(recieveAccount(response.data))
         }

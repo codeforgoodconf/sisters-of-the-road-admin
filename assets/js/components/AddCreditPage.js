@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import DollarInput from './DollarInput';
-import AccountSummary from './AccountSummary';
 
-axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-axios.defaults.xsrfCookieName = "csrftoken";
+import AccountSummary from './AccountSummary'
+import DollarInput from './DollarInput';
+
 
 
 class AddCreditPage extends Component {
@@ -13,30 +11,27 @@ class AddCreditPage extends Component {
         this.state = {
             amount: ''
         };
+        this.navigate = this.navigate.bind(this);
+        this.addCredit = this.addCredit.bind(this);
+        this.updateAmount = this.updateAmount.bind(this);
     }
 
-    addCredit (account) {
-        const {
-            updateBalance,
-            switchView
-         } = this.props;
-         let amount = Number(this.state.amount);
-         axios.post('/account/' + account.id + '/credit', {amount: amount}).then(function(response) {
-             if (response.data && response.data.result === 'ok') {
-                updateBalance(amount);
-                switchView('confirmationpage', account);
-             } else if (response.data && response.data.result === 'limit_error'){
-                console.log('balance can\'t exceed $50');
-                document.getElementById('error-msg').innerHTML="Balance can't go above $50";
-             } else if (response.data && response.data.result === 'input_error'){
-                console.log('invalid amount');
-                document.getElementById('error-msg').innerHTML=
-                    "Please enter an amount above $0 in increment of $.25";
-             } else {
-                 // the account ID was not found - what to do?
-                 console.log('no account!')
-             }
-         });
+    navigate(url) {
+        return () => this.props.history.push(url)
+    }
+
+    addCredit () {
+        const nav = () => {
+            this.props.history.push('/account')
+        }
+
+        
+        const that = this
+        this.props.action(this.props.account, Number(this.state.amount))
+        .then(() => {
+
+            if (!that.props.error) nav()
+        })
     }
 
     updateAmount (e) {
@@ -44,23 +39,27 @@ class AddCreditPage extends Component {
     }
 
     render () {
-        const {
-            account
-        } = this.props;
+
+        let error = this.props.error
+        if (error === 'limit_error') {
+            error = "Balance can't exceed $50"
+        } else if  (error === "input_error") {
+            error = "Please enter an amount above $0 in increment of $.25";
+        }
 
         return (
-            <div class="AddCreditPage">
-                <AccountSummary account={account} switchView={this.props.switchView}/>
-                <div id="calculate" class="fl w-50 mt5 ba bw1 pa2">
+            <div className="AddCreditPage">
+                <AccountSummary account={this.props.account} action={this.navigate('/')}/>
+                <div id="calculate" className="fl w-50 mt5 ba bw1 pa2">
                     <h1>Add Credit</h1>
-                    <DollarInput updateAmount={this.updateAmount} error={error} />
-                    <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 fl bg-light-gray blue w-40"
-                        onClick={() => this.props.switchView('accountpage', account)}>
-                        <i class="fas fa-times pr2"></i>Cancel
+                    <DollarInput updateAmount={this.updateAmount} amount={this.state.amount} error={error} />
+                    <button className="f4 br0 ph3 pv2 mb2 mr3 dib h3 fl bg-light-gray blue w-40"
+                        onClick={this.navigate('/account')}>
+                        <i className="fas fa-times pr2"></i>Cancel
                     </button>
-                    <button class="f4 br0 ph3 pv2 mb2 mr3 dib h3 w-50 fr white bg-green"
-                            onClick={() => this.addCredit(account)}>
-                        <i class="fas fa-plus pr2"></i>Add amount
+                    <button className="f4 br0 ph3 pv2 mb2 mr3 dib h3 w-50 fr white bg-green"
+                            onClick={this.addCredit}>
+                        <i className="fas fa-plus pr2"></i>Add amount
                     </button>
                 </div>
             </div>

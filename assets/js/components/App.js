@@ -8,7 +8,7 @@ import SearchPage from './SearchPageContainer';
 import AccountPage from './AccountPageContainer';
 import BuyMealPage from './BuyMealContainer';
 import BuyCardPage from './BuyCardContainer';
-import AddCreditPage from './AddCreditPage';
+import AddCreditPage from './AddCreditContainer';
 import ConfirmationPage from './ConfirmationPage';
 
 
@@ -20,6 +20,7 @@ const App = ({ store }) => (
                 <SelectedRoute exact path='/account' component = {AccountPage} />
                 <SelectedRoute exact path='/buycard' component = {BuyCardPage} />
                 <SelectedRoute exact path='/buymeal' component = {BuyMealPage} />
+                <SelectedRoute exact path='/credit' component = {AddCreditPage} />
                 <Route path='/' component = {SearchPage} />
             </Switch>
 

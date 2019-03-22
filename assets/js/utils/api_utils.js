@@ -17,5 +17,5 @@ export const buyMeal = (account, amount) => (
 );
 
 export const credit = (account, amount) => (
-    axios.post('/account' + account.id + '/credit', {amount: amount})
+    axios.post('/account/' + account.account_id + '/credit', {amount: amount})
 )

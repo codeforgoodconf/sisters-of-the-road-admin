@@ -25,7 +25,7 @@ class BuyCardPage extends Component {
         const that = this
         this.props.action(this.props.account, Number(this.state.amount))
         .then(() => {
-
+            debugger
             if (!that.props.error) nav()
         })
     }
@@ -37,9 +37,15 @@ class BuyCardPage extends Component {
     render () {
         
         let error = this.props.error
+        if (error === 'limit_error') {
+            error = "Balance can't go below $0"
+        } else if  (error === "input_error") {
+            error = "Please enter an amount above $0 in increment of $.25";
+        }
+
         return (
             <div className="BuyCardPage">
-                <AccountSummary account={this.props.account} switchView={this.props.switchView}/>
+                <AccountSummary account={this.props.account} action={this.navigate('/')}/>
                 <div id="calculate" className="fl w-50 mt5 ba bw1 pa2">
                     <h1>{this.props.title}</h1>
                     <DollarInput updateAmount={this.updateAmount} amount={this.state.amount} error={error} /> 
