@@ -5,8 +5,8 @@ import AccountSummary from './AccountSummary';
 
 
 class BuyCardPage extends Component {
-    constructor () {
-        super();
+    constructor (props) {
+        super(props);
         this.state = {
             amount: ''
         };
@@ -20,12 +20,12 @@ class BuyCardPage extends Component {
     }
     buy () {
         const nav = () => {
-            this.props.history.push('/account')
+            this.props.history.push('/conformation')
         }
         const that = this
         this.props.action(this.props.account, Number(this.state.amount))
         .then(() => {
-            debugger
+            
             if (!that.props.error) nav()
         })
     }
