@@ -4,6 +4,7 @@ API endpoints
 
 import json
 
+
 from django.http import JsonResponse
 from django.shortcuts import render
 
@@ -134,6 +135,7 @@ def buy_meal(request, account_id):
 
 
 def buy_card(request, account_id):
+
     """
     Spend from a BarterAccount to purchase a barter card and
     create a BarterEvent as a record of the transaction.

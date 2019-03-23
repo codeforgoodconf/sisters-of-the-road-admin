@@ -41,3 +41,10 @@ body {
 .bg-dk-gray { background-color: #333 }
 
 /************* OTHER **************/
+.hidden { display: none;}
+
+#confirm-modal {
+    position: absolute;
+    background: white;
+    left: calc(50% - 198px);
+}

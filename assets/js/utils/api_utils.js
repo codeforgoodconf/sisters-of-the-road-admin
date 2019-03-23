@@ -7,15 +7,15 @@ export const fetchSearchQuery = (searchQuery) => (
      axios.get('/account/search?q=' + searchQuery)
 );
 
-export const buyCard = (account, amount) => (
-    axios.post('/account/' + account.account_id + '/buy_card', { amount })
+export const buyCard = (account, amount, initials) => (
+    axios.post('/account/' + account.account_id + '/buy_card', { amount, initials })
 );
 
 
-export const buyMeal = (account, amount) => (
-    axios.post('/account/' + account.account_id + '/buy_meal', { amount })
+export const buyMeal = (account, amount, initials) => (
+    axios.post('/account/' + account.account_id + '/buy_meal', { amount, initials })
 );
 
-export const credit = (account, amount) => (
-    axios.post('/account/' + account.account_id + '/credit', {amount: amount})
-)
+export const credit = (account, amount, initials) => (
+    axios.post('/account/' + account.account_id + '/credit', { amount, initials })
+);

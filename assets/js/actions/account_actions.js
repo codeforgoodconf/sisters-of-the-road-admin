@@ -38,8 +38,8 @@ export const requestSearchQuery = (searchQuery) => dispatch => (
     )
 );
 
-export const buyCard = (account, amount) => dispatch => (
-    ApiUtils.buyCard(account, amount)
+export const buyCard = (account, amount, initials) => dispatch => (
+    ApiUtils.buyCard(account, amount, initials)
     .then((response) => {
         if (response.data.error) return dispatch(recieveBuyError(response.data.error))
             
@@ -48,8 +48,8 @@ export const buyCard = (account, amount) => dispatch => (
     )
 );
 
-export const buyMeal = (account, amount) => dispatch => (
-    ApiUtils.buyMeal(account, amount)
+export const buyMeal = (account, amount, initials) => dispatch => (
+    ApiUtils.buyMeal(account, amount, initials)
     .then((response) => {
         if (response.data.error) return dispatch(recieveBuyError(response.data.error))
             
@@ -59,8 +59,8 @@ export const buyMeal = (account, amount) => dispatch => (
 );
 
 
-export const credit = (account, amount) => dispatch => (
-    ApiUtils.credit(account, amount)
+export const credit = (account, amount, initials) => dispatch => (
+    ApiUtils.credit(account, amount, initials)
     .then((response) => {
         if (response.data.error) return dispatch(recieveBuyError(response.data.error))
             

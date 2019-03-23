@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    action: (account, amount) => dispatch(buyMeal(account, amount))
+    action: (account, amount, initials) => dispatch(buyMeal(account, amount, initials))
 })
 
 
