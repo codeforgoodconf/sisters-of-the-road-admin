@@ -67,7 +67,8 @@ def credit(request, account_id):
         body_unicode = request.body.decode('utf-8')
         body_data = json.loads(body_unicode)
         amount = body_data['amount']
-
+        
+        
         # Update the barter account
         try:
             newBalance = account.add(amount)
@@ -106,6 +107,7 @@ def buy_meal(request, account_id):
         body_unicode = request.body.decode('utf-8')
         body_data = json.loads(body_unicode)
         amount = body_data['amount']
+        initials = body_data['initials']
 
         # Update the barter account
         try:
@@ -117,7 +119,7 @@ def buy_meal(request, account_id):
         account.save()
 
         # Create event
-        data = {'barter_account': account, 'event_type': 'Buy_meal', 'amount': amount}
+        data = {'barter_account': account, 'event_type': 'Buy_meal', 'amount': amount, 'initials': initials }
         event = BarterEvent(**data)
         event.save()
 
@@ -146,6 +148,8 @@ def buy_card(request, account_id):
         body_unicode = request.body.decode('utf-8')
         body_data = json.loads(body_unicode)
         amount = body_data['amount']
+        initials = body_data['initials']
+
 
         # Update the barter account
         try:
@@ -157,9 +161,10 @@ def buy_card(request, account_id):
         account.save()
 
         # Create event
-        data = {'barter_account': account, 'event_type': 'Buy_card', 'amount': amount}
+        data = {'barter_account': account, 'event_type': 'Buy_card', 'amount': amount, 'initials': initials}
         event = BarterEvent(**data)
         event.save()
+        
 
         account_dict = {
             'account_id': account.id,
