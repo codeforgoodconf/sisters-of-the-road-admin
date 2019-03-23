@@ -41,6 +41,11 @@ class BarterEvent(models.Model):
         default=BUY_MEAL,
     )
 
+    initials = models.CharField(
+        max_length=20,
+        default=""
+    )
+
     event_time = models.DateTimeField(auto_now_add=True)
     amount = MoneyField(max_digits=6, decimal_places=2, default_currency='USD', default=0.0)
 
