@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 behave = "~=1.2.5"
 behave-django = "~=1.1.0"
-Django = "~=2.1.5"
+Django = "~=2.2.10"
 django-webpack-loader = "~=0.6.0"
 dj-database-url = "~=0.5.0"
 gunicorn = "~=19.9.0"
